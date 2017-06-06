@@ -24,7 +24,7 @@ public class LoginController implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println(user.getText());
+        System.out.println("Hola Mundo");
 //        label.setText(user.getText());
     }
     
