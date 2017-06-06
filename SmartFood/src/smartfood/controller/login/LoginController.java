@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -26,6 +27,11 @@ public class LoginController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         System.out.println("Hola Mundo");
 //        label.setText(user.getText());
+    }
+    
+    @FXML
+    private void exit(MouseEvent event) {
+        System.exit(0);
     }
     
     @Override
