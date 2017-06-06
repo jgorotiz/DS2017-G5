@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simacom.screen.login.loginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" prefHeight="260.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -62,12 +62,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button id="iniciarSesion" fx:id="inicio" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" mnemonicParsing="false" onAction="#handleMainMenu" prefHeight="28.0" prefWidth="99.0" snapToPixel="false" text="Iniciar Sesión">
+                        <Button id="iniciarSesion" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="28.0" prefWidth="99.0" snapToPixel="false" text="Iniciar Sesión">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Button>
-                        <Button id="iniciarSesion" fx:id="salir" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#handleExitSystem" prefHeight="28.0" prefWidth="99.0" snapToPixel="false" text="Salir" GridPane.columnIndex="1">
+                        <Button id="iniciarSesion" fx:id="salir" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="" prefHeight="28.0" prefWidth="99.0" snapToPixel="false" text="Salir" GridPane.columnIndex="1">
                            <font>
                               <Font size="13.0" />
                            </font>
