@@ -11,3 +11,25 @@ end//
 
 delimiter ;
 
+/* platillos por restaurante dada una categoria*/
+delimiter //
+create procedure platilloXCategoria(in categoria varchar(50))
+begin
+	select nombre, descripcion, img, nombreTipo, nombreCategoria
+    from plato,categoria
+    where plato.categoria =  categoria.idCategoria and categoria = nombreCategoria ;
+end// 
+
+delimiter ;
+    
+/* platillos por restaurante dado un tipo*/
+delimiter //
+create procedure platilloXTipo(in categoria varchar(50))
+begin
+	select nombre, descripcion, img, nombreTipo, nombreCategoria
+    from plato,categoria
+    where plato.categoria =  categoria.idCategoria;
+end// 
+
+delimiter ;
+
