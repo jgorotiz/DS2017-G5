@@ -19,7 +19,11 @@ public class SmartFood extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("screen/login/Login.fxml"));
+        
+        Parent root = FXMLLoader.load(getClass().
+                getResource("screen/client/BusquedaPlatillo.fxml"));
+//        Parent root = FXMLLoader.load(getClass().
+//                getResource("screen/login/Login.fxml"));
         
         Scene scene = new Scene(root);
         

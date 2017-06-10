@@ -19,11 +19,11 @@ public class Plato {
     private Image imagen;
     private String categoria;
     private String tipo;
-    private Restaurante restaurante;
+    private String restaurante;
     private Date fechaRegistro;
 
     public Plato(String nombre, String descripcion, Image imagen, 
-            String categoria, String tipo, Restaurante restaurante, 
+            String categoria, String tipo, String restaurante, 
             Date fechaRegistro) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -74,11 +74,11 @@ public class Plato {
         this.tipo = tipo;
     }
 
-    public Restaurante getRestaurante() {
+    public String getRestaurante() {
         return restaurante;
     }
 
-    public void setRestaurante(Restaurante restaurante) {
+    public void setRestaurante(String restaurante) {
         this.restaurante = restaurante;
     }
 
