@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
  */
 public class Plato {
     
+    private int idPlatillo;
     private String nombre;
     private String descripcion;
     private Image imagen;
@@ -22,9 +23,10 @@ public class Plato {
     private String restaurante;
     private Date fechaRegistro;
 
-    public Plato(String nombre, String descripcion, Image imagen, 
-            String categoria, String tipo, String restaurante, 
+    public Plato(int idPlatillo, String nombre, String descripcion, 
+            Image imagen, String categoria, String tipo, String restaurante, 
             Date fechaRegistro) {
+        this.idPlatillo = idPlatillo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
@@ -33,7 +35,15 @@ public class Plato {
         this.restaurante = restaurante;
         this.fechaRegistro = fechaRegistro;
     }
+    
+    public int getIdPlatillo() {
+        return idPlatillo;
+    }
 
+    public void setIdPlatillo(int idPlatillo) {
+        this.idPlatillo = idPlatillo;
+    }
+    
     public String getNombre() {
         return nombre;
     }
