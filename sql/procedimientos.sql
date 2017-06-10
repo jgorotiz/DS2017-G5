@@ -68,3 +68,16 @@ begin
 	where idPlato = nIdPlato;
 end// 
 delimiter ;
+
+
+/* platillos por categoria*/
+/* platillos dada una descripcion*/
+delimiter //
+create procedure cantidadDePLatillosXCategoria()
+begin
+	select count(nombre), nombreCategoria
+    from plato, cateogria
+    where  plato.categoria =  categoria.idCategoria
+    group by idCategoria;
+end// 
+delimiter ;
