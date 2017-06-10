@@ -5,7 +5,11 @@
  */
 package smartfood.classes.food;
 
+import java.sql.CallableStatement;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import smartfood.classes.connection.Conexion;
 
 /**
  *
@@ -15,6 +19,7 @@ public class Categoria {
     
     private int idCategoria;
     private String nombreCategoria;
+    private int totalPlatillos;
     private Date fechaRegistro;
 
     public Categoria(int idCategoria, String nombreCategoria, 
@@ -24,6 +29,11 @@ public class Categoria {
         this.fechaRegistro = fechaRegistro;
     }
 
+    public Categoria(String nombreCategoria, int totalPlatillos) {
+        this.nombreCategoria = nombreCategoria;
+        this.totalPlatillos = totalPlatillos;
+    }
+    
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -36,6 +46,14 @@ public class Categoria {
         return nombreCategoria;
     }
 
+    public int getTotalPlatillos() {
+        return totalPlatillos;
+    }
+
+    public void setTotalPlatillos(int totalPlatillos) {
+        this.totalPlatillos = totalPlatillos;
+    }
+    
     public void setNombreCategoria(String nombreCategoria) {
         this.nombreCategoria = nombreCategoria;
     }
@@ -48,4 +66,16 @@ public class Categoria {
         this.fechaRegistro = fechaRegistro;
     }
     
+    public static ResultSet getCategorias(Conexion cn) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " cantidadDePLatillosXCategoria()}");
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+    }
 }
