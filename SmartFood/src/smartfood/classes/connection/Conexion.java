@@ -18,35 +18,28 @@ public class Conexion {
     static String _url = "jdbc:mysql://localhost:3306/" + DATABASE;
     private Connection conn = null;
 
-    public Conexion()
-    {
+    public Conexion() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = (Connection)DriverManager.getConnection(_url, _usuario, _pwd);
-            if(conn != null)
-            {
+            if(conn != null) {
                 System.out.println("Conexion a base de datos "+_url+" Exitosa");
             }
-        }
-        catch(SQLException | ClassNotFoundException ex)
-        {
+        } catch(SQLException | ClassNotFoundException ex) {
 //           AlertsSystem.showWarning(1);
         }
         //System.out.println(ex);
   
     }
 
-    public ResultSet getQuery(String _query)
-    {
+    public ResultSet getQuery(String _query) {
         Statement state;
         ResultSet resultado = null;
-        try{
+        try {
             state = (Statement) conn.createStatement();
             resultado = state.executeQuery(_query);
-        }
-        catch(SQLException e)
-        {
+        } catch(SQLException e) {
 //            AlertsSystem.showWarning(1);
             //e.printStackTrace();
         }
@@ -57,19 +50,17 @@ public class Conexion {
 
         Statement state;
 
-        try 
-        {   
+        try {   
             state=(Statement) conn.createStatement();
             state.execute(_query);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
 //            AlertsSystem.showWarning(1);
             //e.printStackTrace();
         }
     }
 
     public java.sql.Connection getConnection() {
-            return this.conn;
+        return this.conn;
     }
 
 }
