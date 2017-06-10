@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import smartfood.classes.connection.Conexion;
 
 /**
  *
@@ -36,7 +37,7 @@ public class LoginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Conexion cn = new Conexion();
     }    
     
 }
