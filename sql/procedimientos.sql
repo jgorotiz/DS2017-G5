@@ -71,7 +71,6 @@ delimiter ;
 
 
 /* platillos por categoria*/
-/* platillos dada una descripcion*/
 delimiter //
 create procedure cantidadDePLatillosXCategoria()
 begin
