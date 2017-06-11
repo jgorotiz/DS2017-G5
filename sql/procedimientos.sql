@@ -102,3 +102,17 @@ begin
 end// 
 
 delimiter ;
+
+
+/* actualizar imagen*/
+drop procedure if exists actualizarImg;
+delimiter //
+create procedure actualizarImg(in platillo int, in nuevaImagen blob)
+begin
+	update plato
+    set img = nuevaImagen
+    where platillo = idPlato;
+end// 
+
+delimiter ;
+
