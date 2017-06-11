@@ -35,6 +35,11 @@ public class Categoria {
         this.nombreCategoria = nombreCategoria;
         this.totalPlatillos = totalPlatillos;
     }
+
+    public Categoria(int idCategoria, String nombreCategoria) {
+        this.idCategoria = idCategoria;
+        this.nombreCategoria = nombreCategoria;
+    }
     
     public int getIdCategoria() {
         return idCategoria;
@@ -71,6 +76,20 @@ public class Categoria {
     @Override
     public String toString() {
         return this.nombreCategoria;
+    }
+    
+    public static ResultSet getListadoCategorias(Conexion cn) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " obtenerCategorias()}");
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
     }
     
     public static ResultSet getCategorias(Conexion cn) {

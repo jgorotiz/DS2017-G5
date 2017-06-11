@@ -5,7 +5,11 @@
  */
 package smartfood.classes.food;
 
+import java.sql.CallableStatement;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import smartfood.classes.connection.Conexion;
 
 /**
  *
@@ -21,6 +25,11 @@ public class Tipo {
         this.idTipo = idTipo;
         this.nombreTipo = nombreTipo;
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public Tipo(int idTipo, String nombreTipo) {
+        this.idTipo = idTipo;
+        this.nombreTipo = nombreTipo;
     }
 
     public int getIdTipo() {
@@ -50,5 +59,19 @@ public class Tipo {
     @Override
     public String toString() {
         return this.nombreTipo;
+    }
+    
+    public static ResultSet getListadoTipos(Conexion cn) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " obtenerTipos()}");
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
     }
 }
