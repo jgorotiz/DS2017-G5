@@ -5,6 +5,10 @@
  */
 package smartfood.classes.alerts;
 
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
 /**
  *
  * @author Jose Masson
@@ -37,5 +41,14 @@ public abstract class GeneralAlert {
     }
     
     public abstract void showAlert();
+    
+    protected static void setIcon(Alert alert, String path) {
+        Stage stage;
+        stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        Image ico;
+        ico = new Image(GeneralAlert.class.getClassLoader().getResource(path)
+                .toExternalForm());
+        stage.getIcons().add(ico);
+    }
     
 }

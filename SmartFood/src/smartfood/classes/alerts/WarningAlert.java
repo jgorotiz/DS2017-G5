@@ -24,7 +24,7 @@ public class WarningAlert extends GeneralAlert {
         alert.setHeaderText(super.getEncabezado());
         alert.setContentText(super.getMensaje());
         
-//        AlertsSystem.setIcon(alert, "images/warning.png");
+        GeneralAlert.setIcon(alert, "smartfood/images/warning.png");
         alert.showAndWait();
     }
     
