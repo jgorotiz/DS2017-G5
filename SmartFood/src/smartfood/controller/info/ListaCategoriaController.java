@@ -203,7 +203,7 @@ public class ListaCategoriaController implements Initializable {
         
         c = this.categorias.getSelectionModel().getSelectedItem();
         if (c != null) {
-            this.showFoodCategory(c, event);
+            this.showFoodCategory(c);
         }
         else {
             GeneralAlert g = new WarningAlert(null, "Seleccione una categoría");
@@ -226,7 +226,7 @@ public class ListaCategoriaController implements Initializable {
         }
     }
     
-    private void showFoodCategory(Categoria categoria, MouseEvent event) {
+    private void showFoodCategory(Categoria categoria) {
        
         this.showDishResults(categoria);
         
@@ -258,6 +258,7 @@ public class ListaCategoriaController implements Initializable {
         } catch (IOException e) {
            
         }
+        
     }
             
 }

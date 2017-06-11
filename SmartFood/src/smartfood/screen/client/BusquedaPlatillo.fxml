@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="323.0" prefWidth="850.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="table" prefHeight="374.0" prefWidth="850.0" tableMenuButtonVisible="true">
+                  <TableView fx:id="table" prefHeight="374.0" prefWidth="850.0">
                      <columns>
                         <TableColumn fx:id="nombrePlatillo" prefWidth="426.0" text="Nombre" />
                         <TableColumn fx:id="nombreRestaurante" prefWidth="422.0" text="Restaurante" />
@@ -33,7 +33,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="56.0" prefWidth="850.0" spacing="50.0">
                <children>
-                  <Button fx:id="showInfoButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="108.0" text="Ver Información" textAlignment="CENTER" textOverrun="CLIP" />
+                  <Button fx:id="showInfoButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#showDishInfo" prefHeight="30.0" prefWidth="108.0" text="Ver Información" textAlignment="CENTER" textOverrun="CLIP" />
                </children>
             </HBox>
          </children>
@@ -52,7 +52,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="850.0">
                <children>
-                  <Label text="BUSCAR PLATILLO">
+                  <Label text="Buscar Platillo">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
