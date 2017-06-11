@@ -141,3 +141,56 @@ end//
 
 delimiter ;
 
+
+/* insersion de un pato */
+drop procedure if exists insertarPlato;
+delimiter //
+create procedure insertarPlato(in nombre varchar(50), in descripcion varchar(200), in img longblob,
+	in categoria int, in servido int, in tipo int, restaurante int, in fechaRegistro datetime)
+begin
+	insert into plato values(nombre,descripcion, img, categoria, servido, tipo, restaurante, fechaRegistro);
+end// 
+
+delimiter ;
+
+
+/* Obtener tipos */
+drop procedure if exists obtenerTipos;
+delimiter //
+create procedure obtenerTipos()
+begin
+	select idTipo, nombreTipo
+    from tipo;
+end// 
+
+delimiter ;
+
+
+/* Obtener categorias */
+drop procedure if exists obtenerCategorias;
+delimiter //
+create procedure obtenerCategorias()
+begin
+	select idCategoria, nombreCategoria
+    from categoria;
+end// 
+
+delimiter ;
+
+
+/* Obtener servidos */
+drop procedure if exists obtenerServido;
+delimiter //
+create procedure obtenerServido()
+begin
+	select idServido, nombreServido
+    from servido;
+end// 
+
+delimiter ;
+
+
+
+
+
+
