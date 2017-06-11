@@ -37,7 +37,7 @@ delimiter //
 create procedure platilloXDescripcion(in nDescripcion varchar(70))
 begin
 	select nombre, descripcion, img, nombreTipo, nombreCategoria
-    from plato,tipo, cateogria
+    from plato,tipo, categoria
     where plato.tipo =  tipo.idTipo and plato.categoria =  categoria.idCategoria and descripcion like nDescripcion;
 end// 
 delimiter ;
@@ -47,7 +47,7 @@ delimiter //
 create procedure platilloXNombre(in nNombre varchar(70))
 begin
 	select nombre, descripcion, img, nombreTipo, nombreCategoria
-    from plato,tipo, cateogria
+    from plato,tipo, categoria
     where plato.tipo =  tipo.idTipo and plato.categoria =  categoria.idCategoria and nombre like nNombre;
 end// 
 delimiter ;
@@ -75,7 +75,7 @@ delimiter //
 create procedure cantidadDePLatillosXCategoria()
 begin
 	select count(nombre), nombreCategoria
-    from plato, cateogria
+    from plato, categoria
     where  plato.categoria =  categoria.idCategoria
     group by idCategoria;
 end// 
