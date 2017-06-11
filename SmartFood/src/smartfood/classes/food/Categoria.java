@@ -29,7 +29,9 @@ public class Categoria {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Categoria(String nombreCategoria, int totalPlatillos) {
+    public Categoria(String nombreCategoria, 
+            int totalPlatillos, int idCategoria) {
+        this.idCategoria = idCategoria;
         this.nombreCategoria = nombreCategoria;
         this.totalPlatillos = totalPlatillos;
     }

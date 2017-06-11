@@ -5,8 +5,12 @@
  */
 package smartfood.classes.food;
 
+import java.sql.CallableStatement;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.scene.image.Image;
+import smartfood.classes.connection.Conexion;
 
 /**
  *
@@ -34,6 +38,15 @@ public class Plato {
         this.tipo = tipo;
         this.restaurante = restaurante;
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public Plato(String nombre, String descripcion,
+            String categoria, String tipo, String restaurante) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.tipo = tipo;
+        this.restaurante = restaurante;
     }
     
     public int getIdPlatillo() {
@@ -100,4 +113,18 @@ public class Plato {
         this.fechaRegistro = fechaRegistro;
     }
     
+    public static ResultSet getListadoXCategoria(Conexion cn, int categoria) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " platilloXIDCategoria(?)}");
+            cst.setInt(1, categoria);
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
+    }
 }

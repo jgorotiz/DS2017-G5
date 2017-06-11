@@ -22,8 +22,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import smartfood.classes.alerts.GeneralAlert;
+import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Categoria;
+import smartfood.classes.food.Plato;
 
 /**
  *
@@ -32,17 +35,29 @@ import smartfood.classes.food.Categoria;
 public class ListaCategoriaController implements Initializable {
     
     @FXML
-    private TableView<Categoria> table;
+    private TableView<Categoria> categorias;
+    
+    @FXML
+    private TableView<Plato> platillos;
     
     @FXML
     private TableColumn<Categoria, String> nombreCategoria;
     
     @FXML
     private TableColumn<Categoria, Integer> totalPlatillos;
+   
+    @FXML
+    private TableColumn<Plato, String> nombrePlato;
     
     @FXML
-    private ObservableList<Categoria> categorias; 
-   
+    private TableColumn<Plato, String> nomRestaurante;
+    
+    @FXML
+    private ObservableList<Categoria> listaCategorias;
+    
+    @FXML
+    private ObservableList<Plato> listaPlatillos;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -53,10 +68,16 @@ public class ListaCategoriaController implements Initializable {
         
         this.totalPlatillos.setStyle("-fx-alignment: CENTER-RIGHT;");
         
-        this.showResults();
+        this.nombrePlato
+                .setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        
+        this.nomRestaurante
+                .setCellValueFactory(new PropertyValueFactory<>("restaurante"));
+        
+        this.showCategoryResults();
     }
     
-    private void showResults() {
+    private void showCategoryResults() {
         
         Conexion cn;
         
@@ -68,9 +89,9 @@ public class ListaCategoriaController implements Initializable {
             
             resultados = Categoria.getCategorias(cn);
             
-            this.createList(resultados);
+            this.createCategoryList(resultados);
             
-            this.table.setItems(categorias);
+            this.categorias.setItems(listaCategorias);
         }
         catch (Exception e) {
             
@@ -88,27 +109,95 @@ public class ListaCategoriaController implements Initializable {
         
     }
     
-    private void createList(ResultSet r) throws SQLException {
+    private void showDishResults(Categoria c) {
+        Conexion cn;
         
-        this.categorias = FXCollections.observableArrayList();
+        ResultSet resultados;
+       
+        cn = new Conexion();
+        
+        try {
+            
+            resultados = Plato.getListadoXCategoria(cn, c.getIdCategoria());
+            
+            this.createDishList(resultados);
+            
+            this.platillos.setItems(this.listaPlatillos);
+        }
+        catch (Exception e) {
+            
+        }
+        finally {
+            try {
+                cn.getConnection().close();
+                
+                
+                
+            } catch (SQLException ex) {
+                System.out.println("Error en cierre de conexion");
+            }
+        }
+    }
+    
+    private void createCategoryList(ResultSet r) throws SQLException {
+        
+        this.listaCategorias = FXCollections.observableArrayList();
         
         while (r.next()) {
-            Integer totPlatillos = r.getInt(1);
-            String nomCategoria = r.getString(2);
+            
+            Integer idPlatillo = r.getInt(1);
+            String nomCategoria = r.getString(3);
+            Integer totPlatillos = r.getInt(2);
+            
             
             Categoria c;
             
-            c = new Categoria(nomCategoria, totPlatillos);
+            c = new Categoria(nomCategoria, totPlatillos, idPlatillo);
             
-            this.categorias.add(c);
+            System.out.println(c);
+            
+            this.listaCategorias.add(c);
             
         }
 
     }
     
+    private void createDishList(ResultSet r) throws SQLException {
+        
+        this.listaPlatillos = FXCollections.observableArrayList();
+        
+        while (r.next()) {
+            
+            String nombre = r.getString(1);
+            String descripcion = r.getString(2);
+            String tipo = r.getString(3);
+            String nomCategoria = r.getString(4);
+            String nombreRestaurante = r.getString(5);
+            
+            
+            Plato p;
+            
+            p = new Plato(nombre, descripcion, tipo, nomCategoria, 
+                    nombreRestaurante);
+            
+            this.listaPlatillos.add(p);
+            
+        }
+        
+    }
+    
+    
     public void showInfo(MouseEvent event) {
-        if (this.table.getSelectionModel().getSelectedItem() != null) {
-            this.showFoodCategory(this.table.getSelectionModel().getSelectedItem(), event);
+        
+        Categoria c;
+        
+        c = this.categorias.getSelectionModel().getSelectedItem();
+        if (c != null) {
+            this.showFoodCategory(this.categorias.getSelectionModel().getSelectedItem(), event);
+        }
+        else {
+            GeneralAlert g = new WarningAlert(null, "Seleccione una categoría");
+            g.showAlert();
         }
 //        else {
 //            AlertsSystem.showWarning(3);
@@ -116,23 +205,8 @@ public class ListaCategoriaController implements Initializable {
     }
     
     private void showFoodCategory(Categoria categoria, MouseEvent event) {
-        System.out.println("Hola Mundo en " + categoria.getNombreCategoria());
+       
+        this.showDishResults(categoria);
         
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Open Resource File");
-//        fileChooser.getExtensionFilters().addAll(
-////            new ExtensionFilter("Text Files", "*.txt"),
-//            new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
-//            new ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"));
-////            new ExtensionFilter("All Files", "*.*"));
-//        Stage stage;
-//        stage = new Stage();
-//        File selectedFile = fileChooser.showOpenDialog(stage);
-//        System.out.println(selectedFile.isFile());
-//        if (selectedFile != null) {
-//           stage.display(selectedFile);
-//        }
-    
-    
     }
 }
