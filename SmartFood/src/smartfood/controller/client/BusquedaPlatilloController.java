@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import smartfood.classes.alerts.ConfirmationAlert;
 import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
@@ -76,6 +78,18 @@ public class BusquedaPlatilloController implements Initializable,
     
     @Override
     public void salir() {
+        ConfirmationAlert confirmation = new ConfirmationAlert();
+        
+        confirmation.setMensaje("¿Desea salir del sistema?");
+        confirmation.showAlert();
+        
+        if (confirmation.getResult().get() == ButtonType.OK) {
+            GeneralAlert g;
+            g = new InfoAlert();
+            g.setMensaje("Usted ha salido del sistema");
+            g.showAlert();
+            System.exit(0);
+        }
         
     }
     

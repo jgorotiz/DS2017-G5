@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,17 +31,21 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import smartfood.classes.alerts.ConfirmationAlert;
 import smartfood.classes.alerts.GeneralAlert;
+import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Categoria;
 import smartfood.classes.food.Plato;
+import smartfood.interfaces.OpcionesBotones;
 
 /**
  *
  * @author Jose Masson
  */
-public class ListaCategoriaController implements Initializable {
+public class ListaCategoriaController implements Initializable, 
+        OpcionesBotones {
     
     @FXML
     private TableView<Categoria> categorias;
@@ -83,6 +88,23 @@ public class ListaCategoriaController implements Initializable {
                 .setCellValueFactory(new PropertyValueFactory<>("restaurante"));
         
         this.showCategoryResults();
+    }
+    
+    @Override
+    public void salir() {
+        ConfirmationAlert confirmation = new ConfirmationAlert();
+        
+        confirmation.setMensaje("¿Desea salir del sistema?");
+        confirmation.showAlert();
+        
+        if (confirmation.getResult().get() == ButtonType.OK) {
+            GeneralAlert g;
+            g = new InfoAlert();
+            g.setMensaje("Usted ha salido del sistema");
+            g.showAlert();
+            System.exit(0);
+        }
+        
     }
     
     private void showCategoryResults() {
