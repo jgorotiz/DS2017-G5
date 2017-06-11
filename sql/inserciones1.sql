@@ -16,21 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `categoria`
---
-
-DROP TABLE IF EXISTS `categoria`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `categoria` (
-  `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreCategoria` varchar(45) DEFAULT NULL,
-  `fechaRegistro` datetime DEFAULT NULL,
-  PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `categoria`
 --
 
@@ -39,32 +24,6 @@ LOCK TABLES `categoria` WRITE;
 INSERT INTO `categoria` VALUES (1,'Comida del Mar','2017-06-10 18:34:00');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `plato`
---
-
-DROP TABLE IF EXISTS `plato`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `plato` (
-  `idPlato` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) DEFAULT NULL,
-  `descripcion` varchar(200) DEFAULT NULL,
-  `img` longblob,
-  `categoria` int(11) NOT NULL,
-  `tipo` int(11) NOT NULL,
-  `restaurante` int(11) NOT NULL,
-  `fechaRegistro` datetime DEFAULT NULL,
-  PRIMARY KEY (`idPlato`),
-  KEY `fk_Plato_Tipo1_idx` (`tipo`),
-  KEY `fk_Plato_Categoria1_idx` (`categoria`),
-  KEY `fk_Plato_Restaurante1_idx` (`restaurante`),
-  CONSTRAINT `fk_Plato_Categoria1` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Plato_Restaurante1` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`idRestaurante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Plato_Tipo1` FOREIGN KEY (`tipo`) REFERENCES `tipo` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `plato`
@@ -77,21 +36,6 @@ INSERT INTO `plato` VALUES (1,'Encebollado','Rico encebollado','ÿ\Øÿ\à\0JFIF\0
 UNLOCK TABLES;
 
 --
--- Table structure for table `restaurante`
---
-
-DROP TABLE IF EXISTS `restaurante`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `restaurante` (
-  `idRestaurante` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  `ubicacion` varchar(150) NOT NULL,
-  PRIMARY KEY (`idRestaurante`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `restaurante`
 --
 
@@ -102,21 +46,6 @@ INSERT INTO `restaurante` VALUES (1,'Pepe Lucho','Guayaquil');
 UNLOCK TABLES;
 
 --
--- Table structure for table `rol`
---
-
-DROP TABLE IF EXISTS `rol`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rol` (
-  `idRol` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreRol` varchar(45) NOT NULL,
-  `fechaRegistro` datetime NOT NULL,
-  PRIMARY KEY (`idRol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `rol`
 --
 
@@ -124,21 +53,6 @@ LOCK TABLES `rol` WRITE;
 /*!40000 ALTER TABLE `rol` DISABLE KEYS */;
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `tipo`
---
-
-DROP TABLE IF EXISTS `tipo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipo` (
-  `idTipo` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreTipo` varchar(45) NOT NULL,
-  `fechaRegistro` datetime NOT NULL,
-  PRIMARY KEY (`idTipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tipo`
@@ -151,31 +65,6 @@ INSERT INTO `tipo` VALUES (1,'Aperitivo','2017-06-10 18:50:00'),(2,'Plato Fuerte
 UNLOCK TABLES;
 
 --
--- Table structure for table `usuario`
---
-
-DROP TABLE IF EXISTS `usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(100) NOT NULL,
-  `correo` varchar(100) NOT NULL,
-  `usuario` varchar(45) NOT NULL,
-  `contrasenia` varchar(45) NOT NULL,
-  `rol` int(11) NOT NULL,
-  `fechaRegistro` datetime NOT NULL,
-  `activo` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`idUsuario`),
-  UNIQUE KEY `correo_UNIQUE` (`correo`),
-  UNIQUE KEY `usuario_UNIQUE` (`usuario`),
-  KEY `fk_Usuario_Rol_idx` (`rol`),
-  CONSTRAINT `fk_Usuario_Rol` FOREIGN KEY (`rol`) REFERENCES `rol` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `usuario`
 --
 
@@ -183,25 +72,6 @@ LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `usuariorestaurante`
---
-
-DROP TABLE IF EXISTS `usuariorestaurante`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuariorestaurante` (
-  `idUsuarioRestaurante` int(11) NOT NULL AUTO_INCREMENT,
-  `usuario` int(11) NOT NULL,
-  `restaurante` int(11) NOT NULL,
-  PRIMARY KEY (`idUsuarioRestaurante`),
-  KEY `fk_UsuarioRestaurante_Usuario1_idx` (`usuario`),
-  KEY `fk_UsuarioRestaurante_Restaurante1_idx` (`restaurante`),
-  CONSTRAINT `fk_UsuarioRestaurante_Restaurante1` FOREIGN KEY (`restaurante`) REFERENCES `restaurante` (`idRestaurante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_UsuarioRestaurante_Usuario1` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `usuariorestaurante`
@@ -221,4 +91,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-11  1:56:25
+-- Dump completed on 2017-06-11 10:20:59
