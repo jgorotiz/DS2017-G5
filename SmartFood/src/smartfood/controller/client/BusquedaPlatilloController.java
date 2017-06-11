@@ -6,8 +6,13 @@
 package smartfood.controller.client;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,12 +23,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.WarningAlert;
+import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Plato;
 import smartfood.controller.info.ListaCategoriaController;
 import smartfood.controller.info.PlatilloInfoController;
@@ -49,6 +56,9 @@ public class BusquedaPlatilloController implements Initializable {
     @FXML
     private TableColumn<Plato, String> nombreRestaurante;
     
+    @FXML
+    private ObservableList<Plato> listaPlatillos;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.choiceBox.getItems().addAll("Nombre", "Descripción");
@@ -61,16 +71,50 @@ public class BusquedaPlatilloController implements Initializable {
     
     public void showResults() {
         
+        Conexion cn;
+        
+        cn = new Conexion();
+        
         String texto;
         
-        texto = this.choiceBox.getSelectionModel().getSelectedItem().toString();
+        texto = (String) this.choiceBox.getSelectionModel().getSelectedItem();
         
-        if (texto.equals("Nombre")) {
+        ResultSet r;
+        
+        try {
+            
+            if (texto == null) {
+                GeneralAlert g = new WarningAlert(null, "Seleccione un criterio");
+                g.showAlert();
+            }
+            else {
+                if (texto.equals("Nombre")) {
+                    r = Plato.getListadoXNombre(cn, this.searchBox.getText());
+                    this.createDishList(r);
+                }
+                else if (texto.equals("Descripción")) {
+                    r = Plato.getListadoXDescripcion(cn, this.searchBox.getText());
+                    this.createDishList(r);
+                }
+                
+                this.table.setItems(listaPlatillos);
+            }
+            
             
         }
-        else if (texto.equals("Descripción")) {
+        catch (Exception e) {
             
-        } 
+        }
+        finally {
+            try {
+                cn.getConnection().close();
+                
+            } catch (SQLException ex) {
+                System.out.println("Error en cierre de conexion");
+            }
+        }
+        
+        this.clearSearchBox();
         
     }
     
@@ -117,6 +161,32 @@ public class BusquedaPlatilloController implements Initializable {
 
         } catch (IOException e) {
            
+        }
+        
+    }
+    
+    private void createDishList(ResultSet r) throws SQLException {
+        
+        this.listaPlatillos = FXCollections.observableArrayList();
+        
+        while (r.next()) {
+            
+            String nombre = r.getString(1);
+            String descripcion = r.getString(2);
+            String tipo = r.getString(3);
+            String nomCategoria = r.getString(4);
+            String nomRestaurante = r.getString(5);
+            InputStream img = r.getBinaryStream(6);
+            Image imagen = new Image(img);
+            
+            
+            Plato p;
+            
+            p = new Plato(nombre, descripcion, tipo, nomCategoria, 
+                    nomRestaurante, imagen);
+            
+            this.listaPlatillos.add(p);
+            
         }
         
     }

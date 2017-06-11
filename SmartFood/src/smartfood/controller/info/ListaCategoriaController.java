@@ -108,8 +108,6 @@ public class ListaCategoriaController implements Initializable {
             try {
                 cn.getConnection().close();
                 
-                
-                
             } catch (SQLException ex) {
                 System.out.println("Error en cierre de conexion");
             }

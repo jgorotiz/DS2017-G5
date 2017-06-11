@@ -42,9 +42,9 @@ drop procedure if exists platilloXDescripcion;
 delimiter //
 create procedure platilloXDescripcion(in nDescripcion varchar(70))
 begin
-	select nombre, descripcion, img, nombreTipo, nombreCategoria
-    from plato,tipo, categoria
-    where plato.tipo =  tipo.idTipo and plato.categoria =  categoria.idCategoria and descripcion like nDescripcion;
+	select plato.nombre, descripcion, nombreTipo, nombreCategoria, restaurante.nombre as nombreRestaurante, img
+    from plato,categoria, tipo,restaurante
+    where plato.categoria =  categoria.idCategoria and restaurante.idRestaurante = plato.restaurante and plato.tipo =  tipo.idTipo and  plato.descripcion like CONCAT('%', nDescripcion, '%');
 end// 
 delimiter ;
 
@@ -53,9 +53,9 @@ drop procedure if exists platilloXNombre;
 delimiter //
 create procedure platilloXNombre(in nNombre varchar(70))
 begin
-	select nombre, descripcion, img, nombreTipo, nombreCategoria
-    from plato,tipo, categoria
-    where plato.tipo =  tipo.idTipo and plato.categoria =  categoria.idCategoria and nombre like nNombre;
+	select plato.nombre, descripcion, nombreTipo, nombreCategoria, restaurante.nombre as nombreRestaurante, img
+    from plato,categoria, tipo,restaurante
+    where plato.categoria =  categoria.idCategoria and restaurante.idRestaurante = plato.restaurante and plato.tipo =  tipo.idTipo and  plato.nombre like CONCAT('%', nNombre, '%');
 end// 
 delimiter ;
 
