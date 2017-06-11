@@ -52,6 +52,8 @@ public class ListaCategoriaController implements Initializable {
         this.totalPlatillos.
                 setCellValueFactory(new PropertyValueFactory<>("totalPlatillos"));
         
+        this.totalPlatillos.setStyle("-fx-alignment: CENTER-RIGHT;");
+        
         this.showResults();
     }
     
@@ -102,8 +104,7 @@ public class ListaCategoriaController implements Initializable {
             this.categorias.add(c);
             
         }
-        
-        
+
     }
     
 }
