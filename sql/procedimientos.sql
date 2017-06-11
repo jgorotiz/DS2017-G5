@@ -10,6 +10,8 @@ begin
 end//
 
 delimiter ;
+
+
 /* platillos por restaurante dada una categoria*/
 delimiter //
 create procedure platilloXCategoria(in categoria varchar(50))
@@ -79,4 +81,16 @@ begin
     where  plato.categoria =  categoria.idCategoria
     group by idCategoria;
 end// 
+delimiter ;
+
+
+/* platillos por restaurante dada una id categoria*/
+delimiter //
+create procedure platilloXIDCategoria(in claveCategoria int)
+begin
+	select plato.nombre, descripcion, img, nombreTipo, nombreCategoria, restaurante.nombre
+    from plato,categoria, tipo,restaurante
+    where plato.categoria =  categoria.idCategoria and restaurante.idRestaurante = plato.restaurante and plato.tipo =  tipo.idTipo and  claveCategoria = categoria.idCategoria  ;
+end// 
+
 delimiter ;
