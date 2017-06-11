@@ -128,3 +128,16 @@ begin
 end// 
 
 delimiter ;
+
+/* obtener id de restaurante dado un id de asistente*/
+drop procedure if exists obtenerIdRestaurante;
+delimiter //
+create procedure obtenerIdRestaurante(in encargado int, out restauranteACargo int)
+begin
+	select restaurante into restauranteACargo
+    from usuariorestaurante
+    where usuario = encargado;
+end// 
+
+delimiter ;
+
