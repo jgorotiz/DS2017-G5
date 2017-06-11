@@ -18,7 +18,7 @@
    <top>
       <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Platillo" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Agregar Platillo" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -38,6 +38,7 @@
                   <RowConstraints maxHeight="61.0" minHeight="30.0" prefHeight="47.0" />
                   <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="37.0" />
                   <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="41.0" />
+                  <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="41.0" />
                   <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="218.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="162.0" vgrow="SOMETIMES" />
                </rowConstraints>
@@ -46,12 +47,14 @@
                   <TextField fx:id="nombrePlatillo" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" />
                   <Label text="Tipo" GridPane.rowIndex="2" />
                   <Label text="Categoría" GridPane.rowIndex="1" />
-                  <Label text="Descripción" GridPane.rowIndex="3" />
-                  <TextArea fx:id="descripcionPlatillo" prefHeight="157.0" prefWidth="247.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Imagen" GridPane.rowIndex="4" />
-                  <ImageView fx:id="imagenPlatillo" fitHeight="145.0" fitWidth="246.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Label text="Descripción" GridPane.rowIndex="4" />
+                  <TextArea fx:id="descripcionPlatillo" prefHeight="157.0" prefWidth="247.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Imagen" GridPane.rowIndex="5" />
+                  <ImageView fx:id="imagenPlatillo" fitHeight="145.0" fitWidth="246.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                   <ComboBox fx:id="tipoPlato" prefHeight="25.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <ComboBox fx:id="categoriaPlato" prefHeight="25.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Servido" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="servidoPlato" prefHeight="25.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </children>
@@ -60,7 +63,13 @@
    <bottom>
       <VBox alignment="CENTER" prefHeight="56.0" prefWidth="595.0" BorderPane.alignment="BOTTOM_CENTER">
          <children>
-            <Button alignment="BASELINE_CENTER" mnemonicParsing="false" prefHeight="0.0" prefWidth="44.0" text="Atrás" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <Button alignment="BASELINE_CENTER" cancelButton="true" mnemonicParsing="false" prefHeight="0.0" prefWidth="44.0" text="Atrás" />
+                  <Button alignment="BASELINE_CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="Seleccionar Imagen" />
+                  <Button alignment="BASELINE_CENTER" defaultButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Guardar" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </bottom>

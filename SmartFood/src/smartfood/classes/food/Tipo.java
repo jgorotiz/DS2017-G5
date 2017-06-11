@@ -47,4 +47,8 @@ public class Tipo {
         this.fechaRegistro = fechaRegistro;
     }
     
+    @Override
+    public String toString() {
+        return this.nombreTipo;
+    }
 }

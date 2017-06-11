@@ -68,6 +68,11 @@ public class Categoria {
         this.fechaRegistro = fechaRegistro;
     }
     
+    @Override
+    public String toString() {
+        return this.nombreCategoria;
+    }
+    
     public static ResultSet getCategorias(Conexion cn) {
         
         try {
