@@ -1,2 +1,8 @@
 # DS2017-G5
-# Hola Mundo
+### Proyecto Diseño de Software - I Parcial - 2017 - I ###
+Repositorio que contiene el código fuente del proyecto
+
+### Integrantes: ###
+* Oswaldo Aguilar
+* Jonathan Gorotiza
+* José Massón
