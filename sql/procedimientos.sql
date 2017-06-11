@@ -1,6 +1,7 @@
 use smartfood;
 
 /*procedimiento pra el login*/
+drop procedure if exists login;
 delimiter //
 create procedure login (in nombre varchar(50), in contrasenia varchar(50), out numUsuario int, out rol varchar(45))
 begin 
@@ -13,6 +14,7 @@ delimiter ;
 
 
 /* platillos por restaurante dada una categoria*/
+drop procedure if exists platilloXCategoria;
 delimiter //
 create procedure platilloXCategoria(in categoria varchar(50))
 begin
@@ -25,6 +27,7 @@ delimiter ;
 
 
 /* platillos por restaurante dado un tipo*/
+drop procedure if exists platilloXTipo;
 delimiter //
 create procedure platilloXTipo(in tipo varchar(50))
 begin
@@ -35,6 +38,7 @@ end//
 delimiter ;
 
 /* platillos dada una descripcion*/
+drop procedure if exists platilloXDescripcion;
 delimiter //
 create procedure platilloXDescripcion(in nDescripcion varchar(70))
 begin
@@ -45,6 +49,7 @@ end//
 delimiter ;
 
 /* platillos dado un nombre*/
+drop procedure if exists platilloXNombre;
 delimiter //
 create procedure platilloXNombre(in nNombre varchar(70))
 begin
@@ -55,6 +60,7 @@ end//
 delimiter ;
 
 /* actualizar valores de platillos*/
+drop procedure if exists actualizarPlatilo;
 delimiter //
 create procedure actualizarPlatilo(in nIdPlato int, in nuevoNombre varchar(50),in nuevaDescripcion varchar(200), in nuevaImagen varchar(200),
 	in nuevaCategoria int, in nuevoTipo int, in nuevoRestaurante int, in nuevaFechaRegistro datetime)
@@ -73,6 +79,7 @@ delimiter ;
 
 
 /* platillos por categoria*/
+drop procedure if exists cantidadDePLatillosXCategoria;
 delimiter //
 create procedure cantidadDePLatillosXCategoria()
 begin
@@ -85,6 +92,7 @@ delimiter ;
 
 
 /* platillos por restaurante dada una id categoria*/
+drop procedure if exists platilloXIDCategoria;
 delimiter //
 create procedure platilloXIDCategoria(in claveCategoria int)
 begin
