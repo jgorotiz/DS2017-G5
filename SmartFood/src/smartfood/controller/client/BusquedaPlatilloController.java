@@ -59,7 +59,26 @@ public class BusquedaPlatilloController implements Initializable {
                 setCellValueFactory(new PropertyValueFactory<>("restaurante"));
     }
     
-     public void showDishInfo(MouseEvent event) {
+    public void showResults() {
+        
+        String texto;
+        
+        texto = this.choiceBox.getSelectionModel().getSelectedItem().toString();
+        
+        if (texto.equals("Nombre")) {
+            
+        }
+        else if (texto.equals("Descripción")) {
+            
+        } 
+        
+    }
+    
+    private void clearSearchBox() {
+        this.searchBox.clear();
+    }
+    
+    public void showDishInfo(MouseEvent event) {
         
         Plato p;
         

@@ -128,4 +128,34 @@ public class Plato {
         }
         
     }
+    
+    public static ResultSet getListadoXNombre(Conexion cn, String nombre) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " platilloXNombre(?)}");
+            cst.setString(1, nombre);
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
+    }
+    
+    public static ResultSet getListadoXDescripcion(Conexion cn, String des) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " platilloXDescripcion(?)}");
+            cst.setString(1, des);
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
+    }
 }

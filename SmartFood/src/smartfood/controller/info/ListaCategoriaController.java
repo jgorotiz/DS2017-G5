@@ -130,7 +130,16 @@ public class ListaCategoriaController implements Initializable {
             
             this.createDishList(resultados);
             
-            this.platillos.setItems(this.listaPlatillos);
+            if (this.listaPlatillos.size() > 0) {
+            
+                this.platillos.setItems(this.listaPlatillos);
+                
+            } else {
+                
+                GeneralAlert g = new WarningAlert(null, "Seleccione un platillo");
+                g.showAlert();
+                
+            }
         }
         catch (Exception e) {
             
@@ -138,8 +147,6 @@ public class ListaCategoriaController implements Initializable {
         finally {
             try {
                 cn.getConnection().close();
-                
-                
                 
             } catch (SQLException ex) {
                 System.out.println("Error en cierre de conexion");
