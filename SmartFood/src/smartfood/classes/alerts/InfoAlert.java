@@ -11,24 +11,24 @@ import javafx.scene.control.Alert;
  *
  * @author Jose Masson
  */
-public class WarningAlert extends GeneralAlert {
+public class InfoAlert extends GeneralAlert {
 
-    public WarningAlert() {
+    public InfoAlert() {
         super();
     }
     
-    public WarningAlert(String encabezado, String mensaje) {
+    public InfoAlert(String encabezado, String mensaje) {
         super(encabezado, mensaje);
     } 
     
     @Override
     public void showAlert() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Alerta");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
         alert.setHeaderText(super.getEncabezado());
         alert.setContentText(super.getMensaje());
         
-        GeneralAlert.setIcon(alert, "smartfood/images/warning.png");
+        GeneralAlert.setIcon(alert, "smartfood/images/info.png");
         alert.showAndWait();
     }
     

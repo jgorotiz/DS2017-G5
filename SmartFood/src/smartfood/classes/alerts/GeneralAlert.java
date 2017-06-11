@@ -19,6 +19,8 @@ public abstract class GeneralAlert {
     
     private String mensaje;
 
+    public GeneralAlert() {};
+    
     public GeneralAlert(String encabezado, String mensaje) {
         this.encabezado = encabezado;
         this.mensaje = mensaje;

@@ -29,6 +29,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import smartfood.classes.alerts.GeneralAlert;
+import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Plato;
@@ -59,6 +60,8 @@ public class BusquedaPlatilloController implements Initializable {
     @FXML
     private ObservableList<Plato> listaPlatillos;
     
+    private boolean busquedaValida;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.choiceBox.getItems().addAll("Nombre", "Descripción");
@@ -81,36 +84,64 @@ public class BusquedaPlatilloController implements Initializable {
         
         ResultSet r;
         
+        GeneralAlert g;
+        
         try {
             
+            
             if (texto == null) {
-                GeneralAlert g = new WarningAlert(null, "Seleccione un criterio");
+                g = new WarningAlert(null, "Seleccione un criterio");
                 g.showAlert();
             }
             else {
-                if (texto.equals("Nombre")) {
-                    r = Plato.getListadoXNombre(cn, this.searchBox.getText());
-                    this.createDishList(r);
-                }
-                else if (texto.equals("Descripción")) {
-                    r = Plato.getListadoXDescripcion(cn, this.searchBox.getText());
-                    this.createDishList(r);
-                }
                 
-                this.table.setItems(listaPlatillos);
+                texto = texto.trim();
+                
+                this.busquedaValida = this.esValido();
+                
+                if (this.busquedaValida) {
+                    if (texto.equals("Nombre")) {
+                        r = Plato.getListadoXNombre(cn, this.searchBox.getText());
+                        this.createDishList(r);
+                    }
+                    else if (texto.equals("Descripción")) {
+                        r = Plato.getListadoXDescripcion(cn, this.searchBox.getText());
+                        this.createDishList(r);
+                    }
+                    
+                    int totalItems;
+                    
+                    totalItems = this.listaPlatillos.size();
+                    
+                    GeneralAlert info = new InfoAlert();
+                    
+                    info.setEncabezado(null);
+                    info.setMensaje("Se han encontrado " + 
+                            Integer.toString(totalItems) + " registro(s)");
+                    
+                    info.showAlert();
+                    this.table.setItems(listaPlatillos);
+                }
+                else {
+                    this.table.getItems().removeAll(listaPlatillos);
+                    this.table.refresh();
+                    g = new WarningAlert(null, "Valor no válido");
+                    g.showAlert();
+                }
             }
-            
             
         }
         catch (Exception e) {
-            
+            g = new WarningAlert(null, "Error inesperado");
+            g.showAlert();
         }
         finally {
             try {
                 cn.getConnection().close();
                 
             } catch (SQLException ex) {
-                System.out.println("Error en cierre de conexion");
+                g = new WarningAlert(null, "Error en el cierre de conexión");
+                g.showAlert();
             }
         }
         
@@ -120,6 +151,14 @@ public class BusquedaPlatilloController implements Initializable {
     
     private void clearSearchBox() {
         this.searchBox.clear();
+    }
+    
+//    Oswaldo, valida el campo, has que siempre reciba letras y números.
+//    También que no sobrepase los 20 caracteres a lo mucho.
+//    Pilas
+    
+    private boolean esValido() {
+        return !(this.searchBox.getText().trim().length() == 0);
     }
     
     public void showDishInfo(MouseEvent event) {
