@@ -5,12 +5,11 @@
  */
 package smartfood.controller.info;
 
-import smartfood.controller.client.*;
+
+import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,8 +17,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Categoria;
 
@@ -28,9 +30,6 @@ import smartfood.classes.food.Categoria;
  * @author Jose Masson
  */
 public class ListaCategoriaController implements Initializable {
-    
-    @FXML
-    private TextField searchBox;
     
     @FXML
     private TableView<Categoria> table;
@@ -107,4 +106,33 @@ public class ListaCategoriaController implements Initializable {
 
     }
     
+    public void showInfo(MouseEvent event) {
+        if (this.table.getSelectionModel().getSelectedItem() != null) {
+            this.showFoodCategory(this.table.getSelectionModel().getSelectedItem(), event);
+        }
+//        else {
+//            AlertsSystem.showWarning(3);
+//        }
+    }
+    
+    private void showFoodCategory(Categoria categoria, MouseEvent event) {
+        System.out.println("Hola Mundo en " + categoria.getNombreCategoria());
+        
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Open Resource File");
+//        fileChooser.getExtensionFilters().addAll(
+////            new ExtensionFilter("Text Files", "*.txt"),
+//            new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+//            new ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"));
+////            new ExtensionFilter("All Files", "*.*"));
+//        Stage stage;
+//        stage = new Stage();
+//        File selectedFile = fileChooser.showOpenDialog(stage);
+//        System.out.println(selectedFile.isFile());
+//        if (selectedFile != null) {
+//           stage.display(selectedFile);
+//        }
+    
+    
+    }
 }
