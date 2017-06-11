@@ -116,3 +116,15 @@ end//
 
 delimiter ;
 
+
+/* obtener imagen*/
+drop procedure if exists obtenerImg;
+delimiter //
+create procedure obtenerImg(in platillo int, out nuevaImagen blob)
+begin
+	select img into nuevaImagen
+    from plato
+    where idPlato = platillo;
+end// 
+
+delimiter ;
