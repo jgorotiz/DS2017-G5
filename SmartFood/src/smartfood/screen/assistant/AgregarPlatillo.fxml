@@ -66,8 +66,8 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
                   <Button alignment="BASELINE_CENTER" cancelButton="true" mnemonicParsing="false" prefHeight="0.0" prefWidth="44.0" text="Atrás" />
-                  <Button alignment="BASELINE_CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="Seleccionar Imagen" />
-                  <Button fx:id="saveButton" alignment="BASELINE_CENTER" defaultButton="true" mnemonicParsing="false" onMouseClicked="#mostrarTipo" prefHeight="25.0" prefWidth="70.0" text="Guardar" />
+                  <Button alignment="BASELINE_CENTER" mnemonicParsing="false" onMouseClicked="#seleccionarImagen" prefHeight="25.0" prefWidth="141.0" text="Seleccionar Imagen" />
+                  <Button fx:id="saveButton" alignment="BASELINE_CENTER" defaultButton="true" mnemonicParsing="false" onMouseClicked="#agregarPlato" prefHeight="25.0" prefWidth="70.0" text="Guardar" />
                </children>
             </HBox>
          </children>

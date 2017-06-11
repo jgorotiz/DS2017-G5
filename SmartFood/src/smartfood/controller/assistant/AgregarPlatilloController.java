@@ -5,21 +5,36 @@
  */
 package smartfood.controller.assistant;
 
+import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Categoria;
+import smartfood.classes.food.Plato;
 import smartfood.classes.food.Servido;
 import smartfood.classes.food.Tipo;
 
@@ -29,6 +44,15 @@ import smartfood.classes.food.Tipo;
  */
 public class AgregarPlatilloController implements Initializable {
 
+    @FXML
+    private TextField nombrePlatillo;
+    
+    @FXML
+    private TextArea descripcionPlatillo;
+    
+    @FXML
+    private ImageView imagenPlatillo;
+    
     @FXML
     private ComboBox<Categoria> categoriaPlato;
     
@@ -46,6 +70,11 @@ public class AgregarPlatilloController implements Initializable {
     
     @FXML
     private ObservableList<Servido> listaServidos;
+    
+    @FXML
+    private File file;
+    
+    private boolean ingresoValido;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -256,6 +285,16 @@ public class AgregarPlatilloController implements Initializable {
         
     }
     
+    private Categoria obtenerCategoria() {
+        
+        Categoria c;
+        
+        c = this.categoriaPlato.getSelectionModel().getSelectedItem();
+        
+        return c;
+        
+    }
+    
     private Tipo obtenerTipo() {
         Tipo t;
         
@@ -263,5 +302,73 @@ public class AgregarPlatilloController implements Initializable {
         
         return t;
     }
+    
+    private Servido obtenerServido() {
+        
+        Servido s;
+        
+        s = this.servidoPlato.getSelectionModel().getSelectedItem();
+        
+        return s;
+        
+    }
+    
+    public void seleccionarImagen(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Abrir Imagen");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.gif", 
+                        "*.bmp"),
+                new ExtensionFilter("Todos los Archivos", "*.*"));
+        this.file = fileChooser.showOpenDialog((Stage) ((Node) event.getSource()).getScene().getWindow());
+        
+        if (this.file != null) {
+            
+            Image img = new Image(this.file.toURI().toString());
+            this.imagenPlatillo.setImage(img);
+            
+//            this.guardarImagen(selectedFile);
+//            System.out.println("Imagen guardada con éxito");
+            
+        }
+        
+    }
+    
+    public void agregarPlato() {
+        this.agregarPlatillo();
+    }
+    
+    private void agregarPlatillo() {
+        
+        Conexion cn;
+        
+        cn = new Conexion();
+        
+        String nombre = this.nombrePlatillo.getText();
+        Integer categoria = this.obtenerCategoria().getIdCategoria();
+        Integer tipo = this.obtenerTipo().getIdTipo();
+        Integer servido = this.obtenerServido().getIdServido();
+        String desc = this.descripcionPlatillo.getText();
+        Integer res = 1;
+//        InputStream img = Plato.obtenerBinarioImagen(file);
+        
+        Date utilDate = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(utilDate);
+        cal.set(Calendar.MILLISECOND, 0);
+
+        Timestamp t;
+        
+        t = new Timestamp(cal.getTimeInMillis());
+        
+        Plato p = new Plato(nombre, desc, this.file, Integer.toString(categoria),
+            Integer.toString(tipo), Integer.toString(servido), 
+                Integer.toString(res), t);
+        
+        System.out.println(Plato.agregarPlatillo(cn, p));
+        
+        System.out.println("Agregado con éxito");
+    }
+    
     
 }

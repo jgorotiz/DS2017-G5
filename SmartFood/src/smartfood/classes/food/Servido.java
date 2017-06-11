@@ -6,7 +6,7 @@
 package smartfood.classes.food;
 
 import java.sql.CallableStatement;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import smartfood.classes.connection.Conexion;
@@ -19,9 +19,9 @@ public class Servido {
     
     private int idServido;
     private String nombreServido;
-    private Date fechaRegistro;
+    private Timestamp fechaRegistro;
 
-    public Servido(int idServido, String nombreServido, Date fechaRegistro) {
+    public Servido(int idServido, String nombreServido, Timestamp fechaRegistro) {
         this.idServido = idServido;
         this.nombreServido = nombreServido;
         this.fechaRegistro = fechaRegistro;
@@ -48,11 +48,11 @@ public class Servido {
         this.nombreServido = nombreServido;
     }
 
-    public Date getFechaRegistro() {
+    public Timestamp getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(Timestamp fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
     

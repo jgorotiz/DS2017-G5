@@ -148,7 +148,8 @@ delimiter //
 create procedure insertarPlato(in nombre varchar(50), in descripcion varchar(200), in img longblob,
 	in categoria int, in servido int, in tipo int, restaurante int, in fechaRegistro datetime)
 begin
-	insert into plato values(nombre,descripcion, img, categoria, servido, tipo, restaurante, fechaRegistro);
+	insert into plato (plato.nombre, plato.descripcion, plato.img, plato.categoria, plato.servido, plato.tipo, plato.restaurante, plato.fechaRegistro) 
+    values(nombre,descripcion, img, categoria, servido, tipo, restaurante, fechaRegistro);
 end// 
 
 delimiter ;
