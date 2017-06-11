@@ -35,12 +35,14 @@ import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Plato;
 import smartfood.controller.info.ListaCategoriaController;
 import smartfood.controller.info.PlatilloInfoController;
+import smartfood.interfaces.OpcionesBotones;
 
 /**
  *
  * @author Jose Masson
  */
-public class BusquedaPlatilloController implements Initializable {
+public class BusquedaPlatilloController implements Initializable, 
+        OpcionesBotones {
 
     @FXML
     private ComboBox choiceBox;
@@ -70,6 +72,11 @@ public class BusquedaPlatilloController implements Initializable {
                 setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.nombreRestaurante.
                 setCellValueFactory(new PropertyValueFactory<>("restaurante"));
+    }
+    
+    @Override
+    public void salir() {
+        
     }
     
     public void showResults() {
