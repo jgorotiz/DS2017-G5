@@ -41,12 +41,13 @@ public class Plato {
     }
 
     public Plato(String nombre, String descripcion,
-            String categoria, String tipo, String restaurante) {
+            String categoria, String tipo, String restaurante, Image imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.tipo = tipo;
         this.restaurante = restaurante;
+        this.imagen = imagen;
     }
     
     public int getIdPlatillo() {

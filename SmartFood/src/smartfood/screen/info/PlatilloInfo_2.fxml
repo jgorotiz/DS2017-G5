@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="smartfood.controller.info.PlatilloInfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -35,9 +35,9 @@
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="61.0" minHeight="30.0" prefHeight="47.0" />
-                  <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="37.0" />
-                  <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="41.0" />
-                  <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="218.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="151.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="162.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
@@ -48,9 +48,9 @@
                   <Label text="Categoría" GridPane.rowIndex="2" />
                   <Label text="Descripción" GridPane.rowIndex="3" />
                   <TextField fx:id="categoriaPlato" editable="false" prefHeight="25.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextArea fx:id="descripcionPlatillo" editable="false" prefHeight="157.0" prefWidth="247.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextArea fx:id="descripcionProc" editable="false" prefHeight="157.0" prefWidth="247.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Imagen" GridPane.rowIndex="4" />
-                  <ImageView fx:id="imagenPlatillo" fitHeight="145.0" fitWidth="246.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="imagenPlatillo" fitHeight="160.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
          </children>

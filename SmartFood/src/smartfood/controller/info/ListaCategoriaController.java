@@ -7,6 +7,8 @@ package smartfood.controller.info;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,13 +16,19 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.WarningAlert;
@@ -173,12 +181,14 @@ public class ListaCategoriaController implements Initializable {
             String tipo = r.getString(3);
             String nomCategoria = r.getString(4);
             String nombreRestaurante = r.getString(5);
+            InputStream img = r.getBinaryStream(6);
+            Image imagen = new Image(img);
             
             
             Plato p;
             
             p = new Plato(nombre, descripcion, tipo, nomCategoria, 
-                    nombreRestaurante);
+                    nombreRestaurante, imagen);
             
             this.listaPlatillos.add(p);
             
@@ -193,15 +203,27 @@ public class ListaCategoriaController implements Initializable {
         
         c = this.categorias.getSelectionModel().getSelectedItem();
         if (c != null) {
-            this.showFoodCategory(this.categorias.getSelectionModel().getSelectedItem(), event);
+            this.showFoodCategory(c, event);
         }
         else {
             GeneralAlert g = new WarningAlert(null, "Seleccione una categoría");
             g.showAlert();
         }
-//        else {
-//            AlertsSystem.showWarning(3);
-//        }
+        
+    }
+    
+    public void showDishInfo(MouseEvent event) {
+        
+        Plato p;
+        
+        p = this.platillos.getSelectionModel().getSelectedItem();
+        if (p != null) {
+            this.showDishInfo(p, event);
+        }
+        else {
+            GeneralAlert g = new WarningAlert(null, "Seleccione un platillo");
+            g.showAlert();
+        }
     }
     
     private void showFoodCategory(Categoria categoria, MouseEvent event) {
@@ -209,4 +231,33 @@ public class ListaCategoriaController implements Initializable {
         this.showDishResults(categoria);
         
     }
+    
+    private void showDishInfo(Plato p, MouseEvent event) {
+        try {
+            
+            FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
+                    class.getResource("../../screen/info/PlatilloInfo.fxml"));
+            BorderPane page = (BorderPane) loader.load();
+            Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
+            
+            Stage dialogStage = new Stage();
+            
+            dialogStage.setTitle(parent.getTitle());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+//            dialogStage.getIcons().add(parent.getIcons().get(0));
+            dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            PlatilloInfoController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPlato(p);
+
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+           
+        }
+    }
+            
 }

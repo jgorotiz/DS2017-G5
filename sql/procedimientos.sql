@@ -96,7 +96,7 @@ drop procedure if exists platilloXIDCategoria;
 delimiter //
 create procedure platilloXIDCategoria(in claveCategoria int)
 begin
-	select plato.nombre, descripcion, img, nombreTipo, nombreCategoria, restaurante.nombre as nombreRestaurante
+	select plato.nombre, descripcion, nombreTipo, nombreCategoria, restaurante.nombre as nombreRestaurante, img
     from plato,categoria, tipo,restaurante
     where plato.categoria =  categoria.idCategoria and restaurante.idRestaurante = plato.restaurante and plato.tipo =  tipo.idTipo and  claveCategoria = categoria.idCategoria;
 end// 
