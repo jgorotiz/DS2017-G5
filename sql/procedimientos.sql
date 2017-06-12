@@ -204,7 +204,17 @@ end//
 delimiter ;
 
 
+/*nombre de categoria*/
+drop procedure if exists obtenerCategoria;
+delimiter //
+create procedure obtenerCategoria(in categoria int)
+begin
+	select nombreCategoria
+    from categoria
+    where idCategoria = categoria;
+end// 
 
+delimiter ;
 
 
 
