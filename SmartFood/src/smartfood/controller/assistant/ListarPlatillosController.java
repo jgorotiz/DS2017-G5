@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
@@ -196,14 +197,17 @@ public class ListarPlatillosController implements Initializable {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
                     class.getResource("../../screen/assistant/ModificarPlatillo.fxml"));
             BorderPane page = (BorderPane) loader.load();
-            Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
+            
+            Window w;
+            w = ((Node)event.getTarget()).getScene().getWindow();
+            Stage parent = (Stage) w;
             
             Stage dialogStage = new Stage();
             
             dialogStage.setTitle(parent.getTitle());
             dialogStage.initModality(Modality.WINDOW_MODAL);
 //            dialogStage.getIcons().add(parent.getIcons().get(0));
-            dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+            dialogStage.initOwner(w);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
