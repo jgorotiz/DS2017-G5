@@ -229,4 +229,16 @@ end//
 delimiter ;
 
 
+/*numero de platos por categoria de un restaurante*/
+drop procedure if exists cantidaddePlatosXCategoria;
+delimiter //
+create procedure cantidaddePlatosXCategoria(in restauranteConsulta int)
+begin
+	select nombreCategoria, count(idPlato)
+    from plato, categoria
+    where  plato.categoria =  categoria.idCategoria and restauranteConsulta = restaurante
+    group by idCategoria;
+end// 
+
+delimiter ;
 
