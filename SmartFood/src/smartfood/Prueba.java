@@ -35,7 +35,7 @@ public class Prueba extends Application {
     public void start(Stage primaryStage) {
        
         Usuario u = new Usuario();
-        u.setRol("cliente");
+        u.setRol("as");
         primaryStage = creadorSubmenu(u);
         primaryStage.setResizable(false);
         primaryStage.setMaximized(false);
@@ -71,45 +71,59 @@ public class Prueba extends Application {
             links.add("src/smartfood/screen/info/ListaCategorias.fxml");
             links.add("src/smartfood/screen/client/BusquedaPlatillo.fxml");
             links.add("exit");
-            root = new Submenu("USUARIO", labels, links);
-            System.out.println(root.getBotones().size());
-            for(Map.Entry<String, Button>entry :root.getBotones().entrySet()){
-                System.out.println(entry.getKey());
-                if(entry.getKey().equalsIgnoreCase("exit")){
-                    entry.getValue().setOnAction(new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            stage.close();
-                        }
-                    });
-                }else{
-                    entry.getValue().setOnAction(new EventHandler<ActionEvent>() {
+            root = new Submenu("CLIENTE", labels, links);
+        }else{
+            ArrayList<String> labels = new ArrayList<>();
+            labels.add("Agregar Plato");
+            labels.add("Listar Platos");
+            labels.add("Listar Categ.");
+            labels.add("Cerrar Sesion");
+            
+            ArrayList<String> links = new ArrayList<>();
+            links.add("src/smartfood/screen/assistant/AgregarPlatillo.fxml");
+            links.add("src/smartfood/screen/assistant/ListarPlatillos.fxml");
+            links.add("src/smartfood/screen/info/ListaCategorias.fxml");
+            links.add("exit");
+            root = new Submenu("ASISTENTE", labels, links);
+        }
+        System.out.println(root.getBotones().size());
+        for(Map.Entry<String, Button>entry :root.getBotones().entrySet()){
+            System.out.println(entry.getKey());
+            if(entry.getKey().equalsIgnoreCase("exit")){
+                entry.getValue().setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        Parent root = null ;
-                        
-                        try {
-                            File archivo = new File(entry.getKey());
-                            System.out.println(archivo.exists());
-                            root = FXMLLoader.load(archivo.toURL());
-                        } catch (IOException ex) {
-                            System.out.println("Error");
-                            Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        Scene scene = new Scene(root);
                         stage.close();
-                        Stage nueva = new Stage();
-                        nueva.setScene(scene);
-                        nueva.showAndWait();
-                        stage.show();
-
                     }
                 });
+            }else{
+                entry.getValue().setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    Parent root = null ;
+
+                    try {
+                        File archivo = new File(entry.getKey());
+                        System.out.println(archivo.exists());
+                        root = FXMLLoader.load(archivo.toURL());
+                    } catch (IOException ex) {
+                        System.out.println("Error");
+                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(root);
+                    stage.close();
+                    Stage nueva = new Stage();
+                    nueva.setScene(scene);
+                    nueva.showAndWait();
+                    stage.show();
+
                 }
+            });
             }
-            stage.setTitle(u.getRol().toUpperCase());
-             
         }
+        stage.setTitle(u.getRol().toUpperCase());
+             
+        
         Scene scene = new Scene(root.getPanel(), root.getAncho() - 10, root.getAlto());
         stage.setScene(scene);
         return stage;
