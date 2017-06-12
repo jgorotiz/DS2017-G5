@@ -22,6 +22,7 @@ public class SmartFood extends Application {
         
         Parent root = FXMLLoader.load(getClass().
                 getResource("screen/assistant/ListarPlatillos.fxml"));
+        
 //        Parent root = FXMLLoader.load(getClass().
 //                getResource("screen/login/Login.fxml"));
         

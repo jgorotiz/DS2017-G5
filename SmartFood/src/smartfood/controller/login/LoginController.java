@@ -22,6 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import smartfood.Prueba;
 import smartfood.classes.connection.Conexion;
 import smartfood.classes.user.Usuario;
 
@@ -50,26 +51,23 @@ public class LoginController implements Initializable {
         ArrayList<String> validador;
         
         String u = this.user.getText().trim();
-        String p = this.user.getText().trim();
+        String p = this.password.getText().trim();
         
         validador = Usuario.buscarUsuario(u, p);
         
         int existeUsuario = Integer.parseInt(validador.get(0));
 //         else {
             if(existeUsuario == 1) {
+                System.out.println(validador.get(1));
                 usuarioSistema = new Usuario();
                 usuarioSistema.setUsuario(u);
                 usuarioSistema.setContrasenia(p);
                 usuarioSistema.setRol(validador.get(1));
                 usuarioSistema.setIdUsuario(Integer.parseInt(validador.get(2)));
                 
-                if (usuarioSistema.getRol().equals("Asistente")) {
-                    
-                }
                 
-                if (usuarioSistema.getRol().equals("Asistente")) {
-                    
-                }
+                Stage stage= Prueba.creadorSubmenu(usuarioSistema);
+                stage.showAndWait();
                 
                 
                 System.out.println("Ingreso exitoso");
