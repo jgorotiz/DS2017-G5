@@ -191,6 +191,20 @@ end//
 delimiter ;
 
 
+/*platillos de un restaurante*/
+drop procedure if exists platoXRestaurante;
+delimiter //
+create procedure platoXRestaurante(in idRestaurante int)
+begin
+	select idPlato, nombre, descripcion, img, categoria, tipo
+    from plato
+    where idRestaurante = restaurante;
+end// 
+
+delimiter ;
+
+
+
 
 
 
