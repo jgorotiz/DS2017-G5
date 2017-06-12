@@ -3,9 +3,9 @@ use smartfood;
 /*procedimiento pra el login*/
 drop procedure if exists login;
 delimiter //
-create procedure login (in nombre varchar(50), in contrasenia varchar(50), out numUsuario int, out rol varchar(45))
+create procedure login (in nombre varchar(50), in contrasenia varchar(50), out numUsuario int, out rol varchar(45), out idUser int)
 begin 
-	select count(idUsuario), nombreRol into numUsuario, rol 
+	select count(idUsuario), nombreRol, idUsuario into numUsuario, rol, idUser
     from rol,usuario
     where rol.idRol = usuario.rol and usuario = nombre and usuario.contrasenia = contrasenia ;
 end//
