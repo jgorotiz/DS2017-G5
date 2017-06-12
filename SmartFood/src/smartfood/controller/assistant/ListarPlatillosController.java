@@ -48,7 +48,7 @@ public class ListarPlatillosController implements Initializable {
         this.nombrePlato.
                 setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.nombreCategoria.
-                setCellValueFactory(new PropertyValueFactory<>("nombreCategoria"));
+                setCellValueFactory(new PropertyValueFactory<>("categoria"));
        
         
         this.nombrePlato.setStyle("-fx-alignment: CENTER;");
@@ -67,14 +67,16 @@ public class ListarPlatillosController implements Initializable {
         
         try {
             
-            resultados = Categoria.getCategorias(cn);
+            this.idRestaurante = 1;
+            
+            resultados = Plato.getListadoXRestaurante(cn, this.idRestaurante);
             
             this.createDishList(resultados);
             
             this.platos.setItems(this.listaPlatos);
         }
         catch (Exception e) {
-            
+            System.out.println("No carga");
         }
         finally {
             try {
@@ -93,20 +95,21 @@ public class ListarPlatillosController implements Initializable {
         
         while (r.next()) {
             
-            String nombre = r.getString(1);
-            String descripcion = r.getString(2);
-            String tipo = r.getString(3);
-            String nomCategoria = r.getString(4);
-            String nombreRestaurante = r.getString(5);
-            InputStream img = r.getBinaryStream(6);
+            Integer idPlatillo = r.getInt(1);
+            String nombre = r.getString(2);
+            String descripcion = r.getString(3);
+            String tipo = r.getString(4);
+            String nomCategoria = r.getString(5);
+            String restaurante = Integer.toString(this.idRestaurante);
+            InputStream img = r.getBinaryStream(4);
+            String serv = r.getString(7);
             Image imagen = new Image(img);
             
             
             Plato p;
             
-            p = new Plato(nombre, descripcion, tipo, nomCategoria, 
-                    nombreRestaurante, imagen);
-            
+            p = new Plato(idPlatillo, nombre, descripcion, imagen, nomCategoria, 
+                    tipo, serv, restaurante);
             this.listaPlatos.add(p);
             
         }

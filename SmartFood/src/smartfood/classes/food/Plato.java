@@ -13,8 +13,6 @@ import java.sql.CallableStatement;
 import java.sql.Timestamp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import smartfood.classes.connection.Conexion;
 
@@ -70,8 +68,19 @@ public class Plato {
         this.restaurante = restaurante;
         this.fechaRegistro = fechaRegistro;
     }
-    
-    
+
+    public Plato(int idPlatillo, String nombre, String descripcion, 
+            Image imagen, String categoria, String tipo, String servido, 
+            String restaurante) {
+        this.idPlatillo = idPlatillo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+        this.categoria = categoria;
+        this.tipo = tipo;
+        this.servido = servido;
+        this.restaurante = restaurante;
+    }
     
     public int getIdPlatillo() {
         return idPlatillo;
@@ -189,6 +198,21 @@ public class Plato {
             CallableStatement cst = cn.getConnection().prepareCall("{call"
                     + " platilloXDescripcion(?)}");
             cst.setString(1, des);
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
+    }
+    
+    public static ResultSet getListadoXRestaurante(Conexion cn, int idR) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " platoXRestaurante(?)}");
+            cst.setInt(1, idR);
             cst.execute(); 
             return cst.getResultSet();
 
