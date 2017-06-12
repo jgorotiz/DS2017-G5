@@ -23,6 +23,9 @@ public class Usuario {
     private Date fechaRegistro;
     private boolean activo;
 
+    public Usuario() {
+    }
+
     public Usuario(int idUsuario, String nombre, String apellido, String correo,
             String usuario, String contrasenia, String rol, Date fechaRegistro, 
             boolean activo) {

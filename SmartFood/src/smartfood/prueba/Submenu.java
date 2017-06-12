@@ -8,6 +8,7 @@ package smartfood.prueba;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -36,7 +37,7 @@ public class Submenu {
     private double ancho = 673;
     private int alto = 573;
     
-    public Submenu(String encabezado, ArrayList<String> nombres){
+    public Submenu(String encabezado, ArrayList<String> labels, ArrayList<String> links){
         int acum = 0;
         this.panel = new Pane();
         Label lEncabezado = new Label(encabezado);
@@ -50,9 +51,8 @@ public class Submenu {
         lEncabezado.setLayoutY(60);
         acum = acum + 150;
         panel.getChildren().add(lEncabezado);
-        for(String nombre: nombres){
-            System.out.println(nombre);
-            Button bt = new Button(nombre);
+        for(int i=0; i < labels.size(); i++){
+            Button bt = new Button(labels.get(i));
             bt.setLayoutX(390);
             bt.setLayoutY(acum);
             Image boton = new Image(new File("src/smartfood/prueba/fondos/etimadera.png").toURI().toString());
@@ -68,7 +68,7 @@ public class Submenu {
             bt.setTextFill(Color.DARKBLUE);
             bt.setTextAlignment(TextAlignment.CENTER);
             acum = acum + 100;
-            botones.put(nombre,bt);
+            botones.put(links.get(i),bt);
             panel.getChildren().add(bt);
         }
         
