@@ -42,6 +42,10 @@ import smartfood.classes.food.Tipo;
  */
 public class ModificarPlatilloController implements Initializable {
 
+    private Stage appStage;
+    
+    private int idRestaurante;
+    
     @FXML
     private TextField nombrePlatillo;
     
@@ -77,6 +81,10 @@ public class ModificarPlatilloController implements Initializable {
         this.llenarCategorias();
         this.llenarTipos();
         this.llenarServidos();
+    }
+    
+    public void setDialogStage(Stage dialogStage) {
+        this.appStage = dialogStage;
     }
     
     private void llenarCategorias() {
@@ -328,6 +336,31 @@ public class ModificarPlatilloController implements Initializable {
             
         }
         
+    }
+    
+    public void setPlato(Plato p) {
+        this.nombrePlatillo.setText(p.getNombre());
+
+        if (this.servidoPlato.getItems().contains(new Servido(p.getServido()))) {
+            this.servidoPlato.getSelectionModel().select(new Servido(p.getServido()));
+        }
+
+        if (this.tipoPlato.getItems().contains(new Tipo(p.getTipo()))) {
+            this.tipoPlato.getSelectionModel().select(new Tipo(p.getTipo()));
+        }
+        
+        if (this.categoriaPlato.getItems().contains(new Categoria(p.getCategoria()))) {
+            this.categoriaPlato.getSelectionModel().select(new Categoria(p.getCategoria()));
+        }
+//        this.categoriaPlato.setText(p.getCategoria());
+        this.descripcionPlatillo.setText(p.getDescripcion());
+        this.imagenPlatillo.setImage(p.getImagen());
+//        this.nameField.setText(p.getName());
+//        if (this.specialtyList.getItems().contains(p.getSpecialty())) {
+//            this.specialtyList.getSelectionModel().select(p.getSpecialty());
+//        }
+//        this.costField.setText(p.getPrice().toString());
+//        this.description.setText(p.getDescription());
     }
     
     public void agregarPlato() {

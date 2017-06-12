@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.Timestamp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import smartfood.classes.connection.Conexion;
 
 /**
@@ -29,6 +30,10 @@ public class Tipo {
 
     public Tipo(int idTipo, String nombreTipo) {
         this.idTipo = idTipo;
+        this.nombreTipo = nombreTipo;
+    }
+
+    public Tipo(String nombreTipo) {
         this.nombreTipo = nombreTipo;
     }
 
@@ -74,4 +79,27 @@ public class Tipo {
         }
         
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tipo other = (Tipo) obj;
+        return Objects.equals(this.nombreTipo, other.nombreTipo);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.nombreTipo);
+        return hash;
+    }
+
 }

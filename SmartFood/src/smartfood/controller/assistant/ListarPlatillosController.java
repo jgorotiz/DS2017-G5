@@ -173,4 +173,49 @@ public class ListarPlatillosController implements Initializable {
         }
         
     }
+    
+    public void modifyDishInfo(MouseEvent event) {
+        
+        Plato p;
+        
+        p = this.platos.getSelectionModel().getSelectedItem();
+        if (p != null) {
+;
+            this.modifyDishInfo(p, event);
+            
+        }
+        else {
+            GeneralAlert g = new WarningAlert(null, "Seleccione un platillo");
+            g.showAlert();
+        }
+    }
+    
+    private void modifyDishInfo(Plato p, MouseEvent event) {
+        try {
+            
+            FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
+                    class.getResource("../../screen/assistant/ModificarPlatillo.fxml"));
+            BorderPane page = (BorderPane) loader.load();
+            Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
+            
+            Stage dialogStage = new Stage();
+            
+            dialogStage.setTitle(parent.getTitle());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+//            dialogStage.getIcons().add(parent.getIcons().get(0));
+            dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            ModificarPlatilloController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPlato(p);
+
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            System.out.println("Error de carga");
+        }
+        
+    }
 }
