@@ -109,7 +109,7 @@ public class ListarPlatillosController implements Initializable {
             Integer idPlatillo = r.getInt(1);
             String nombre = r.getString(2);
             String descripcion = r.getString(3);
-            String tipo = r.getString(4);
+            String tipo = r.getString(6);
             String nomCategoria = r.getString(5);
             String restaurante = Integer.toString(this.idRestaurante);
             InputStream img = r.getBinaryStream(4);
@@ -133,7 +133,11 @@ public class ListarPlatillosController implements Initializable {
         
         p = this.platos.getSelectionModel().getSelectedItem();
         if (p != null) {
+            
+//            p.setCategoria("Hola Mundo");
+//            this.platos.refresh();
             this.showDishInfo(p, event);
+            
         }
         else {
             GeneralAlert g = new WarningAlert(null, "Seleccione un platillo");
@@ -145,7 +149,7 @@ public class ListarPlatillosController implements Initializable {
         try {
             
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-                    class.getResource("../../screen/info/PlatilloInfo.fxml"));
+                    class.getResource("../../screen/assistant/PlatilloInfoAsistente.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             
@@ -158,7 +162,7 @@ public class ListarPlatillosController implements Initializable {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            PlatilloInfoController controller = loader.getController();
+            PlatilloInfoAsistenteController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setPlato(p);
 
