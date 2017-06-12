@@ -196,9 +196,9 @@ drop procedure if exists platoXRestaurante;
 delimiter //
 create procedure platoXRestaurante(in idRestaurante int)
 begin
-	select idPlato, nombre, descripcion, img, categoria, tipo
-    from plato
-    where idRestaurante = restaurante;
+	select idPlato, nombre, descripcion, img, nombreCategoria, nombreTipo
+    from plato, tipo, categoria
+    where idRestaurante = restaurante and plato.categoria = categoria.idCategoria and plato.tipo = tipo.idTipo;
 end// 
 
 delimiter ;
