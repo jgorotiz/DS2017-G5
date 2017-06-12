@@ -61,7 +61,7 @@ public class ListarCategoriasController implements Initializable,
     private TableColumn<Plato, String> nombrePlato;
     
     @FXML
-    private TableColumn<Plato, String> nomRestaurante;
+    private TableColumn<Plato, String> tipoPlato;
     
     @FXML
     private ObservableList<Categoria> listaCategorias;
@@ -82,8 +82,8 @@ public class ListarCategoriasController implements Initializable,
         this.nombrePlato
                 .setCellValueFactory(new PropertyValueFactory<>("nombre"));
         
-        this.nomRestaurante
-                .setCellValueFactory(new PropertyValueFactory<>("restaurante"));
+        this.tipoPlato
+                .setCellValueFactory(new PropertyValueFactory<>("tipo"));
         
         this.showCategoryResults();
     }

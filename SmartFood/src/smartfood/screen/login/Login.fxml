@@ -62,7 +62,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button defaultButton="true" mnemonicParsing="false" onAction="#handleButtonAction" text="Iniciar Sesión" />
+                        <Button defaultButton="true" mnemonicParsing="false" onMouseClicked="#login" text="Iniciar Sesión" />
                         <Button cancelButton="true" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="25.0" prefWidth="86.0" text="Salir" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>

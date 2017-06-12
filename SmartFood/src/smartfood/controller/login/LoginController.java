@@ -8,6 +8,7 @@ package smartfood.controller.login;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,10 +18,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import smartfood.classes.connection.Conexion;
+import smartfood.classes.user.Usuario;
 
 /**
  *
@@ -30,13 +33,73 @@ public class LoginController implements Initializable {
     
     private Stage stage;
     
+    private Usuario usuario;
+    
     @FXML
     private TextField user;
+    
+    @FXML
+    private PasswordField password;
 //    private Label label;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("Hola Mundo");
+    private void login(MouseEvent event) {
+        
+        Usuario usuarioSistema;
+        
+        ArrayList<String> validador;
+        
+        String u = this.user.getText().trim();
+        String p = this.user.getText().trim();
+        
+        validador = Usuario.buscarUsuario(u, p);
+        
+        int existeUsuario = Integer.parseInt(validador.get(0));
+//         else {
+            if(existeUsuario == 1) {
+                usuarioSistema = new Usuario();
+                usuarioSistema.setUsuario(u);
+                usuarioSistema.setContrasenia(p);
+                usuarioSistema.setRol(validador.get(1));
+                usuarioSistema.setIdUsuario(Integer.parseInt(validador.get(2)));
+                
+                if (usuarioSistema.getRol().equals("Asistente")) {
+                    
+                }
+                
+                if (usuarioSistema.getRol().equals("Asistente")) {
+                    
+                }
+                
+                
+                System.out.println("Ingreso exitoso");
+                
+                
+//                AlertsSystem.showInfo(1);
+//                handleScreenChanges(event,"/simacom/screen/menu/mainMenu.fxml" );
+            }
+            else {
+                usuarioSistema = null;
+                System.out.println("Valiste ingresando");
+//                AlertsSystem.showAlert(4);
+//                this.clearFields();
+            }
+            //else
+                    //handleScreenChanges(event,"/simacom/screen/login/login.fxml" );
+                    //handleScreenChanges(event,"/simacom/screen/login/login.fxml" );     
+//        }
+        
+//        Usuario u;
+//        
+//        u = new Usuario();
+//        
+//        if (u != null) {
+//            
+//        }
+//        else {
+//            
+//        }
+//        System.out.println("Hola Mundo");
 //        File file = new File("../screen/login/Login.fxml");
 //        System.out.println(file.isFile());
 //        try {
