@@ -29,6 +29,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import smartfood.creators.SubmenuCreator;
 import smartfood.classes.connection.Conexion;
+import smartfood.classes.food.Restaurante;
 import smartfood.classes.user.Usuario;
 import smartfood.controller.assistant.ListarPlatillosController;
 import smartfood.controller.creators.AsistenteCreatorController;
@@ -74,8 +75,10 @@ public class LoginController implements Initializable {
                 usuarioSistema.setRol(validador.get(1));
                 usuarioSistema.setIdUsuario(Integer.parseInt(validador.get(2)));
                 
+                int idRes = Restaurante.obtenerIDRes(usuarioSistema.getIdUsuario());
+
                 if (usuarioSistema.getRol().equalsIgnoreCase("asistente")) {
-                    this.cargarAsistente(event, 1);
+                    this.cargarAsistente(event, idRes);
                 }
                 else if (usuarioSistema.getRol().equalsIgnoreCase("cliente")) {
                     this.cargarCliente(event);
