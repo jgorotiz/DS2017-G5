@@ -399,4 +399,8 @@ public class ModificarPlatilloController implements Initializable {
         System.out.println("Agregado con éxito");
     }
     
+    @FXML
+    public void volver() {
+        this.appStage.close();
+    }
 }

@@ -381,5 +381,9 @@ public class AgregarPlatilloController implements Initializable {
         this.app = dialogStage;
     }
     
+    @FXML
+    public void volver() {
+        this.app.close();
+    }
     
 }

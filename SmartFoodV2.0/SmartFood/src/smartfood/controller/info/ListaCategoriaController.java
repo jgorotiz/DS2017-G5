@@ -293,5 +293,10 @@ public class ListaCategoriaController implements Initializable,
     public void setDialogStage(Stage dialogStage) {
         this.app = dialogStage;
     }
+    
+    @FXML
+    public void volver() {
+        this.app.close();
+    }
 
 }

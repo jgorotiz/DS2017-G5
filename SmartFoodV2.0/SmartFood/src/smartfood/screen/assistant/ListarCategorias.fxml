@@ -52,7 +52,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="889.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Volver" />
+            <Button fx:id="backButton" mnemonicParsing="false" onMouseClicked="#volver" prefHeight="30.0" prefWidth="100.0" text="Volver" />
             <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#salir" prefHeight="30.0" prefWidth="100.0" text="Salir" textAlignment="CENTER" textOverrun="CLIP" />
          </children>
       </HBox>

@@ -60,5 +60,5 @@ public class PlatilloInfoAsistenteController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
     }
-    
+
 }

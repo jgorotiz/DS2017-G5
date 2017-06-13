@@ -298,4 +298,8 @@ public class ListarCategoriasController implements Initializable,
         this.idRestaurante = idRestaurante;
     }
     
+    @FXML
+    public void volver() {
+        this.app.close();
+    }
 }
