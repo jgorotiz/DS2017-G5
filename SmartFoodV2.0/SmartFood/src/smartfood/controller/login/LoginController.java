@@ -68,7 +68,6 @@ public class LoginController implements Initializable {
         int existeUsuario = Integer.parseInt(validador.get(0));
 //         else {
             if(existeUsuario == 1) {
-                System.out.println(validador.get(1));
                 usuarioSistema = new Usuario();
                 usuarioSistema.setUsuario(u);
                 usuarioSistema.setContrasenia(p);

@@ -42,6 +42,8 @@ public class ListarPlatillosController implements Initializable {
 
     private Stage app;
     
+    private int cargas;
+    
     @FXML
     private int idRestaurante;
     
@@ -69,7 +71,9 @@ public class ListarPlatillosController implements Initializable {
         this.nombrePlato.setStyle("-fx-alignment: CENTER;");
         this.nombreCategoria.setStyle("-fx-alignment: CENTER;");
         
-        this.showCategoryResults();
+        this.cargas = 1;
+        
+        System.out.println(this.cargas);
     }
     
     public void setIDRestaurante(int idRestaurante) {
@@ -78,34 +82,36 @@ public class ListarPlatillosController implements Initializable {
     
     public void showCategoryResults() {
         
-        System.out.println("Este es de lista platillos " + this.idRestaurante);
-        
-        Conexion cn;
-        
-        ResultSet resultados;
-       
-        cn = new Conexion();
-        
-        try {
-            
-            resultados = Plato.getListadoXRestaurante(cn, this.idRestaurante);
-            
-            this.createDishList(resultados);
-            
-            this.platos.setItems(this.listaPlatos);
-        }
-        catch (Exception e) {
-            System.out.println("No carga");
-        }
-        finally {
+        if (this.cargas == 1) {
+            Conexion cn;
+
+            ResultSet resultados;
+
+            cn = new Conexion();
+
             try {
-                cn.getConnection().close();
+
+                resultados = Plato.getListadoXRestaurante(cn, this.idRestaurante);
+
+                this.createDishList(resultados);
+
+                this.platos.setItems(this.listaPlatos);
                 
-            } catch (SQLException ex) {
-                System.out.println("Error en cierre de conexion");
+                this.cargas = 0;
             }
+            catch (Exception e) {
+                System.out.println("No carga");
+            }
+            finally {
+                try {
+                    cn.getConnection().close();
+
+                } catch (SQLException ex) {
+                    System.out.println("Error en cierre de conexion");
+                }
+            }
+            
         }
-        
     }
     
     private void createDishList(ResultSet r) throws SQLException {
