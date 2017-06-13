@@ -128,8 +128,9 @@ public class AsistenteCreatorController implements Initializable {
             dialogStage.setScene(scene);
 
             ListarCategoriasController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
             controller.setIDRestaurante(this.idRestaurante);
+            controller.setDialogStage(dialogStage);
+            
 
             dialogStage.showAndWait();
 

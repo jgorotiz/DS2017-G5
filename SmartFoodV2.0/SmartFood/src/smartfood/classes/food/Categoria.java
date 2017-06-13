@@ -132,5 +132,21 @@ public class Categoria {
         return hash;
     }
 
+    
+    public static ResultSet getListadoCategoriasXRestaurante(Conexion cn, 
+            int idR) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " cantidadDePLatillosXCategoriaXRestaurante(?)}");
+            cst.setInt(1, idR);
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
+    }
 
 }

@@ -45,6 +45,8 @@ import smartfood.interfaces.OpcionesBotones;
 public class ListarCategoriasController implements Initializable, 
         OpcionesBotones {
     
+    private int cargas;
+    
     private int idRestaurante;
     
     private Stage app;
@@ -89,7 +91,7 @@ public class ListarCategoriasController implements Initializable,
         this.tipoPlato
                 .setCellValueFactory(new PropertyValueFactory<>("tipo"));
         
-        this.showCategoryResults();
+        this.cargas = 1;
     }
     
     @Override
@@ -109,31 +111,36 @@ public class ListarCategoriasController implements Initializable,
         
     }
     
-    private void showCategoryResults() {
+    public void showCategoryResults() {
         
-        Conexion cn;
-        
-        ResultSet resultados;
-       
-        cn = new Conexion();
-        
-        try {
-            
-            resultados = Categoria.getCategorias(cn);
-            
-            this.createCategoryList(resultados);
-            
-            this.categorias.setItems(listaCategorias);
-        }
-        catch (Exception e) {
-            
-        }
-        finally {
+        if (this.cargas == 1) {
+            Conexion cn;
+
+            ResultSet resultados;
+
+            cn = new Conexion();
+
             try {
-                cn.getConnection().close();
+
+                resultados = Categoria.getListadoCategoriasXRestaurante(cn, 
+                        this.idRestaurante);
+
+                this.createCategoryList(resultados);
+
+                this.categorias.setItems(listaCategorias);
                 
-            } catch (SQLException ex) {
-                System.out.println("Error en cierre de conexion");
+                this.cargas = 0;
+            }
+            catch (Exception e) {
+
+            }
+            finally {
+                try {
+                    cn.getConnection().close();
+
+                } catch (SQLException ex) {
+                    System.out.println("Error en cierre de conexion");
+                }
             }
         }
         
