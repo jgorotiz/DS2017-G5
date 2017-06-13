@@ -45,6 +45,10 @@ import smartfood.interfaces.OpcionesBotones;
 public class ListarCategoriasController implements Initializable, 
         OpcionesBotones {
     
+    private int idRestaurante;
+    
+    private Stage app;
+    
     @FXML
     private TableView<Categoria> categorias;
     
@@ -284,6 +288,14 @@ public class ListarCategoriasController implements Initializable,
            
         }
         
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.app = dialogStage;
+    }
+
+    public void setIDRestaurante(int idRestaurante) {
+        this.idRestaurante = idRestaurante;
     }
     
 }

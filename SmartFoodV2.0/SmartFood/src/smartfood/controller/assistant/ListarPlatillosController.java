@@ -38,10 +38,11 @@ import smartfood.controller.info.ListaCategoriaController;
  *
  * @author Jose Masson
  */
-public class ListarPlatillosController extends AsistenteController
-        implements Initializable {
+public class ListarPlatillosController implements Initializable {
 
-//    private int idRestaurante;
+    private Stage app;
+    
+    private int idRestaurante;
     
     @FXML
     private TableView<Plato> platos;
@@ -54,10 +55,6 @@ public class ListarPlatillosController extends AsistenteController
     
     @FXML
     private ObservableList<Plato> listaPlatos;
-
-    public ListarPlatillosController(int idRestaurante) {
-        super(idRestaurante);
-    }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,10 +71,6 @@ public class ListarPlatillosController extends AsistenteController
         this.showCategoryResults();
     }
     
-//    public void setIDRestaurante(int idRes) {
-//        this.idRestaurante = idRes;
-//    }
-    
     private void showCategoryResults() {
         
         Conexion cn;
@@ -88,7 +81,7 @@ public class ListarPlatillosController extends AsistenteController
         
         try {
             
-            resultados = Plato.getListadoXRestaurante(cn, super.getIdRestaurante());
+            resultados = Plato.getListadoXRestaurante(cn, this.idRestaurante);
             
             this.createDishList(resultados);
             
@@ -119,7 +112,7 @@ public class ListarPlatillosController extends AsistenteController
             String descripcion = r.getString(3);
             String tipo = r.getString(6);
             String nomCategoria = r.getString(5);
-            String restaurante = Integer.toString(super.getIdRestaurante());
+            String restaurante = Integer.toString(this.idRestaurante);
             InputStream img = r.getBinaryStream(4);
             String serv = r.getString(7);
             Image imagen = new Image(img);
@@ -228,5 +221,13 @@ public class ListarPlatillosController extends AsistenteController
             System.out.println("Error de carga");
         }
         
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.app = dialogStage;
+    }
+
+    public void setIDRestaurante(int idRestaurante) {
+        this.idRestaurante = idRestaurante;
     }
 }

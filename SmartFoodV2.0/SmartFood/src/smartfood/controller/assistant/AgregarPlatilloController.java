@@ -6,7 +6,6 @@
 package smartfood.controller.assistant;
 
 import java.io.File;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -75,6 +74,10 @@ public class AgregarPlatilloController implements Initializable {
     private File file;
     
     private boolean ingresoValido;
+    
+    private int idRestaurante;
+    
+    private Stage app;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -349,7 +352,7 @@ public class AgregarPlatilloController implements Initializable {
         Integer tipo = this.obtenerTipo().getIdTipo();
         Integer servido = this.obtenerServido().getIdServido();
         String desc = this.descripcionPlatillo.getText();
-        Integer res = 1;
+        Integer res = this.idRestaurante;
 //        InputStream img = Plato.obtenerBinarioImagen(file);
         
         Date utilDate = new Date();
@@ -368,6 +371,14 @@ public class AgregarPlatilloController implements Initializable {
         System.out.println(Plato.agregarPlatillo(cn, p));
         
         System.out.println("Agregado con éxito");
+    }
+
+    public void setIDRestaurante(int idRestaurante) {
+        this.idRestaurante = idRestaurante;
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.app = dialogStage;
     }
     
     
