@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +54,9 @@ public class LoginController implements Initializable {
         
         String u = this.user.getText().trim();
         String p = this.password.getText().trim();
-        
+        Pattern patron = Pattern.compile("[A-Za-z]{1,100}");
+        Matcher encaja = patron.matcher(u);
+        System.out.println(encaja);
         validador = Usuario.buscarUsuario(u, p);
         
         int existeUsuario = Integer.parseInt(validador.get(0));
@@ -126,5 +130,6 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
+    
     
 }

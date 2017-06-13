@@ -5,6 +5,8 @@
  */
 package smartfood;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,5 +38,7 @@ public class PruebaLogin extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+    
     }
 }
