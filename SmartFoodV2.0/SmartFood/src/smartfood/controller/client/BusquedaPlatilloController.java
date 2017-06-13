@@ -46,6 +46,8 @@ import smartfood.interfaces.OpcionesBotones;
 public class BusquedaPlatilloController implements Initializable, 
         OpcionesBotones {
 
+    private Stage app;
+    
     @FXML
     private ComboBox choiceBox;
     
@@ -249,5 +251,9 @@ public class BusquedaPlatilloController implements Initializable,
             
         }
         
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.app = dialogStage;
     }
 }

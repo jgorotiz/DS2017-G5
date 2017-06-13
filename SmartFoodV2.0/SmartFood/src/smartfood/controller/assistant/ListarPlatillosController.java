@@ -42,7 +42,7 @@ public class ListarPlatillosController implements Initializable {
 
     private Stage app;
     
-    private int idRestaurante;
+    private int idRestaurante = 1;
     
     @FXML
     private TableView<Plato> platos;

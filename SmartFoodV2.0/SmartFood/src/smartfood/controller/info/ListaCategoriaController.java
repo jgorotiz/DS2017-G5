@@ -47,6 +47,8 @@ import smartfood.interfaces.OpcionesBotones;
 public class ListaCategoriaController implements Initializable, 
         OpcionesBotones {
     
+    private Stage app;
+    
     @FXML
     private TableView<Categoria> categorias;
     
@@ -287,5 +289,9 @@ public class ListaCategoriaController implements Initializable,
         }
         
     }
-            
+
+    public void setDialogStage(Stage dialogStage) {
+        this.app = dialogStage;
+    }
+
 }

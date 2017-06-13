@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 import smartfood.controller.assistant.AgregarPlatilloController;
 import smartfood.controller.assistant.ListarCategoriasController;
 import smartfood.controller.assistant.ListarPlatillosController;
-import smartfood.controller.assistant.PlatilloInfoAsistenteController;
 import smartfood.controller.info.ListaCategoriaController;
 
 /**

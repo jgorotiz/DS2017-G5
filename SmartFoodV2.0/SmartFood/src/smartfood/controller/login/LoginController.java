@@ -16,16 +16,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import smartfood.creators.SubmenuCreator;
 import smartfood.classes.connection.Conexion;
 import smartfood.classes.user.Usuario;
+import smartfood.controller.assistant.ListarPlatillosController;
+import smartfood.controller.creators.AsistenteCreatorController;
+import smartfood.controller.info.ListaCategoriaController;
 
 /**
  *
@@ -64,11 +70,17 @@ public class LoginController implements Initializable {
                 usuarioSistema.setRol(validador.get(1));
                 usuarioSistema.setIdUsuario(Integer.parseInt(validador.get(2)));
                 
+                if (usuarioSistema.getRol().equalsIgnoreCase("asistente")) {
+                    this.cargarAsistente(event, 1);
+                }
+                else if (usuarioSistema.getRol().equalsIgnoreCase("cliente")) {
+                    System.out.println("Hola Mundo");
+                }
                 
-                Stage stage= SubmenuCreator.submenuCreator(usuarioSistema);
+//                Stage stage= SubmenuCreator.submenuCreator(usuarioSistema);
                                 
                 System.out.println("Ingreso exitoso");
-                stage.showAndWait();
+//                stage.showAndWait();
                 
                 
 //                AlertsSystem.showInfo(1);
@@ -125,6 +137,33 @@ public class LoginController implements Initializable {
         
     }
     
-    
+    private void cargarAsistente(MouseEvent event, int idRes) {
+        System.out.println("Pepito");
+        try {
+            FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
+            class.getResource("../../screen/creators/AsistenteCreator.fxml"));
+            System.out.println("Joder");
+            BorderPane page = (BorderPane) loader.load();
+            Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
+            
+            Stage dialogStage = new Stage();
+            
+            dialogStage.setTitle(parent.getTitle());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+//            dialogStage.getIcons().add(parent.getIcons().get(0));
+            dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            AsistenteCreatorController controller = loader.getController();
+            controller.setAppStage(dialogStage);
+            controller.setIdRestaurante(idRes);
+
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            System.out.println("Error de carga");
+        }
+    }
     
 }
