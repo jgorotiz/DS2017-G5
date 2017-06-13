@@ -32,15 +32,16 @@ import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Plato;
 import smartfood.controller.info.ListaCategoriaController;
-import smartfood.controller.info.PlatilloInfoController;
+//import smartfood.controller.info.PlatilloInfoController;
 
 /**
  *
  * @author Jose Masson
  */
-public class ListarPlatillosController implements Initializable {
+public class ListarPlatillosController extends AsistenteController
+        implements Initializable {
 
-    private int idRestaurante;
+//    private int idRestaurante;
     
     @FXML
     private TableView<Plato> platos;
@@ -53,6 +54,10 @@ public class ListarPlatillosController implements Initializable {
     
     @FXML
     private ObservableList<Plato> listaPlatos;
+
+    public ListarPlatillosController(int idRestaurante) {
+        super(idRestaurante);
+    }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,6 +74,10 @@ public class ListarPlatillosController implements Initializable {
         this.showCategoryResults();
     }
     
+//    public void setIDRestaurante(int idRes) {
+//        this.idRestaurante = idRes;
+//    }
+    
     private void showCategoryResults() {
         
         Conexion cn;
@@ -79,9 +88,7 @@ public class ListarPlatillosController implements Initializable {
         
         try {
             
-            this.idRestaurante = 1;
-            
-            resultados = Plato.getListadoXRestaurante(cn, this.idRestaurante);
+            resultados = Plato.getListadoXRestaurante(cn, super.getIdRestaurante());
             
             this.createDishList(resultados);
             
@@ -112,7 +119,7 @@ public class ListarPlatillosController implements Initializable {
             String descripcion = r.getString(3);
             String tipo = r.getString(6);
             String nomCategoria = r.getString(5);
-            String restaurante = Integer.toString(this.idRestaurante);
+            String restaurante = Integer.toString(super.getIdRestaurante());
             InputStream img = r.getBinaryStream(4);
             String serv = r.getString(7);
             Image imagen = new Image(img);
@@ -181,7 +188,7 @@ public class ListarPlatillosController implements Initializable {
         
         p = this.platos.getSelectionModel().getSelectedItem();
         if (p != null) {
-;
+            
             this.modifyDishInfo(p, event);
             
         }

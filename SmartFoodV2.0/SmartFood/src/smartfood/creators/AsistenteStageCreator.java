@@ -5,6 +5,7 @@
  */
 package smartfood.creators;
 
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import smartfood.classes.user.Usuario;
 
@@ -17,8 +18,10 @@ public class AsistenteStageCreator {
     private Usuario u;
     private String idRestaurante;
 
-    public AsistenteStageCreator(Usuario u, String url, String idRestaurante) {
-        this.stage = UsuarioStageCreator.usuarioStageCreator(url);
+    public AsistenteStageCreator(Usuario u, String url, String idRestaurante, 
+            MouseEvent event) {
+        this.stage = UsuarioStageCreator.usuarioStageCreator(url, 
+                Integer.parseInt(idRestaurante), event);
         this.u = u;
         this.idRestaurante = idRestaurante;
     }

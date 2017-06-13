@@ -59,32 +59,28 @@ public final class SubmenuCreator {
         for(Map.Entry<String, Button>entry :root.getBotones().entrySet()){
             System.out.println(entry.getKey());
             if(entry.getKey().equalsIgnoreCase("exit")){
-                entry.getValue().setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        stage.close();
-                    }
+                entry.getValue().setOnAction((ActionEvent event) -> {
+                    stage.close();
                 });
             }else{
-                entry.getValue().setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    
-                    Stage nueva = null ;
+                entry.getValue().setOnMouseClicked((MouseEvent event) -> {
+                    Stage nueva = null;
                     if(u.getRol().equalsIgnoreCase("cliente")){
-                        ClienteStageCreator cs = new ClienteStageCreator(u, entry.getKey());
+                        ClienteStageCreator cs = new ClienteStageCreator(u, 
+                                entry.getKey());
                         nueva = cs.getStage();
+                        nueva.showAndWait();
                     }else if(u.getRol().equalsIgnoreCase("asistente")){
-                        String idRestaurante = "123";
-                        AsistenteStageCreator as = new AsistenteStageCreator(u, entry.getKey(), idRestaurante);
+                        String idRestaurante = "1";
+                        AsistenteStageCreator as;
+                        as = new AsistenteStageCreator(u, entry.getKey(), idRestaurante, event);
                         nueva = as.getStage();
+                        nueva.showAndWait();
                     }
                     stage.close();
-                    nueva.showAndWait();
+//                    nueva.showAndWait();
                     stage.show();
-
-                }
-            });
+                });
             }
         }
         stage.setTitle(u.getRol().toUpperCase());
