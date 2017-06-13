@@ -44,6 +44,8 @@ public class LoginController implements Initializable {
     
     private Usuario usuario;
     
+    private Stage app;
+    
     @FXML
     private TextField user;
     
@@ -53,6 +55,10 @@ public class LoginController implements Initializable {
     
     @FXML
     private VBox fondo;
+
+    public void setApp(Stage app) {
+        this.app = app;
+    }
     
     @FXML
     private void login(MouseEvent event) {
@@ -158,6 +164,8 @@ public class LoginController implements Initializable {
             dialogStage.initModality(Modality.WINDOW_MODAL);
 //            dialogStage.getIcons().add(parent.getIcons().get(0));
             dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+            
+            parent.close();
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
@@ -182,7 +190,10 @@ public class LoginController implements Initializable {
             
             Stage dialogStage = new Stage();
             
+            
             dialogStage.setTitle(parent.getTitle());
+            
+            parent.close();
             dialogStage.initModality(Modality.WINDOW_MODAL);
 //            dialogStage.getIcons().add(parent.getIcons().get(0));
             dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());

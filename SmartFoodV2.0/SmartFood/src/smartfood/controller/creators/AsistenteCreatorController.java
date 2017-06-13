@@ -8,9 +8,13 @@ package smartfood.controller.creators;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -135,8 +139,22 @@ public class AsistenteCreatorController implements Initializable {
         
     }
     
-    public void cerrarSesion() {
-        
+    public void cerrarSesion(MouseEvent event) {
+        try {
+            this.handleScreenChanges(event, "/smartfood/screen/login/Login.fxml");
+        } catch (IOException ex) {
+            System.out.println("No cerró sesion");
+        }
+    }
+    
+    public void handleScreenChanges(MouseEvent event, String screenName) 
+            throws IOException {
+        Parent menu = FXMLLoader.load(getClass().getResource(screenName));
+        Scene menuScene = new Scene(menu);
+        this.appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appStage.close();
+        appStage.setScene(menuScene);
+        appStage.show();
     }
     
 }
