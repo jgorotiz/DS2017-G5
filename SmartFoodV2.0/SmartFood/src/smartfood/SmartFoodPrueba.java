@@ -22,7 +22,7 @@ public class SmartFoodPrueba extends Application {
     public void start(Stage stage) throws Exception {
         
         Parent root = FXMLLoader.load(getClass().
-                getResource("screen/creators/ClienteCreator.fxml"));
+                getResource("screen/login/Login.fxml"));
         
 //        Parent root = FXMLLoader.load(getClass().
 //                getResource("screen/login/Login.fxml"));

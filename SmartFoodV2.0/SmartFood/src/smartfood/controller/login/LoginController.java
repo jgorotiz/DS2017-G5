@@ -31,6 +31,7 @@ import smartfood.classes.connection.Conexion;
 import smartfood.classes.user.Usuario;
 import smartfood.controller.assistant.ListarPlatillosController;
 import smartfood.controller.creators.AsistenteCreatorController;
+import smartfood.controller.creators.ClienteCreatorController;
 import smartfood.controller.info.ListaCategoriaController;
 
 /**
@@ -74,7 +75,7 @@ public class LoginController implements Initializable {
                     this.cargarAsistente(event, 1);
                 }
                 else if (usuarioSistema.getRol().equalsIgnoreCase("cliente")) {
-                    System.out.println("Hola Mundo");
+                    this.cargarCliente(event);
                 }
                 
 //                Stage stage= SubmenuCreator.submenuCreator(usuarioSistema);
@@ -138,7 +139,6 @@ public class LoginController implements Initializable {
     }
     
     private void cargarAsistente(MouseEvent event, int idRes) {
-        System.out.println("Pepito");
         try {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
             class.getResource("../../screen/creators/AsistenteCreator.fxml"));
@@ -166,4 +166,30 @@ public class LoginController implements Initializable {
         }
     }
     
+    private void cargarCliente(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
+            class.getResource("../../screen/creators/ClienteCreator.fxml"));
+            System.out.println("Joder");
+            BorderPane page = (BorderPane) loader.load();
+            Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
+            
+            Stage dialogStage = new Stage();
+            
+            dialogStage.setTitle(parent.getTitle());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+//            dialogStage.getIcons().add(parent.getIcons().get(0));
+            dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            ClienteCreatorController controller = loader.getController();
+            controller.setAppStage(dialogStage);
+
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            System.out.println("Error de carga");
+        }
+    }
 }
