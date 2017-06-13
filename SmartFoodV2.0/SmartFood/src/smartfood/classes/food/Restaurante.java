@@ -5,6 +5,11 @@
  */
 package smartfood.classes.food;
 
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import smartfood.classes.connection.Conexion;
+
 /**
  *
  * @author Jose Masson
@@ -45,23 +50,43 @@ public class Restaurante {
         this.ubicacion = ubicacion;
     }
     
-//    public String obtenerNombreRestaurante(Conexion cn, int idRes) {
-//        Conexion cn;
-//
-//           cn = new Conexion();
-//
-//
-//           try {
-//               FileInputStream x;
-//               x = new FileInputStream(img);
-//               CallableStatement cst = cn.getConnection().prepareCall("{call"
-//                       + " actualizarImg(?, ?)}");
-//               cst.setInt(1, 1);
-//               cst.setBinaryStream(2, (InputStream) x, (int)img.length());
-//               cst.execute(); 
-//
-//           } catch (SQLException ex) { 
-//           }
-//    }
+    public static int obtenerIDRes(int idU) {
+        Conexion cn = new Conexion();
+        
+        int res;
+        
+        res = -1;
+        
+        try{
+            // Llamada al procedimiento almacenado
+            CallableStatement cst = cn.getConnection().
+                    prepareCall("{call obtenerIdRestaurante(?,?)}");
+            // Parametro 1 del procedimiento almacenado
+            
+            cst.setInt(1, idU);
+ 
+            // Definimos los tipos de los parametros de salida del procedimiento almacenado
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+
+            // Ejecuta el procedimiento almacenado
+            cst.execute();
+
+            // Se obtienen la salida del procedimineto almacenado
+            res = cst.getInt(2);
+        } 
+        catch (SQLException ex) {
+            System.out.println("Error SQL");
+        } 
+        finally {
+            try {
+                cn.getConnection().close();
+            } catch (SQLException ex) {
+                System.out.println("Error en cierre de conexion");
+            }
+        }
+        
+        return res;
+        
+    } 
     
 }
