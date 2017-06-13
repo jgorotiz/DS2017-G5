@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import smartfood.classes.user.Usuario;
 import smartfood.screen.submenu.Submenu;
@@ -65,9 +66,9 @@ public final class SubmenuCreator {
                     }
                 });
             }else{
-                entry.getValue().setOnAction(new EventHandler<ActionEvent>() {
+                entry.getValue().setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
-                public void handle(ActionEvent event) {
+                public void handle(MouseEvent event) {
                     
                     Stage nueva = null ;
                     if(u.getRol().equalsIgnoreCase("cliente")){
