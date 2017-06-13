@@ -27,8 +27,6 @@ import smartfood.controller.info.ListaCategoriaController;
 public class ClienteCreatorController implements Initializable {
     
     private Stage appStage;
-    
-    private int idRestaurante;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,10 +37,6 @@ public class ClienteCreatorController implements Initializable {
         this.appStage = appStage;
     }
 
-    public void setIdRestaurante(int idRestaurante) {
-        this.idRestaurante = idRestaurante;
-    }
-    
     public void listarCategorias(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
