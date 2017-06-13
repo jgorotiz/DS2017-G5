@@ -90,10 +90,13 @@ public class AsistenteCreatorController implements Initializable {
             dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
-
+            
             ListarPlatillosController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
+//            loade
             controller.setIDRestaurante(this.idRestaurante);
+            controller.setDialogStage(dialogStage);
+            System.out.println("Este es de asistente creator " + this.idRestaurante);
+            
 
             dialogStage.showAndWait();
 

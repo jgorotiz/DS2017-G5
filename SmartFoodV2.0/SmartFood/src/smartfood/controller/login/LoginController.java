@@ -24,6 +24,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import smartfood.creators.SubmenuCreator;
@@ -48,6 +49,9 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField password;
 //    private Label label;
+    
+    @FXML
+    private VBox fondo;
     
     @FXML
     private void login(MouseEvent event) {

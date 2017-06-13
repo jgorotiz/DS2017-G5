@@ -42,7 +42,8 @@ public class ListarPlatillosController implements Initializable {
 
     private Stage app;
     
-    private int idRestaurante = 1;
+    @FXML
+    private int idRestaurante;
     
     @FXML
     private TableView<Plato> platos;
@@ -71,7 +72,13 @@ public class ListarPlatillosController implements Initializable {
         this.showCategoryResults();
     }
     
-    private void showCategoryResults() {
+    public void setIDRestaurante(int idRestaurante) {
+        this.idRestaurante = idRestaurante;
+    }
+    
+    public void showCategoryResults() {
+        
+        System.out.println("Este es de lista platillos " + this.idRestaurante);
         
         Conexion cn;
         
@@ -225,9 +232,5 @@ public class ListarPlatillosController implements Initializable {
 
     public void setDialogStage(Stage dialogStage) {
         this.app = dialogStage;
-    }
-
-    public void setIDRestaurante(int idRestaurante) {
-        this.idRestaurante = idRestaurante;
     }
 }
