@@ -163,7 +163,7 @@ public class ListarPlatillosController implements Initializable {
         try {
             
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-                    class.getResource("../../screen/assistant/PlatilloInfoAsistente.fxml"));
+                    class.getResource("/smartfood/screen/assistant/PlatilloInfoAsistente.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             
@@ -208,7 +208,7 @@ public class ListarPlatillosController implements Initializable {
         try {
             
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-                    class.getResource("../../screen/assistant/ModificarPlatillo.fxml"));
+                    class.getResource("/smartfood/screen/assistant/ModificarPlatillo.fxml"));
             BorderPane page = (BorderPane) loader.load();
             
             Window w;

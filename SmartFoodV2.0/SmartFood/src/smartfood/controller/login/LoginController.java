@@ -152,9 +152,10 @@ public class LoginController implements Initializable {
     
     private void cargarAsistente(MouseEvent event, int idRes) {
         try {
+        
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-            class.getResource("../../screen/creators/AsistenteCreator.fxml"));
-            System.out.println("Joder");
+            class.getResource("/smartfood/screen/creators/AsistenteCreator.fxml"));
+            
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             
@@ -183,7 +184,7 @@ public class LoginController implements Initializable {
     private void cargarCliente(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-            class.getResource("../../screen/creators/ClienteCreator.fxml"));
+            class.getResource("/smartfood/screen/creators/ClienteCreator.fxml"));
             System.out.println("Joder");
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();

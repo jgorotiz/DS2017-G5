@@ -41,7 +41,7 @@ public class ClienteCreatorController implements Initializable {
     public void listarCategorias(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-            class.getResource("../../screen/info/ListaCategorias.fxml"));
+            class.getResource("/smartfood/screen/info/ListaCategorias.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             
@@ -68,7 +68,7 @@ public class ClienteCreatorController implements Initializable {
         
         try {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-            class.getResource("../../screen/client/BusquedaPlatillo.fxml"));
+            class.getResource("/smartfood/screen/client/BusquedaPlatillo.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             

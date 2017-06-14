@@ -265,7 +265,7 @@ public class ListaCategoriaController implements Initializable,
         try {
             
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-                    class.getResource("../../screen/info/PlatilloInfo.fxml"));
+                    class.getResource("/smartfood/screen/info/PlatilloInfo.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             

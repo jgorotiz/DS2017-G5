@@ -8,9 +8,6 @@ package smartfood.controller.creators;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -53,7 +50,7 @@ public class AsistenteCreatorController implements Initializable {
         try {
             
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-                    class.getResource("../../screen/assistant/AgregarPlatillo.fxml"));
+                    class.getResource("/smartfood/screen/assistant/AgregarPlatillo.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             
@@ -82,7 +79,7 @@ public class AsistenteCreatorController implements Initializable {
         
         try {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-            class.getResource("../../screen/assistant/ListarPlatillos.fxml"));
+            class.getResource("/smartfood/screen/assistant/ListarPlatillos.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             
@@ -114,7 +111,7 @@ public class AsistenteCreatorController implements Initializable {
         
         try {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-            class.getResource("../../screen/assistant/ListarCategorias.fxml"));
+            class.getResource("/smartfood/screen/assistant/ListarCategorias.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             
