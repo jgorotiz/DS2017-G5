@@ -7,9 +7,7 @@ package smartfood.creators;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,21 +19,29 @@ import javafx.stage.Stage;
  */
 public final class LoginCreator {
     
-    public static Stage loginCreator() throws MalformedURLException{
+    public static Stage loginCreator() throws IOException{
         
-        Stage stage = new Stage();
-        Parent root = null;
+        Stage stage;
+        
+        Parent root;
+        
+        stage = new Stage();
+        
         File archivo = new File("src/smartfood/screen/login/Login.fxml");
-        try {
-            root = FXMLLoader.load(archivo.toURL());
-        } catch (IOException ex) {
-            Logger.getLogger(LoginCreator.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        URL url;
+        
+        url = archivo.toURI().toURL();
+        
+        root = FXMLLoader.load(url);
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        
         return stage;
+
+
     }
     
 }

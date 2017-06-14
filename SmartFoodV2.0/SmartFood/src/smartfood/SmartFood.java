@@ -6,15 +6,12 @@
 package smartfood;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import smartfood.creators.LoginCreator;
 
 /**
  *
- * @author Mercedes
+ * @author Jose Masson
  */
 public class SmartFood extends Application {
     
@@ -23,12 +20,15 @@ public class SmartFood extends Application {
         
         stage = LoginCreator.loginCreator();
         stage.show();
+        
     }
     
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
     }
+    
 }
