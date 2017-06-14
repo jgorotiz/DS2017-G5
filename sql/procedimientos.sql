@@ -103,6 +103,19 @@ end//
 
 delimiter ;
 
+/* platillos por restaurante dada una id categoria*/
+drop procedure if exists platilloXIDCategoriaIDRestaurante;
+delimiter //
+create procedure platilloXIDCategoriaIDRestaurante(in claveCategoria int, in idRes int)
+begin
+	select idPlato, plato.nombre, descripcion, nombreTipo, nombreCategoria, img, servido.nombreServido
+    from plato,categoria, tipo, servido
+    where plato.categoria =  categoria.idCategoria and servido.idServido = plato.servido and plato.tipo =  tipo.idTipo and  claveCategoria = categoria.idCategoria 
+    and plato.restaurante = idRes;
+end// 
+
+delimiter ;
+
 
 /* actualizar imagen*/
 drop procedure if exists actualizarImg;

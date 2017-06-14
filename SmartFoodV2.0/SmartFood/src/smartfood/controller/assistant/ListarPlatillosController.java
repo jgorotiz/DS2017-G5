@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,18 +28,21 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import smartfood.classes.alerts.ConfirmationAlert;
 import smartfood.classes.alerts.GeneralAlert;
+import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Plato;
 import smartfood.controller.info.ListaCategoriaController;
-//import smartfood.controller.info.PlatilloInfoController;
+import smartfood.interfaces.OpcionesBotones;
 
 /**
  *
  * @author Jose Masson
  */
-public class ListarPlatillosController implements Initializable {
+public class ListarPlatillosController implements Initializable, 
+        OpcionesBotones {
 
     private Stage app;
     
@@ -58,6 +62,23 @@ public class ListarPlatillosController implements Initializable {
     
     @FXML
     private ObservableList<Plato> listaPlatos;
+    
+    @Override
+    public void salir() {
+        ConfirmationAlert confirmation = new ConfirmationAlert();
+        
+        confirmation.setMensaje("¿Desea salir del sistema?");
+        confirmation.showAlert();
+        
+        if (confirmation.getResult().get() == ButtonType.OK) {
+            GeneralAlert g;
+            g = new InfoAlert();
+            g.setMensaje("Usted ha salido del sistema");
+            g.showAlert();
+            System.exit(0);
+        }
+        
+    }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -112,6 +133,18 @@ public class ListarPlatillosController implements Initializable {
             }
             
         }
+        else {
+            
+            GeneralAlert g;
+            
+            g = new WarningAlert();
+            
+            g.setMensaje("Ya se ha cargado la lista de platillos");
+            
+            g.showAlert();
+        
+        }
+        
     }
     
     private void createDishList(ResultSet r) throws SQLException {
@@ -148,8 +181,6 @@ public class ListarPlatillosController implements Initializable {
         p = this.platos.getSelectionModel().getSelectedItem();
         if (p != null) {
             
-//            p.setCategoria("Hola Mundo");
-//            this.platos.refresh();
             this.showDishInfo(p, event);
             
         }

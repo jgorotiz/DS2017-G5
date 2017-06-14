@@ -177,6 +177,23 @@ public class Plato {
         
     }
     
+    public static ResultSet getListadoXCategoriaYRestaurante(Conexion cn, 
+            int categoria, int restaurante) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " platilloXIDCategoriaIDRestaurante(?, ?)}");
+            cst.setInt(1, categoria);
+            cst.setInt(2, restaurante);
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
+    }
+    
     public static ResultSet getListadoXNombre(Conexion cn, String nombre) {
         
         try {

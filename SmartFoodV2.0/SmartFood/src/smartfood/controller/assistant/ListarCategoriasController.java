@@ -35,7 +35,6 @@ import smartfood.classes.connection.Conexion;
 import smartfood.classes.food.Categoria;
 import smartfood.classes.food.Plato;
 import smartfood.controller.info.ListaCategoriaController;
-import smartfood.controller.info.PlatilloInfoController;
 import smartfood.interfaces.OpcionesBotones;
 
 /**
@@ -143,6 +142,17 @@ public class ListarCategoriasController implements Initializable,
                 }
             }
         }
+        else {
+            
+            GeneralAlert g;
+            
+            g = new WarningAlert();
+            
+            g.setMensaje("Ya se ha cargado la lista de categorías");
+            
+            g.showAlert();
+            
+        }
         
     }
     
@@ -155,7 +165,8 @@ public class ListarCategoriasController implements Initializable,
         
         try {
             
-            resultados = Plato.getListadoXCategoria(cn, c.getIdCategoria());
+            resultados = Plato.getListadoXCategoriaYRestaurante(cn, 
+                    c.getIdCategoria(), this.idRestaurante);
             
             this.createDishList(resultados);
             
@@ -212,20 +223,21 @@ public class ListarCategoriasController implements Initializable,
         
         while (r.next()) {
             
-            String nombre = r.getString(1);
-            String descripcion = r.getString(2);
-            String tipo = r.getString(3);
-            String nomCategoria = r.getString(4);
-            String nombreRestaurante = r.getString(5);
+            Integer idPlatillo = r.getInt(1);
+            String nombre = r.getString(2);
+            String descripcion = r.getString(3);
+            String tipo = r.getString(4);
+            String nomCategoria = r.getString(5);
+            String restaurante = Integer.toString(this.idRestaurante);
             InputStream img = r.getBinaryStream(6);
+            String serv = r.getString(7);
             Image imagen = new Image(img);
             
             
             Plato p;
             
-            p = new Plato(nombre, descripcion, tipo, nomCategoria, 
-                    nombreRestaurante, imagen);
-            
+            p = new Plato(idPlatillo, nombre, descripcion, imagen, nomCategoria, 
+                    tipo, serv, restaurante);
             this.listaPlatillos.add(p);
             
         }
@@ -272,7 +284,7 @@ public class ListarCategoriasController implements Initializable,
         try {
             
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-                    class.getResource("/smartfood/screen/info/PlatilloInfo.fxml"));
+                    class.getResource("/smartfood/screen/assistant/PlatilloInfoAsistente.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             
@@ -285,14 +297,14 @@ public class ListarCategoriasController implements Initializable,
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            PlatilloInfoController controller = loader.getController();
+            PlatilloInfoAsistenteController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setPlato(p);
 
             dialogStage.showAndWait();
 
         } catch (IOException e) {
-           
+            System.out.println("Error de carga");
         }
         
     }

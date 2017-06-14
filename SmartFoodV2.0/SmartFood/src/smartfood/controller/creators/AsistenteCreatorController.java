@@ -5,18 +5,38 @@
  */
 package smartfood.controller.creators;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import smartfood.classes.alerts.ConfirmationAlert;
+import smartfood.classes.alerts.GeneralAlert;
+import smartfood.classes.alerts.InfoAlert;
+import smartfood.classes.alerts.WarningAlert;
 import smartfood.controller.assistant.AgregarPlatilloController;
 import smartfood.controller.assistant.ListarCategoriasController;
 import smartfood.controller.assistant.ListarPlatillosController;
@@ -31,10 +51,62 @@ public class AsistenteCreatorController implements Initializable {
     private Stage appStage;
     
     private int idRestaurante;
-
+    @FXML
+    private Label encabezado;
+    
+    @FXML
+    private Button boton1;
+    
+    @FXML
+    private Button boton2;
+    
+    @FXML
+    private Button boton3;
+    
+    @FXML
+    private Button boton4;
+    
+    @FXML
+    private GridPane grid;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Image boton = new Image(new File("src/smartfood/images/etimadera.png").toURI().toString());
+        this.boton1.setBackground(new Background(new BackgroundImage(boton, 
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        this.boton1.setMaxSize(200, 140);
+        this.boton1.setPrefSize(200, 140);
+        this.boton1.setFont(Font.font(null, FontWeight.BOLD, 20));
+        this.boton1.setTextFill(Color.DARKBLUE);
+        this.boton1.setTextAlignment(TextAlignment.CENTER);
+        this.boton2.setBackground(new Background(new BackgroundImage(boton, 
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        this.boton2.setMaxSize(200, 140);
+        this.boton2.setPrefSize(200, 140);
+        this.boton2.setFont(Font.font(null, FontWeight.BOLD, 20));
+        this.boton2.setTextFill(Color.DARKBLUE);
+        this.boton2.setTextAlignment(TextAlignment.CENTER);
+        this.boton3.setBackground(new Background(new BackgroundImage(boton, 
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        this.boton3.setMaxSize(200, 140);
+        this.boton3.setPrefSize(200, 140);
+        this.boton3.setFont(Font.font(null, FontWeight.BOLD, 20));
+        this.boton3.setTextFill(Color.DARKBLUE);
+        this.boton3.setTextAlignment(TextAlignment.CENTER);
         
+        this.boton4.setBackground(new Background(new BackgroundImage(boton, 
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        this.boton4.setMaxSize(200, 140);
+        this.boton4.setPrefSize(200, 140);
+        this.boton4.setFont(Font.font(null, FontWeight.BOLD, 20));
+        this.boton4.setTextFill(Color.DARKBLUE);
+        this.boton4.setTextAlignment(TextAlignment.CENTER);
+        
+        this.encabezado.setFont(new Font("Cambria", 50));
+        this.encabezado.setTextFill(Color.DARKRED);
+        
+        Image fondo = new Image(new File("src/smartfood/images/gastronomy.jpg").toURI().toString());
+        this.grid.setBackground(new Background(new BackgroundImage(fondo, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
 
     public void setAppStage(Stage appStage) {
@@ -138,10 +210,30 @@ public class AsistenteCreatorController implements Initializable {
     }
     
     public void cerrarSesion(MouseEvent event) {
+        
+        GeneralAlert g;
+        
         try {
-            this.handleScreenChanges(event, "/smartfood/screen/login/Login.fxml");
+            
+            ConfirmationAlert confirmation = new ConfirmationAlert();
+        
+            confirmation.setMensaje("¿Desea cerrar sesión?");
+            confirmation.showAlert();
+        
+            if (confirmation.getResult().get() == ButtonType.OK) {
+                
+                g = new InfoAlert();
+                g.setMensaje("Usted ha cerrado sesión con éxito");
+                g.showAlert();
+                
+                this.handleScreenChanges(event, "/smartfood/screen/login/Login.fxml");
+        }
+
         } catch (IOException ex) {
-            System.out.println("No cerró sesion");
+            g = new WarningAlert();
+            g.setMensaje("No ha cerrado sesión");
+            g.showAlert();
+            
         }
     }
     

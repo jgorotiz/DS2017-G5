@@ -11,6 +11,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,7 +35,9 @@ import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
+import smartfood.classes.constants.Constantes;
 import smartfood.classes.food.Plato;
+import smartfood.classes.validaciones.Validaciones;
 import smartfood.controller.info.ListaCategoriaController;
 import smartfood.controller.info.PlatilloInfoController;
 import smartfood.interfaces.OpcionesBotones;
@@ -76,6 +79,8 @@ public class BusquedaPlatilloController implements Initializable,
                 setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.nombreRestaurante.
                 setCellValueFactory(new PropertyValueFactory<>("restaurante"));
+        
+        Validaciones.addTextLimiter(searchBox, Constantes.MAX_LENGHT_DESCRIP);
     }
     
     @Override
@@ -122,13 +127,17 @@ public class BusquedaPlatilloController implements Initializable,
                 
                 this.busquedaValida = this.esValido();
                 
+                String bus;
+                    
+                bus = this.searchBox.getText().trim();
+                
                 if (this.busquedaValida) {
                     if (texto.equals("Nombre")) {
-                        r = Plato.getListadoXNombre(cn, this.searchBox.getText());
+                        r = Plato.getListadoXNombre(cn, bus);
                         this.createDishList(r);
                     }
                     else if (texto.equals("Descripción")) {
-                        r = Plato.getListadoXDescripcion(cn, this.searchBox.getText());
+                        r = Plato.getListadoXDescripcion(cn, bus);
                         this.createDishList(r);
                     }
                     
@@ -144,10 +153,16 @@ public class BusquedaPlatilloController implements Initializable,
                     
                     info.showAlert();
                     this.table.setItems(listaPlatillos);
+
+                    
                 }
                 else {
-                    this.table.getItems().removeAll(listaPlatillos);
-                    this.table.refresh();
+                    
+                    if (this.listaPlatillos != null) {
+                        this.table.getItems().removeAll(listaPlatillos);
+                        this.table.refresh();
+                    }
+                    
                     g = new WarningAlert(null, "Valor no válido");
                     g.showAlert();
                 }
@@ -176,12 +191,20 @@ public class BusquedaPlatilloController implements Initializable,
         this.searchBox.clear();
     }
     
-//    Oswaldo, valida el campo, has que siempre reciba letras y números.
-//    También que no sobrepase los 20 caracteres a lo mucho.
-//    Pilas
-    
     private boolean esValido() {
-        return !(this.searchBox.getText().trim().length() == 0);
+        String bus;
+        
+        bus = this.searchBox.getText().trim();
+        
+        Matcher match = Validaciones
+                .obtenerMatcher("[A-Za-z0-9\\p{Punct}\\p{L}\\s]?+(\\s?[A-Za-z0-9"
+                        + "\\p{Punct}\\p{L}]*){1,30}", bus);
+        
+        if (bus.length() != 0) {
+            return match.matches();
+        }
+        return false;
+
     }
     
     public void showDishInfo(MouseEvent event) {

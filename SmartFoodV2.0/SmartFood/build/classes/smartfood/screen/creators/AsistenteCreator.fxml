@@ -9,32 +9,32 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="smartfood.controller.creators.AsistenteCreatorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="smartfood.controller.creators.AsistenteCreatorController">
    <center>
       <VBox alignment="CENTER" prefHeight="260.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="TOP_CENTER" prefHeight="294.0" prefWidth="594.0">
+            <HBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="594.0">
                <children>
-                  <GridPane alignment="CENTER" prefHeight="278.0" prefWidth="382.0">
+                  <GridPane fx:id="grid" alignment="CENTER" prefHeight="358.0" prefWidth="802.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="0.0" prefWidth="111.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="258.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints />
-                        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="38.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="224.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="145.0" minHeight="0.0" prefHeight="91.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="96.0" minHeight="0.0" prefHeight="91.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="89.0" minHeight="0.0" prefHeight="89.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#agregarPlato" prefHeight="25.0" prefWidth="106.0" text="Agregar Plato" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" onMouseClicked="#listarPlatos" prefHeight="25.0" prefWidth="106.0" text="Listar Platos" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Button mnemonicParsing="false" onMouseClicked="#listarCategorias" text="Listar Categorias" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Button mnemonicParsing="false" onMouseClicked="#cerrarSesion" prefHeight="25.0" prefWidth="104.0" text="Cerrar Sesión" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label prefWidth="49.0" text="Asistente" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="boton1" mnemonicParsing="false" onMouseClicked="#agregarPlato" prefHeight="25.0" prefWidth="106.0" text="Agregar Plato" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button fx:id="boton2" mnemonicParsing="false" onMouseClicked="#listarPlatos" prefHeight="25.0" prefWidth="106.0" text="Listar Platos" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button fx:id="boton3" mnemonicParsing="false" onMouseClicked="#listarCategorias" text="Listar Categorias" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button fx:id="boton4" mnemonicParsing="false" onMouseClicked="#cerrarSesion" prefHeight="25.0" prefWidth="104.0" text="Cerrar Sesión" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="encabezado" prefHeight="52.0" prefWidth="245.0" text="Asistente" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
