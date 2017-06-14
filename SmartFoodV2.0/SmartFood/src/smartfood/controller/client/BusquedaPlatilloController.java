@@ -80,7 +80,7 @@ public class BusquedaPlatilloController implements Initializable,
         this.nombreRestaurante.
                 setCellValueFactory(new PropertyValueFactory<>("restaurante"));
         
-        Validaciones.addTextLimiter(searchBox, Constantes.MAX_LENGHT_DESCRIP);
+        Validaciones.addTextLimiter(searchBox, Constantes.MAX_LENGHT_BUSQ);
     }
     
     @Override

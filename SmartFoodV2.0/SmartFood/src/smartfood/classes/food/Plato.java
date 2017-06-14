@@ -278,4 +278,43 @@ public class Plato {
         }
     
     }
+    
+    public static boolean existePlatillo(String posibleNombre,
+            int idRes) {
+        
+        Conexion cn = new Conexion();
+        
+        int idP;
+        
+        idP = -1;
+        
+        try {
+            
+            CallableStatement cst = cn.getConnection().
+                    prepareCall("{call existePlato(?,?,?)}");
+            
+            cst.setString(1, posibleNombre);
+            cst.setInt(2, idRes);
+
+            cst.registerOutParameter(3, java.sql.Types.INTEGER);
+
+            cst.execute();
+
+            idP = cst.getInt(3);
+            
+        } 
+        catch (SQLException ex) {
+            System.out.println("Error SQL");
+        } 
+        finally {
+            try {
+                cn.getConnection().close();
+            } catch (SQLException ex) {
+                System.out.println("Error en cierre de conexion");
+            }
+        }
+        
+        return idP > 0;
+        
+    }
 }

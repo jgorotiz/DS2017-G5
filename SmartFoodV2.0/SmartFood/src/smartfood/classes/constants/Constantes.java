@@ -13,5 +13,9 @@ public class Constantes {
     
     public static final int MAX_LENGHT_USER_PASS = 20;
     
-    public static final int MAX_LENGHT_DESCRIP = 25;
+    public static final int MAX_LENGHT_BUSQ = 25;
+    
+    public static final int MAX_LENGHT_TEXT = 40;
+    
+    public static final int MAX_LENGHT_DESCR = 200;
 }

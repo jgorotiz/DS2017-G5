@@ -267,5 +267,15 @@ end//
 
 delimiter ;
 
+drop procedure if exists existePlato;
+delimiter //
+create procedure existePlato(in posibleNombre varchar(50), in restaurante int, out idP int)
+begin
+	select idPlato into idP from plato
+    where  plato.nombre like posibleNombre and plato.restaurante = restaurante;
+end// 
+
+delimiter ;
+
 
 

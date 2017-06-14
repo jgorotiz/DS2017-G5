@@ -31,10 +31,12 @@ import javafx.stage.Stage;
 import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
+import smartfood.classes.constants.Constantes;
 import smartfood.classes.food.Categoria;
 import smartfood.classes.food.Plato;
 import smartfood.classes.food.Servido;
 import smartfood.classes.food.Tipo;
+import smartfood.classes.validaciones.Validaciones;
 
 /**
  *
@@ -81,6 +83,10 @@ public class ModificarPlatilloController implements Initializable {
         this.llenarCategorias();
         this.llenarTipos();
         this.llenarServidos();
+        
+        Validaciones.addTextLimiter(nombrePlatillo, Constantes.MAX_LENGHT_TEXT);
+        Validaciones.addTextLimiter(descripcionPlatillo, 
+                Constantes.MAX_LENGHT_DESCR);
     }
     
     public void setDialogStage(Stage dialogStage) {
