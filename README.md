@@ -10,6 +10,7 @@ Repositorio que contiene el código fuente del proyecto
 ### Instrucciones ###
 Para ejecutar correctamente el proyecto, se debe realizar los siguientes pasos.
 
+* Ubicar la carpeta SmartFoodV2.0
 * Crear base con el script db_create.sql
 * Insertar datos con el script inserciones2.sql
 * Correr procedimientos.sql para los Stored Procedures correspondientes a la base
