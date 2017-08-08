@@ -3,31 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/ListarPlatillosController.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/classes/food/Categoria.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/ListarCategoriasController.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/creators/ClienteStageCreator.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/classes/food/Plato.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/info/ListaCategoriaController.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/screen/creators/ClienteCreator.fxml</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/info/PlatilloInfoController.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/creators/SubmenuCreator.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/ModificarPlatilloController.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/SmartFood.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/SmartFoodPrueba.java</file>
             <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/AsistenteController.java</file>
             <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/creators/LoginCreator.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/screen/creators/AsistenteCreator.fxml</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/AgregarPlatilloController.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/login/LoginController.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/classes/user/Usuario.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/PlatilloInfoAsistenteController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/classes/validaciones/Validaciones.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/info/ListaCategoriaController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/classes/connection/Conexion.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/ListarCategoriasController.java</file>
             <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/client/BusquedaPlatilloController.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/creators/AsistenteStageCreator.java</file>
-            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/creators/ClienteCreatorController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/info/PlatilloInfoController.java</file>
             <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/creators/UsuarioStageCreator.java</file>
             <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/creators/AsistenteCreatorController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/creators/ClienteStageCreator.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/classes/constants/Constantes.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/PlatilloInfoAsistenteController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/AgregarPlatilloController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/creators/ClienteCreatorController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/screen/creators/ClienteCreator.fxml</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/creators/AsistenteStageCreator.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/screen/creators/AsistenteCreator.fxml</file>
             <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/classes/food/Restaurante.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/ListarPlatillosController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/SmartFood.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/login/LoginController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/controller/assistant/ModificarPlatilloController.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/classes/food/Tipo.java</file>
+            <file>file:/E:/Documents/ESPOL/Semestres/6/Asignaturas/Diseño%20de%20Software/I%20Parcial/Proyecto/DS2017-G5/SmartFoodV2.0/SmartFood/src/smartfood/creators/SubmenuCreator.java</file>
         </group>
     </open-files>
 </project-private>
