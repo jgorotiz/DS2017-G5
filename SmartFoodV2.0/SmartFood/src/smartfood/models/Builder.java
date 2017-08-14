@@ -6,8 +6,6 @@
 package smartfood.models;
 
 import java.sql.Timestamp;
-import javafx.scene.image.Image;
-import smartfood.classes.food.Plato;
 
 /**
  *
@@ -15,25 +13,15 @@ import smartfood.classes.food.Plato;
  */
 public interface Builder {
     
-    public abstract void setNombre(String nombre);
+    public abstract void setSopa(String sopa);
     
-    public abstract void setDescripcion(String descripcion);
+    public abstract void setSegundo(String segundo);
     
     public abstract void setCosto(float costo);
     
-    public abstract void setImagen(Image imagen);
-
-    public abstract void setCategoria(String categoria);
-    
-    public abstract void setTipo(String tipo);
-    
-    public abstract void setServido(String servido);
-    
-    public abstract void setRestaurante(String restaurante);
-    
     public abstract void setFechaRegistro(Timestamp fechaRegistro);
     
-    public abstract Plato getPlato();
+    public abstract Almuerzo getAmuerzo();
 
 
     

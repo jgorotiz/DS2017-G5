@@ -18,4 +18,6 @@ public class Constantes {
     public static final int MAX_LENGHT_TEXT = 40;
     
     public static final int MAX_LENGHT_DESCR = 200;
+    
+    public static final float VALOR_BEBIDA = 0.50F;
 }
