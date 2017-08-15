@@ -154,6 +154,30 @@ CREATE TABLE IF NOT EXISTS `smartfood`.`UsuarioRestaurante` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `smartfood`.`Almuerzo`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `smartfood`.`Almuerzo` ;
+
+CREATE TABLE IF NOT EXISTS `smartfood`.`Almuerzo` (
+  `idAlmuerzo` INT NOT NULL AUTO_INCREMENT,
+  `sopa` VARCHAR(50) NOT NULL,
+  `segundo` VARCHAR(50) NOT NULL,
+  `tipoAlmuerzo` DATETIME NOT NULL,
+  `costo` DOUBLE NOT NULL,
+  `fechaRegistro` DATETIME NULL,
+  `restaurante` INT NOT NULL,
+  PRIMARY KEY (`idAlmuerzo`),
+  INDEX `fk_Almuerzo_Restaurante1_idx` (`restaurante` ASC),
+  CONSTRAINT `fk_Almuerzo_Restaurante1_idx`
+    FOREIGN KEY (`restaurante`)
+    REFERENCES `smartfood`.`Restaurante` (`idRestaurante`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,)
+ENGINE = InnoDB;
+
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
