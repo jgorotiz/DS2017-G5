@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `smartfood`.`Almuerzo` (
   `idAlmuerzo` INT NOT NULL AUTO_INCREMENT,
   `sopa` VARCHAR(50) NOT NULL,
   `segundo` VARCHAR(50) NOT NULL,
-  `tipoAlmuerzo` DATETIME NOT NULL,
+  `tipoAlmuerzo` VARCHAR(50) NOT NULL,
   `costo` DOUBLE NOT NULL,
   `fechaRegistro` DATETIME NULL,
   `restaurante` INT NOT NULL,
@@ -176,6 +176,24 @@ CREATE TABLE IF NOT EXISTS `smartfood`.`Almuerzo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+
+DROP TABLE IF EXISTS `smartfood`.`Tarjeta` ;
+
+CREATE TABLE IF NOT EXISTS `smartfood`.`Tarjeta` (
+  `idTarjeta` INT NOT NULL AUTO_INCREMENT,
+  `numeroTarjeta` VARCHAR(50) NOT NULL,
+  `saldo` DOUBLE NOT NULL,
+  `fechaREmision` DATETIME NULL,
+  `usuario` INT NOT NULL,
+  PRIMARY KEY (`idTarjeta`),
+  INDEX `fk_Tarjeta_Usuario1_idx` (`usuario` ASC),
+  CONSTRAINT `fk_Tarjeta_Usuario1`
+    FOREIGN KEY (`usuario`)
+    REFERENCES `smartfood`.`Usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

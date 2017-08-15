@@ -282,8 +282,9 @@ drop procedure if exists restauranteAdministrador;
 delimiter //
 create procedure restauranteAdministrador(in administrador int)
 begin
-	select Restaurante.idRestaurante, Restaurante.nombre from Usuario, Rol, Restaurante
-    where  plato.nombre like posibleNombre and plato.restaurante = restaurante;
+	select Restaurante.idRestaurante, Restaurante.nombre from Usuario, Restaurante, UsuarioRestaurante
+    where  Usuario.idUsuario = UsuarioRestaurante.usuario and
+    Restaurante.idResturante = UsuarioRestaurante.restaurante;
 end// 
 
 delimiter ;
