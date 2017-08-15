@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `smartfood`.`Almuerzo` (
     FOREIGN KEY (`restaurante`)
     REFERENCES `smartfood`.`Restaurante` (`idRestaurante`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,)
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
