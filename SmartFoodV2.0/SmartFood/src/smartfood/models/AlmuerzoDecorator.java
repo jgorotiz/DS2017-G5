@@ -14,6 +14,6 @@ public abstract class AlmuerzoDecorator extends Almuerzo {
     protected Almuerzo almuerzo;
     
     @Override
-    public abstract float getCosto(); 
+    public abstract double getCosto(); 
     
 }

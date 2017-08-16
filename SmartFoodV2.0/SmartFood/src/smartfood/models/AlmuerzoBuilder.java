@@ -28,9 +28,19 @@ public class AlmuerzoBuilder implements Builder {
     public void setSegundo(String segundo) {
         this.almuerzo.setSegundo(segundo);
     }
+    
+    @Override
+    public void setTipo(String tipo) {
+        this.almuerzo.setTipo(tipo);
+    }
+    
+    @Override
+    public void setRestaurante(String restaurante) {
+        this.almuerzo.setRestaurante(restaurante);
+    }
 
     @Override
-    public void setCosto(float costo) {
+    public void setCosto(double costo) {
         this.almuerzo.setCosto(costo);
     }
 

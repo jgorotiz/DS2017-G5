@@ -17,7 +17,11 @@ public interface Builder {
     
     public abstract void setSegundo(String segundo);
     
-    public abstract void setCosto(float costo);
+    public abstract void setTipo(String tipo);
+    
+    public abstract void setRestaurante(String restaurante);
+    
+    public abstract void setCosto(double costo);
     
     public abstract void setFechaRegistro(Timestamp fechaRegistro);
     
