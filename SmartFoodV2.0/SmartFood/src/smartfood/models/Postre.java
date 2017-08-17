@@ -14,7 +14,7 @@ import smartfood.classes.constants.Constantes;
 public class Postre extends AlmuerzoDecorator {
     
     @Override
-    public float getCosto() {
+    public double getCosto() {
         return this.almuerzo.getCosto() + Constantes.VALOR_BEBIDA;
     }
     

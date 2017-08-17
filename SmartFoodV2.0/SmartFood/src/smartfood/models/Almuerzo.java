@@ -15,8 +15,9 @@ public class Almuerzo {
     
     private String sopa;
     private String segundo;
+    private String tipo;
     private String restaurante;
-    private float costo;
+    private double costo;
     private Timestamp fechaRegistro;
 
     public String getSopa() {
@@ -35,6 +36,14 @@ public class Almuerzo {
         this.segundo = segundo;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public String getRestaurante() {
         return restaurante;
     }
@@ -43,11 +52,11 @@ public class Almuerzo {
         this.restaurante = restaurante;
     }
 
-    public float getCosto() {
+    public double getCosto() {
         return costo;
     }
 
-    public void setCosto(float costo) {
+    public void setCosto(double costo) {
         this.costo = costo;
     }
 

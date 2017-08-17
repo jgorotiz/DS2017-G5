@@ -16,7 +16,7 @@ public class Bebida extends AlmuerzoDecorator {
 //    protected Almuerzo almuerzo;
     
     @Override
-    public float getCosto() {
+    public double getCosto() {
         return this.almuerzo.getCosto() + Constantes.VALOR_BEBIDA;
     }
     
