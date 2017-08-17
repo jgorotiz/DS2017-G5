@@ -328,4 +328,14 @@ end//
 
 delimiter ;
 
+/* insersion de un almuerzo */
+drop procedure if exists insertarAlmuerzo;
+delimiter //
+create procedure insertarAlmuerzo(in sopa varchar(50), in segundo varchar(50), 
+	in tipoAluerzo varchar(50), in costo double, restaurante int, in fechaRegistro datetime)
+begin
+	insert into Almuerzo (almuerzo.sopa, almuerzo.segundo, almuerzo.tipoAluerzo, almuerzo.costo, almuerzo.fechaRegistro, almuerzo.restaurante) 
+    values(sopa,segundo, tipoAluerzo, costo, fechaRegistro, restaurante);
+end// 
 
+delimiter ;
