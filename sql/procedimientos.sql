@@ -290,3 +290,42 @@ end//
 delimiter ;
 
 
+
+/* almuerzos*/
+drop procedure if exists almuerzos;
+delimiter //
+create procedure almuerzos()
+begin
+	select sopa, segundo, tipoAlmuerzo, costo,restaurante
+    from Almuerzo;
+    
+end// 
+
+delimiter ;
+
+
+/* almuerzos dado un restaurante para el cliente*/
+drop procedure if exists almuerzoXrestauranteCliente;
+delimiter //
+create procedure almuerzoXrestauranteCliente(in idRestaurante int)
+begin
+	select sopa, segundo, tipoAlmuerzo, costo, restaurante
+    from Almuerzo
+    where Almuerzo.restaurante = idRestaurante;
+end// 
+
+delimiter ;
+
+/* almuerzos dado un restaurante para el Administrador*/
+drop procedure if exists almuerzoXrestauranteAdministrador;
+delimiter //
+create procedure almuerzoXrestauranteAdministrador(in idRestaurante int)
+begin
+	select idAlmuerzo,sopa, segundo, tipoAlmuerzo, costo, restaurante
+    from Almuerzo
+    where Almuerzo.restaurante = idRestaurante;
+end// 
+
+delimiter ;
+
+
