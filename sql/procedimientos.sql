@@ -309,9 +309,9 @@ drop procedure if exists almuerzoXrestauranteCliente;
 delimiter //
 create procedure almuerzoXrestauranteCliente(in idRestaurante int)
 begin
-	select sopa, segundo, tipoAlmuerzo, costo, restaurante
-    from Almuerzo
-    where Almuerzo.restaurante = idRestaurante;
+	select sopa, segundo, tipoAlmuerzo, costo, Restaurante.nombre
+    from Almuerzo,Restaurante
+    where Almuerzo.restaurante = Restaurante.idRestaurante and Almuerzo.restaurante = idRestaurante ;
 end// 
 
 delimiter ;
@@ -321,9 +321,9 @@ drop procedure if exists almuerzoXrestauranteAdministrador;
 delimiter //
 create procedure almuerzoXrestauranteAdministrador(in idRestaurante int)
 begin
-	select idAlmuerzo,sopa, segundo, tipoAlmuerzo, costo, restaurante
+	select idAlmuerzo,sopa, segundo, tipoAlmuerzo, costo, Restaurante.nombre
     from Almuerzo
-    where Almuerzo.restaurante = idRestaurante;
+    where Almuerzo.restaurante = Restaurante.idRestaurante and Almuerzo.restaurante = idRestaurante;
 end// 
 
 delimiter ;
