@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -41,6 +42,7 @@
                   <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="41.0" />
                   <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="41.0" />
                   <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="41.0" />
+                  <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="41.0" />
                </rowConstraints>
                <children>
                   <Label fx:id="labelSopa" text="Sopa" />
@@ -59,6 +61,8 @@
                   <CheckBox fx:id="bebida" mnemonicParsing="false" onMouseClicked="#agregarBebida" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label fx:id="labelCosto2" text="Restaurante" GridPane.rowIndex="4" />
                   <TextField fx:id="restaurante" editable="false" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="labelCosto11111" text="Pago" GridPane.rowIndex="8" />
+                  <ComboBox fx:id="tipoPago" prefHeight="25.0" prefWidth="372.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </children>

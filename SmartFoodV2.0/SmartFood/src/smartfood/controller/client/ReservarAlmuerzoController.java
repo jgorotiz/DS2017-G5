@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -57,6 +58,9 @@ public class ReservarAlmuerzoController implements Initializable {
     @FXML
     private CheckBox postre;
     
+    @FXML
+    private ComboBox tipoPago;
+    
     private boolean cargado;
     
     private boolean bebidaAgregada;
@@ -64,6 +68,10 @@ public class ReservarAlmuerzoController implements Initializable {
     private boolean postreAgregado;
     
     private boolean extrasHabilitados;
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
     
     public void setDialogStage(Stage dialogStage) {
         this.appStage = dialogStage;
@@ -81,6 +89,8 @@ public class ReservarAlmuerzoController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.disableExtras();
+        this.createPays();
+        this.tipoPago.setDisable(Constantes.DESACTIVAR_EXTRA);
         this.cargado = true;
     }
     
@@ -92,7 +102,15 @@ public class ReservarAlmuerzoController implements Initializable {
         this.restaurante.setText(this.almuerzo.getRestaurante());
         this.tipoAlmuerzo.setText(this.almuerzo.getTipo());
         this.totalReserva.setText(this.formatearDecimal(this.almuerzo.getCosto()));
+        this.tipoPago.setDisable(!Constantes.DESACTIVAR_EXTRA);
         this.disableExtrasXTipo();
+    }
+    
+    private void createPays() {
+        this.tipoPago.getItems().addAll(
+        "Tarjeta de Crédito",
+        "Carné Estudiantil");
+
     }
     
     private void enableExtras() {
