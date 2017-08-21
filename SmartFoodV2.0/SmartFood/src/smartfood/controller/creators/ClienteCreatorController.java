@@ -70,34 +70,38 @@ public class ClienteCreatorController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image boton = new Image(new File("src/smartfood/images/etimadera.png").toURI().toString());
-        this.boton1.setBackground(new Background(new BackgroundImage(boton, 
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-        this.boton1.setMaxSize(200, 140);
-        this.boton1.setPrefSize(200, 140);
-        this.boton1.setFont(Font.font(null, FontWeight.BOLD, 20));
-        this.boton1.setTextFill(Color.DARKBLUE);
-        this.boton1.setTextAlignment(TextAlignment.CENTER);
-        this.boton2.setBackground(new Background(new BackgroundImage(boton, 
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-        this.boton2.setMaxSize(200, 140);
-        this.boton2.setPrefSize(200, 140);
-        this.boton2.setFont(Font.font(null, FontWeight.BOLD, 20));
-        this.boton2.setTextFill(Color.DARKBLUE);
-        this.boton2.setTextAlignment(TextAlignment.CENTER);
-        this.boton3.setBackground(new Background(new BackgroundImage(boton, 
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-        this.boton3.setMaxSize(200, 140);
-        this.boton3.setPrefSize(200, 140);
-        this.boton3.setFont(Font.font(null, FontWeight.BOLD, 20));
-        this.boton3.setTextFill(Color.DARKBLUE);
-        this.boton3.setTextAlignment(TextAlignment.CENTER);
-        this.boton4.setBackground(new Background(new BackgroundImage(boton, 
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-        this.boton4.setMaxSize(200, 140);
-        this.boton4.setPrefSize(200, 140);
-        this.boton4.setFont(Font.font(null, FontWeight.BOLD, 20));
-        this.boton4.setTextFill(Color.DARKBLUE);
-        this.boton4.setTextAlignment(TextAlignment.CENTER);
+        this.setStyle(boton1, boton);
+        this.setStyle(boton2, boton);
+        this.setStyle(boton3, boton);
+        this.setStyle(boton4, boton);
+//        this.boton1.setBackground(new Background(new BackgroundImage(boton, 
+//                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+//        this.boton1.setMaxSize(200, 140);
+//        this.boton1.setPrefSize(200, 140);
+//        this.boton1.setFont(Font.font(null, FontWeight.BOLD, 20));
+//        this.boton1.setTextFill(Color.DARKBLUE);
+//        this.boton1.setTextAlignment(TextAlignment.CENTER);
+//        this.boton2.setBackground(new Background(new BackgroundImage(boton, 
+//                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+//        this.boton2.setMaxSize(200, 140);
+//        this.boton2.setPrefSize(200, 140);
+//        this.boton2.setFont(Font.font(null, FontWeight.BOLD, 20));
+//        this.boton2.setTextFill(Color.DARKBLUE);
+//        this.boton2.setTextAlignment(TextAlignment.CENTER);
+//        this.boton3.setBackground(new Background(new BackgroundImage(boton, 
+//                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+//        this.boton3.setMaxSize(200, 140);
+//        this.boton3.setPrefSize(200, 140);
+//        this.boton3.setFont(Font.font(null, FontWeight.BOLD, 20));
+//        this.boton3.setTextFill(Color.DARKBLUE);
+//        this.boton3.setTextAlignment(TextAlignment.CENTER);
+//        this.boton4.setBackground(new Background(new BackgroundImage(boton, 
+//                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+//        this.boton4.setMaxSize(200, 140);
+//        this.boton4.setPrefSize(200, 140);
+//        this.boton4.setFont(Font.font(null, FontWeight.BOLD, 20));
+//        this.boton4.setTextFill(Color.DARKBLUE);
+//        this.boton4.setTextAlignment(TextAlignment.CENTER);
         this.encabezado.setFont(new Font("Cambria", 50));
         this.encabezado.setTextFill(Color.DARKRED);
         
@@ -110,6 +114,17 @@ public class ClienteCreatorController implements Initializable {
         this.appStage = appStage;
     }
 
+    private void setStyle(Button b, Image imagen) {
+        b.setBackground(new Background(new BackgroundImage(imagen, 
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, 
+                BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        b.setMaxSize(200, 140);
+        b.setPrefSize(200, 140);
+        b.setFont(Font.font(null, FontWeight.BOLD, 20));
+        b.setTextFill(Color.DARKBLUE);
+        b.setTextAlignment(TextAlignment.CENTER);
+    }
+    
     public void listarCategorias(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.

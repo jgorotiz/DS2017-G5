@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="smartfood.controller.creators.ClienteCreatorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="smartfood.controller.creators.ClienteCreatorController">
    <center>
       <VBox alignment="CENTER" prefHeight="260.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -27,6 +27,7 @@
                         <RowConstraints maxHeight="130.0" minHeight="0.0" prefHeight="118.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="149.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="149.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="38.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
@@ -34,7 +35,7 @@
                         <Button fx:id="boton1" mnemonicParsing="false" onMouseClicked="#listarCategorias" text="Listar Categ." GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Button fx:id="boton3" mnemonicParsing="false" onMouseClicked="#cerrarSesion" prefHeight="25.0" prefWidth="104.0" text="Cerrar Sesión" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label fx:id="encabezado" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="254.0" text="Cliente" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="boton4" mnemonicParsing="false" onMouseClicked="#reservarAlmuerzo" prefHeight="25.0" prefWidth="141.0" text="Res. Almuerzo" GridPane.rowIndex="5" />
+                        <Button fx:id="boton4" mnemonicParsing="false" onMouseClicked="#reservarAlmuerzo" prefHeight="25.0" prefWidth="141.0" text="Res. Almuerzo" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                </children>
