@@ -53,10 +53,10 @@
                   <TextField fx:id="tipoAlmuerzo" editable="false" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label fx:id="labelCosto11" text="Bebida" GridPane.rowIndex="5" />
                   <Label fx:id="labelCosto111" text="Postre" GridPane.rowIndex="6" />
-                  <CheckBox fx:id="postre" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <CheckBox fx:id="postre" mnemonicParsing="false" onMouseClicked="#agregarPostre" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label fx:id="labelCosto1111" text="Total" GridPane.rowIndex="7" />
                   <TextField fx:id="totalReserva" editable="false" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <CheckBox fx:id="bebida" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <CheckBox fx:id="bebida" mnemonicParsing="false" onMouseClicked="#agregarBebida" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label fx:id="labelCosto2" text="Restaurante" GridPane.rowIndex="4" />
                   <TextField fx:id="restaurante" editable="false" prefHeight="25.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>

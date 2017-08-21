@@ -229,6 +229,7 @@ public class ListarAlmuerzosController implements Initializable,
             
 
             dialogStage.showAndWait();
+            this.almuerzos.refresh();
 
         } catch (IOException e) {
             System.out.println(e);

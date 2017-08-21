@@ -13,7 +13,15 @@ public abstract class AlmuerzoDecorator extends Almuerzo {
     
     protected Almuerzo almuerzo;
     
+    public AlmuerzoDecorator(Almuerzo almuerzo) {
+        this.almuerzo = almuerzo;
+    }
+    
     @Override
     public abstract double getCosto(); 
     
+    public Almuerzo Undecorate() {
+        return (Almuerzo)this.almuerzo;
+    }
 }
+

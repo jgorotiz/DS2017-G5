@@ -12,10 +12,18 @@ import smartfood.classes.constants.Constantes;
  * @author jlmp1
  */
 public class Postre extends AlmuerzoDecorator {
+
+    public Postre(Almuerzo almuerzo) {
+        super(almuerzo);
+    }
     
     @Override
     public double getCosto() {
-        return this.almuerzo.getCosto() + Constantes.VALOR_BEBIDA;
+        return this.almuerzo.getCosto() + Constantes.VALOR_POSTRE;
     }
     
+    public static Almuerzo undecorate(Postre p) {
+        return (Almuerzo)p.almuerzo;
+    }
 }
+    

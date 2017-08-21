@@ -21,5 +21,7 @@ public class Constantes {
     
     public static final float VALOR_BEBIDA = 0.50F;
     
+    public static final float VALOR_POSTRE = 0.75F;
+    
     public static final boolean DESACTIVAR_EXTRA = true;
 }

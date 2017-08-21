@@ -11,12 +11,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.constants.Constantes;
 import smartfood.classes.user.Usuario;
 import smartfood.models.Almuerzo;
+import smartfood.models.Bebida;
+import smartfood.models.Postre;
 
 /**
  *
@@ -56,6 +59,12 @@ public class ReservarAlmuerzoController implements Initializable {
     
     private boolean cargado;
     
+    private boolean bebidaAgregada;
+    
+    private boolean postreAgregado;
+    
+    private boolean extrasHabilitados;
+    
     public void setDialogStage(Stage dialogStage) {
         this.appStage = dialogStage;
     }
@@ -71,24 +80,34 @@ public class ReservarAlmuerzoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.disableExtras();
         this.cargado = true;
     }
     
     private void showAlmuerzoInfo() {
+        this.enableExtras();
         this.nombreSopa.setText(this.almuerzo.getSopa());
         this.nombreSegundo.setText(this.almuerzo.getSegundo());
-        this.costoAlmuerzo.setText(Double.toString(this.almuerzo.getCosto()));
+        this.costoAlmuerzo.setText(this.formatearDecimal(this.almuerzo.getCosto()));
         this.restaurante.setText(this.almuerzo.getRestaurante());
         this.tipoAlmuerzo.setText(this.almuerzo.getTipo());
-        this.totalReserva.setText(Double.toString(this.almuerzo.getCosto()));
-//        this.almuerzo.
-        this.disableExtras();
+        this.totalReserva.setText(this.formatearDecimal(this.almuerzo.getCosto()));
+        this.disableExtrasXTipo();
     }
     
+    private void enableExtras() {
+        this.bebida.setDisable(!Constantes.DESACTIVAR_EXTRA);
+        this.postre.setDisable(!Constantes.DESACTIVAR_EXTRA);
+    }
+     
     private void disableExtras() {
+        this.bebida.setDisable(Constantes.DESACTIVAR_EXTRA);
+        this.postre.setDisable(Constantes.DESACTIVAR_EXTRA);
+    }
+    
+    private void disableExtrasXTipo() {
         if (!this.tipoAlmuerzo.getText().equalsIgnoreCase("ejecutivo")) {
-            this.bebida.setDisable(Constantes.DESACTIVAR_EXTRA);
-            this.postre.setDisable(Constantes.DESACTIVAR_EXTRA);
+            this.disableExtras();
         }
     }
     
@@ -113,5 +132,53 @@ public class ReservarAlmuerzoController implements Initializable {
         
         }
         
+    }
+    
+    public void agregarBebida(MouseEvent e) throws CloneNotSupportedException {
+        
+        Almuerzo a;
+        
+        a = (Almuerzo) this.almuerzo.clone();
+        
+        if (this.postreAgregado) {
+            a = new Postre(a);
+        }
+        
+        if (this.bebida.isSelected()) {
+            this.bebidaAgregada = true;
+            a = new Bebida(a);
+            
+            
+        }
+        else {
+            this.bebidaAgregada = false;
+        }
+        this.totalReserva.setText(this.formatearDecimal(a.getCosto()));
+    }
+
+    public void agregarPostre(MouseEvent e) throws CloneNotSupportedException {
+        
+        Almuerzo a;
+        
+        a = (Almuerzo) this.almuerzo.clone();
+        
+        if (this.bebidaAgregada) {
+            a = new Bebida(a);
+        }
+        
+        if (this.postre.isSelected()) {
+            this.postreAgregado = true;
+            a = new Postre(a);            
+        }
+        else {
+            this.postreAgregado = false;
+        }
+        
+        this.totalReserva.setText(this.formatearDecimal(a.getCosto()));
+        
+    }
+    
+    private String formatearDecimal(double decimal) {
+        return String.format("%.2f", decimal);
     }
 }

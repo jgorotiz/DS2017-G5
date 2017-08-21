@@ -15,7 +15,7 @@ import smartfood.classes.connection.Conexion;
  *
  * @author Jose Luis Masson
  */
-public class Almuerzo {
+public class Almuerzo implements Cloneable {
     
     private String sopa;
     private String segundo;
@@ -71,6 +71,16 @@ public class Almuerzo {
     public void setFechaRegistro(Timestamp fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+    
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Almuerzo clonado = (Almuerzo)super.clone();
+        return clonado;
+    }
+    
+//    public static Almuerzo crearCopia(final Almuerzo a) {
+//        return a;
+//    }
     
     public static ResultSet getListado(Conexion cn) {
         

@@ -13,11 +13,19 @@ import smartfood.classes.constants.Constantes;
  */
 public class Bebida extends AlmuerzoDecorator {
 
+    public Bebida(Almuerzo almuerzo) {
+        super(almuerzo);
+    }
+
 //    protected Almuerzo almuerzo;
     
     @Override
     public double getCosto() {
         return this.almuerzo.getCosto() + Constantes.VALOR_BEBIDA;
+    }
+    
+    public static Almuerzo undecorate(Bebida b) {
+        return (Almuerzo)b.almuerzo;
     }
     
 }
