@@ -38,6 +38,7 @@ import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.controller.client.BusquedaPlatilloController;
+import smartfood.controller.client.ListarAlmuerzosController;
 import smartfood.controller.info.ListaCategoriaController;
 
 /**
@@ -59,6 +60,9 @@ public class ClienteCreatorController implements Initializable {
     
     @FXML
     private Button boton3;
+    
+    @FXML
+    private Button boton4;
     
     @FXML
     private GridPane grid;
@@ -87,6 +91,13 @@ public class ClienteCreatorController implements Initializable {
         this.boton3.setFont(Font.font(null, FontWeight.BOLD, 20));
         this.boton3.setTextFill(Color.DARKBLUE);
         this.boton3.setTextAlignment(TextAlignment.CENTER);
+        this.boton4.setBackground(new Background(new BackgroundImage(boton, 
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        this.boton4.setMaxSize(200, 140);
+        this.boton4.setPrefSize(200, 140);
+        this.boton4.setFont(Font.font(null, FontWeight.BOLD, 20));
+        this.boton4.setTextFill(Color.DARKBLUE);
+        this.boton4.setTextAlignment(TextAlignment.CENTER);
         this.encabezado.setFont(new Font("Cambria", 50));
         this.encabezado.setTextFill(Color.DARKRED);
         
@@ -143,6 +154,35 @@ public class ClienteCreatorController implements Initializable {
             dialogStage.setScene(scene);
 
             BusquedaPlatilloController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            System.out.println("Error de carga");
+        }
+        
+    }
+    
+    
+    public void reservarAlmuerzo(MouseEvent event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(ListarAlmuerzosController.
+            class.getResource("/smartfood/screen/client/ListarAlmuerzos.fxml"));
+
+            BorderPane page = (BorderPane) loader.load();
+            Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
+            
+            Stage dialogStage = new Stage();
+            
+            dialogStage.setTitle(parent.getTitle());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+//            dialogStage.getIcons().add(parent.getIcons().get(0));
+            dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            ListarAlmuerzosController controller = loader.getController();
             controller.setDialogStage(dialogStage);
 
             dialogStage.showAndWait();

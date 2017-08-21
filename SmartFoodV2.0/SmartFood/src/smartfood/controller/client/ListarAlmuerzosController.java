@@ -23,7 +23,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -34,10 +33,10 @@ import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
-import smartfood.classes.food.Plato;
-import smartfood.controller.info.ListaCategoriaController;
 import smartfood.interfaces.OpcionesBotones;
 import smartfood.models.Almuerzo;
+import smartfood.models.AlmuerzoBuilder;
+import smartfood.models.AlmuerzoDirector;
 
 /**
  *
@@ -69,16 +68,10 @@ public class ListarAlmuerzosController implements Initializable,
     private TableColumn<Almuerzo, Double> costo;
     
     @FXML
-    private TableView<Plato> platos;
+    private TableColumn<Almuerzo, String> restaurante;
     
     @FXML
-    private TableColumn<Plato, String> nombrePlato;
-    
-    @FXML
-    private TableColumn<Plato, String> nombreCategoria;
-    
-    @FXML
-    private ObservableList<Plato> listaPlatos;
+    private ObservableList<Almuerzo> listaAlmuerzos;
     
     @Override
     public void salir() {
@@ -100,27 +93,32 @@ public class ListarAlmuerzosController implements Initializable,
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
+        this.setCellValues();
+        
+//        
+//        this.nombrePlato.setStyle("-fx-alignment: CENTER;");
+//        this.nombreCategoria.setStyle("-fx-alignment: CENTER;");
+//        
+        this.cargas = 1;
+        this.showResults();
+        
+        System.out.println(this.cargas);
+    }
+    
+    private void setCellValues() {
         this.sopa.
                 setCellValueFactory(new PropertyValueFactory<>("sopa"));
         this.segundo.
                 setCellValueFactory(new PropertyValueFactory<>("segundo"));
         this.costo.
                 setCellValueFactory(new PropertyValueFactory<>("costo"));
-       
-        
-        this.nombrePlato.setStyle("-fx-alignment: CENTER;");
-        this.nombreCategoria.setStyle("-fx-alignment: CENTER;");
-        
-        this.cargas = 1;
-        
-        System.out.println(this.cargas);
+        this.restaurante.
+                setCellValueFactory(new PropertyValueFactory<>("restaurante"));
+        this.tipo.
+                setCellValueFactory(new PropertyValueFactory<>("tipo"));
     }
     
-    public void setIDRestaurante(int idRestaurante) {
-        this.idRestaurante = idRestaurante;
-    }
-    
-    public void showCategoryResults() {
+    private void showResults() {
         
         if (this.cargas == 1) {
             Conexion cn;
@@ -131,11 +129,11 @@ public class ListarAlmuerzosController implements Initializable,
 
             try {
 
-                resultados = Plato.getListadoXRestaurante(cn, this.idRestaurante);
+                resultados = Almuerzo.getListado(cn);
 
-                this.createDishList(resultados);
+                this.createAlmuerzoList(resultados);
 
-                this.platos.setItems(this.listaPlatos);
+                this.almuerzos.setItems(this.listaAlmuerzos);
                 
                 this.cargas = 0;
             }
@@ -158,7 +156,7 @@ public class ListarAlmuerzosController implements Initializable,
             
             g = new WarningAlert();
             
-            g.setMensaje("Ya se ha cargado la lista de platillos");
+            g.setMensaje("Ya se ha cargado la lista de almuerzos");
             
             g.showAlert();
         
@@ -166,54 +164,53 @@ public class ListarAlmuerzosController implements Initializable,
         
     }
     
-    private void createDishList(ResultSet r) throws SQLException {
+    private void createAlmuerzoList(ResultSet r) throws SQLException {
         
-        this.listaPlatos = FXCollections.observableArrayList();
+        this.listaAlmuerzos = FXCollections.observableArrayList();
         
         while (r.next()) {
             
-            Integer idPlatillo = r.getInt(1);
-            String nombre = r.getString(2);
-            String descripcion = r.getString(3);
-            String tipo = r.getString(6);
-            String nomCategoria = r.getString(5);
-            String restaurante = Integer.toString(this.idRestaurante);
-            InputStream img = r.getBinaryStream(4);
-            String serv = r.getString(7);
-            Image imagen = new Image(img);
+            String sopaR = r.getString(1);
+            String segundoR = r.getString(2);
+            String tipoR = r.getString(3);
+            double costoR = r.getDouble(4);
+            String restauranteR = r.getString(5);
             
+            AlmuerzoDirector director = new AlmuerzoDirector();
+            AlmuerzoBuilder almuerzoBuilder = new AlmuerzoBuilder();
+            director.setAlmuerzoBuilder(almuerzoBuilder);
+            director.construirAlmuerzo(sopaR, segundoR, costoR, tipoR, 
+                    restauranteR);
             
-            Plato p;
-            
-            p = new Plato(idPlatillo, nombre, descripcion, imagen, nomCategoria, 
-                    tipo, serv, restaurante);
-            this.listaPlatos.add(p);
-            
+            Almuerzo almuerzo;
+            almuerzo = director.getAlmuerzo();
+            this.listaAlmuerzos.add(almuerzo);     
         }
         
     }
     
-    public void showDishInfo(MouseEvent event) {
+    public void reservarAlmuerzo(MouseEvent event) {
         
-        Plato p;
+        Almuerzo a;
         
-        p = this.platos.getSelectionModel().getSelectedItem();
-        if (p != null) {
+        a = this.almuerzos.getSelectionModel().getSelectedItem();
+        if (a != null) {
             
-            this.showDishInfo(p, event);
+            this.reservarAlmuerzo(a, event);
             
         }
         else {
-            GeneralAlert g = new WarningAlert(null, "Seleccione un platillo");
+            GeneralAlert g = new WarningAlert(null, "Seleccione un almuerzo");
             g.showAlert();
         }
+
     }
     
-    private void showDishInfo(Plato p, MouseEvent event) {
+    private void reservarAlmuerzo(Almuerzo almuerzo, MouseEvent event) {
         try {
             
-            FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-                    class.getResource("/smartfood/screen/assistant/PlatilloInfoAsistente.fxml"));
+            FXMLLoader loader = new FXMLLoader(ListarAlmuerzosController.
+                    class.getResource("/smartfood/screen/client/ReservarAlmuerzo.fxml"));
             BorderPane page = (BorderPane) loader.load();
             Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
             
@@ -226,65 +223,111 @@ public class ListarAlmuerzosController implements Initializable,
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            PlatilloInfoAsistenteController controller = loader.getController();
+            ReservarAlmuerzoController controller = loader.getController();
+            controller.setAlmuerzo(almuerzo);
             controller.setDialogStage(dialogStage);
-            controller.setPlato(p);
+            
 
             dialogStage.showAndWait();
 
         } catch (IOException e) {
-            System.out.println("Error de carga");
-        }
-        
-    }
-    
-    public void modifyDishInfo(MouseEvent event) {
-        
-        Plato p;
-        
-        p = this.platos.getSelectionModel().getSelectedItem();
-        if (p != null) {
-            
-            this.modifyDishInfo(p, event);
-            
-        }
-        else {
-            GeneralAlert g = new WarningAlert(null, "Seleccione un platillo");
-            g.showAlert();
+            System.out.println(e);
         }
     }
     
-    private void modifyDishInfo(Plato p, MouseEvent event) {
-        try {
-            
-            FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
-                    class.getResource("/smartfood/screen/assistant/ModificarPlatillo.fxml"));
-            BorderPane page = (BorderPane) loader.load();
-            
-            Window w;
-            w = ((Node)event.getTarget()).getScene().getWindow();
-            Stage parent = (Stage) w;
-            
-            Stage dialogStage = new Stage();
-            
-            dialogStage.setTitle(parent.getTitle());
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-//            dialogStage.getIcons().add(parent.getIcons().get(0));
-            dialogStage.initOwner(w);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            ModificarPlatilloController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-            controller.setPlato(p);
-
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            System.out.println("Error de carga");
-        }
-        
-    }
+//    
+//    public void showDishInfo(MouseEvent event) {
+//        
+//        Plato p;
+//        
+//        p = this.platos.getSelectionModel().getSelectedItem();
+//        if (p != null) {
+//            
+//            this.showDishInfo(p, event);
+//            
+//        }
+//        else {
+//            GeneralAlert g = new WarningAlert(null, "Seleccione un platillo");
+//            g.showAlert();
+//        }
+//    }
+//    
+//    private void showDishInfo(Plato p, MouseEvent event) {
+//        try {
+//            
+//            FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
+//                    class.getResource("/smartfood/screen/assistant/PlatilloInfoAsistente.fxml"));
+//            BorderPane page = (BorderPane) loader.load();
+//            Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
+//            
+//            Stage dialogStage = new Stage();
+//            
+//            dialogStage.setTitle(parent.getTitle());
+//            dialogStage.initModality(Modality.WINDOW_MODAL);
+////            dialogStage.getIcons().add(parent.getIcons().get(0));
+//            dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+//            Scene scene = new Scene(page);
+//            dialogStage.setScene(scene);
+//
+//            PlatilloInfoAsistenteController controller = loader.getController();
+//            controller.setDialogStage(dialogStage);
+//            controller.setPlato(p);
+//
+//            dialogStage.showAndWait();
+//
+//        } catch (IOException e) {
+//            System.out.println("Error de carga");
+//        }
+//        
+//    }
+//    
+//    public void modifyDishInfo(MouseEvent event) {
+//        
+//        Plato p;
+//        
+//        p = this.platos.getSelectionModel().getSelectedItem();
+//        if (p != null) {
+//            
+//            this.modifyDishInfo(p, event);
+//            
+//        }
+//        else {
+//            GeneralAlert g = new WarningAlert(null, "Seleccione un platillo");
+//            g.showAlert();
+//        }
+//    }
+//    
+//    private void modifyDishInfo(Plato p, MouseEvent event) {
+//        try {
+//            
+//            FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
+//                    class.getResource("/smartfood/screen/assistant/ModificarPlatillo.fxml"));
+//            BorderPane page = (BorderPane) loader.load();
+//            
+//            Window w;
+//            w = ((Node)event.getTarget()).getScene().getWindow();
+//            Stage parent = (Stage) w;
+//            
+//            Stage dialogStage = new Stage();
+//            
+//            dialogStage.setTitle(parent.getTitle());
+//            dialogStage.initModality(Modality.WINDOW_MODAL);
+////            dialogStage.getIcons().add(parent.getIcons().get(0));
+//            dialogStage.initOwner(w);
+//            Scene scene = new Scene(page);
+//            dialogStage.setScene(scene);
+//
+//            ModificarPlatilloController controller = loader.getController();
+//            controller.setDialogStage(dialogStage);
+//            controller.setPlato(p);
+//
+//            dialogStage.showAndWait();
+//
+//        } catch (IOException e) {
+//            System.out.println("Error de carga");
+//        }
+//        
+//    }
 
     public void setDialogStage(Stage dialogStage) {
         this.app = dialogStage;

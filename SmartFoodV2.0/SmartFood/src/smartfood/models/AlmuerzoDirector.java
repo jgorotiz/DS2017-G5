@@ -33,4 +33,14 @@ public class AlmuerzoDirector {
         this.almuerzoBuilder.setTipo(tipo);
         this.almuerzoBuilder.setFechaRegistro(fechaRegistro);
     }
+    
+    public void construirAlmuerzo(String sopa, String segundo, double costo,
+            String tipo, String restaurante) {
+        this.almuerzoBuilder.crearAlmuerzo();
+        this.almuerzoBuilder.setSopa(sopa);
+        this.almuerzoBuilder.setSegundo(segundo);
+        this.almuerzoBuilder.setCosto(costo);
+        this.almuerzoBuilder.setRestaurante(restaurante);
+        this.almuerzoBuilder.setTipo(tipo);
+    }
 }

@@ -5,7 +5,11 @@
  */
 package smartfood.models;
 
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import smartfood.classes.connection.Conexion;
 
 /**
  *
@@ -66,6 +70,20 @@ public class Almuerzo {
 
     public void setFechaRegistro(Timestamp fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+    
+    public static ResultSet getListado(Conexion cn) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " almuerzos()}");
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
     }
     
 }
