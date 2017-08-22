@@ -56,7 +56,7 @@ public class TarjetaCreditoStrategy implements PagoStrategy {
     }
  
     @Override
-    public boolean pagar(float pago) {
+    public boolean pagar(double pago) {
         if (!this.verificarFechaExpiracion()) {
             return false;
         }
@@ -68,7 +68,7 @@ public class TarjetaCreditoStrategy implements PagoStrategy {
     }
 
     @Override
-    public boolean verificarCredito(float pago) {        
+    public boolean verificarCredito(double pago) {        
         return this.saldo - pago >= 0;
     }
     
