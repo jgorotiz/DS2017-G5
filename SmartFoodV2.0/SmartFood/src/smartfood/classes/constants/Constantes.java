@@ -24,4 +24,8 @@ public class Constantes {
     public static final float VALOR_POSTRE = 0.75F;
     
     public static final boolean DESACTIVAR_EXTRA = true;
+    
+    public static final float VALOR_ESTUDIANTIL = 2.5F;
+    
+    public static final float VALOR_EJECUTIVO = 3F;
 }
