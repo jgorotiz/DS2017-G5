@@ -110,6 +110,7 @@ public class ReservarAlmuerzoController implements Initializable {
         this.tipoPago.getItems().addAll(
         "Tarjeta de Crédito",
         "Carné Estudiantil");
+        this.tipoPago.getSelectionModel().selectFirst();
 
     }
     
@@ -194,6 +195,10 @@ public class ReservarAlmuerzoController implements Initializable {
         
         this.totalReserva.setText(this.formatearDecimal(a.getCosto()));
         
+    }
+    
+    public void pagarAlmuerzo(MouseEvent event) {
+        System.out.println(this.usuario.getIdUsuario());
     }
     
     private String formatearDecimal(double decimal) {

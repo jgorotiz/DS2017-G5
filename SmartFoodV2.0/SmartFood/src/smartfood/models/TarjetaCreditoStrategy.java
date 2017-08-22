@@ -6,6 +6,8 @@
 package smartfood.models;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -55,7 +57,10 @@ public class TarjetaCreditoStrategy implements PagoStrategy {
  
     @Override
     public boolean pagar(float pago) {
-        if (this.verificarCredito(pago)) {
+        if (!this.verificarFechaExpiracion()) {
+            return false;
+        }
+        else if (this.verificarCredito(pago)) {
             this.saldo -= pago;
             return true;
         }
@@ -63,8 +68,18 @@ public class TarjetaCreditoStrategy implements PagoStrategy {
     }
 
     @Override
-    public boolean verificarCredito(float pago) {
+    public boolean verificarCredito(float pago) {        
         return this.saldo - pago >= 0;
     }
     
+    private boolean verificarFechaExpiracion() {
+                
+        // Obtener día actual
+        Calendar calendar = Calendar.getInstance();
+        Date now = calendar.getTime();
+        Timestamp currentTimestamp = new Timestamp(now.getTime());
+        
+        return (currentTimestamp.compareTo(this.fechaExpiracion) <= 0);
+        
+    }
 }

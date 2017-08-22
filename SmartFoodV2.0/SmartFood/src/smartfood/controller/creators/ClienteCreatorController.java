@@ -37,6 +37,7 @@ import smartfood.classes.alerts.ConfirmationAlert;
 import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
+import smartfood.classes.user.Usuario;
 import smartfood.controller.client.BusquedaPlatilloController;
 import smartfood.controller.client.ListarAlmuerzosController;
 import smartfood.controller.info.ListaCategoriaController;
@@ -46,6 +47,8 @@ import smartfood.controller.info.ListaCategoriaController;
  * @author Jose Masson
  */
 public class ClienteCreatorController implements Initializable {
+    
+    private Usuario usuario;
     
     private Stage appStage;
     
@@ -114,6 +117,10 @@ public class ClienteCreatorController implements Initializable {
         this.appStage = appStage;
     }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
     private void setStyle(Button b, Image imagen) {
         b.setBackground(new Background(new BackgroundImage(imagen, 
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, 
@@ -198,12 +205,12 @@ public class ClienteCreatorController implements Initializable {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             ListarAlmuerzosController controller = loader.getController();
+            controller.setUsuario(this.usuario);
             controller.setDialogStage(dialogStage);
-
             dialogStage.showAndWait();
 
         } catch (IOException e) {
-            System.out.println("Error de carga");
+            System.out.println(e.getMessage());
         }
         
     }

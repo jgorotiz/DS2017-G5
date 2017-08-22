@@ -33,6 +33,7 @@ import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.connection.Conexion;
+import smartfood.classes.user.Usuario;
 import smartfood.interfaces.OpcionesBotones;
 import smartfood.models.Almuerzo;
 import smartfood.models.AlmuerzoBuilder;
@@ -44,7 +45,9 @@ import smartfood.models.AlmuerzoDirector;
  */
 public class ListarAlmuerzosController implements Initializable, 
         OpcionesBotones {
-
+    
+    private Usuario usuario;
+    
     private Stage app;
     
     private int cargas;
@@ -148,7 +151,7 @@ public class ListarAlmuerzosController implements Initializable,
                     System.out.println("Error en cierre de conexion");
                 }
             }
-            
+            System.out.println(this.usuario.getIdUsuario());
         }
         else {
             
@@ -225,6 +228,7 @@ public class ListarAlmuerzosController implements Initializable,
 
             ReservarAlmuerzoController controller = loader.getController();
             controller.setAlmuerzo(almuerzo);
+            controller.setUsuario(usuario);
             controller.setDialogStage(dialogStage);
             
 
@@ -234,6 +238,10 @@ public class ListarAlmuerzosController implements Initializable,
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
 //    

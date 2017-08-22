@@ -40,8 +40,6 @@ import smartfood.controller.info.ListaCategoriaController;
  */
 public class LoginController implements Initializable {
     
-    private Usuario usuario;
-    
     private Stage app;
     
     @FXML
@@ -104,7 +102,7 @@ public class LoginController implements Initializable {
                     this.cargarAsistente(event, idRes);
                 }
                 else if (usuarioSistema.getRol().equalsIgnoreCase("cliente")) {
-                    this.cargarCliente(event);
+                    this.cargarCliente(event, usuarioSistema);
                 }
 
             }
@@ -164,7 +162,7 @@ public class LoginController implements Initializable {
         }
     }
     
-    private void cargarCliente(MouseEvent event) {
+    private void cargarCliente(MouseEvent event, Usuario u) {
         try {
             FXMLLoader loader = new FXMLLoader(ListaCategoriaController.
             class.getResource("/smartfood/screen/creators/ClienteCreator.fxml"));
@@ -186,6 +184,7 @@ public class LoginController implements Initializable {
 
             ClienteCreatorController controller = loader.getController();
             controller.setAppStage(dialogStage);
+            controller.setUsuario(u);
 
             dialogStage.showAndWait();
 

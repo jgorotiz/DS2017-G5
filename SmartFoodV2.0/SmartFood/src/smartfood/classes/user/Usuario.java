@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import smartfood.classes.connection.Conexion;
+import smartfood.models.PagoStrategy;
 
 /**
  *
@@ -116,6 +117,10 @@ public class Usuario {
         this.activo = activo;
     }
     
+    public boolean pagar(float pago, PagoStrategy strategy) {
+        return strategy.pagar(pago);
+    }
+     
     public static ArrayList<String> buscarUsuario(String usuario, 
             String clave) {
         Conexion cn = new Conexion();
