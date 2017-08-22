@@ -5,15 +5,9 @@
  */
 package smartfood.models;
 
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import smartfood.classes.connection.Conexion;
 import smartfood.classes.constants.Constantes;
 
 /**
@@ -24,18 +18,7 @@ public class AlmuerzoTest {
     
     Almuerzo estudiantil, ejecutivo, ejecutivoConPostre, ejecutivoConBebida;
     Almuerzo ejecutivoConAmbas;
-    
-    public AlmuerzoTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
     @Before
     public void setUp() {
         estudiantil = new Almuerzo();
@@ -53,16 +36,6 @@ public class AlmuerzoTest {
         ejecutivoConAmbas  = new Almuerzo();
         ejecutivoConAmbas.setCosto(Constantes.VALOR_EJECUTIVO);
         ejecutivoConAmbas.setTipo("Ejecutivo");
-    }
-    
-//    private void setupEjecutivo(Almuerzo a) {
-//        a = new Almuerzo();
-//        a.setTipo("Ejecutivo");
-//        a.setCosto(Constantes.VALOR_EJECUTIVO);
-//    }
-    
-    @After
-    public void tearDown() {
     }
     
     @Test
