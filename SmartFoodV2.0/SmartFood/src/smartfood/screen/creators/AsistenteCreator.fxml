@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="smartfood.controller.creators.AsistenteCreatorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="smartfood.controller.creators.AsistenteCreatorController">
    <center>
       <VBox alignment="CENTER" prefHeight="260.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -17,8 +17,8 @@
                <children>
                   <GridPane fx:id="grid" alignment="CENTER" prefHeight="358.0" prefWidth="802.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="0.0" prefWidth="111.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="258.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="0.0" prefWidth="291.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="229.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints />
@@ -34,7 +34,9 @@
                         <Button fx:id="boton2" mnemonicParsing="false" onMouseClicked="#listarPlatos" prefHeight="25.0" prefWidth="106.0" text="Listar Platos" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Button fx:id="boton3" mnemonicParsing="false" onMouseClicked="#listarCategorias" text="Listar Categorias" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Button fx:id="boton4" mnemonicParsing="false" onMouseClicked="#cerrarSesion" prefHeight="25.0" prefWidth="104.0" text="Cerrar Sesión" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label fx:id="encabezado" prefHeight="52.0" prefWidth="245.0" text="Asistente" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="encabezado" alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="245.0" text="Asistente" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="nombreRestaurante" prefHeight="52.0" prefWidth="245.0" text="Hola Mundo" GridPane.rowIndex="3" />
+                        <Label fx:id="restaurante" prefHeight="52.0" prefWidth="245.0" text="Restaurante" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

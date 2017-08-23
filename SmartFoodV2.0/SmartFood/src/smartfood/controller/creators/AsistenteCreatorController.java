@@ -51,6 +51,13 @@ public class AsistenteCreatorController implements Initializable {
     private Stage appStage;
     
     private int idRestaurante;
+    
+    @FXML
+    private Label restaurante;
+    
+    @FXML
+    private Label nombreRestaurante;
+    
     @FXML
     private Label encabezado;
     
@@ -68,6 +75,7 @@ public class AsistenteCreatorController implements Initializable {
     
     @FXML
     private GridPane grid;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image boton = new Image(new File("src/smartfood/images/etimadera.png").toURI().toString());
@@ -101,7 +109,16 @@ public class AsistenteCreatorController implements Initializable {
         this.boton4.setTextFill(Color.DARKBLUE);
         this.boton4.setTextAlignment(TextAlignment.CENTER);
         
-        this.encabezado.setFont(new Font("Cambria", 50));
+        this.restaurante.setFont(new Font("Cambria", 40));
+        this.restaurante.setTextAlignment(TextAlignment.CENTER);
+        this.restaurante.setTextFill(Color.DARKRED);
+        
+        this.nombreRestaurante.setFont(new Font("Cambria", 30));
+        this.nombreRestaurante.setTextAlignment(TextAlignment.CENTER);
+        this.nombreRestaurante.setTextFill(Color.DARKRED);
+        
+        this.encabezado.setFont(new Font("Cambria", 40));
+        this.encabezado.setTextAlignment(TextAlignment.CENTER);
         this.encabezado.setTextFill(Color.DARKRED);
         
         Image fondo = new Image(new File("src/smartfood/images/gastronomy.jpg").toURI().toString());
