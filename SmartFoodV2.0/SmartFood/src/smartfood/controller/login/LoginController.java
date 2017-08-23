@@ -95,7 +95,8 @@ public class LoginController implements Initializable {
                 usuarioSistema.setIdUsuario(Integer.parseInt(validador.get(2)));
 
 
-
+                
+                
                 int idRes = Restaurante.obtenerIDRes(usuarioSistema.getIdUsuario());
 
                 if (usuarioSistema.getRol().equalsIgnoreCase("asistente")) {

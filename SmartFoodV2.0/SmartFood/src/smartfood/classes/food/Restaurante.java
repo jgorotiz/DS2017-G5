@@ -6,6 +6,7 @@
 package smartfood.classes.food;
 
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import smartfood.classes.connection.Conexion;
@@ -24,6 +25,10 @@ public class Restaurante {
         this.idRestaurante = idRestaurante;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
+    }
+
+    public Restaurante() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getIdRestaurante() {
@@ -50,6 +55,22 @@ public class Restaurante {
         this.ubicacion = ubicacion;
     }
     
+    public static ResultSet getRestaurantesXUsuario(Conexion cn, 
+            int idUsuario) {
+        
+        try {
+            CallableStatement cst = cn.getConnection().prepareCall("{call"
+                    + " restauranteAdministrador(?)}");
+            cst.setInt(1, idUsuario);
+            cst.execute(); 
+            return cst.getResultSet();
+
+        } catch (SQLException ex) {
+            return null;   
+        }
+        
+    }
+
     public static int obtenerIDRes(int idU) {
         Conexion cn = new Conexion();
         
