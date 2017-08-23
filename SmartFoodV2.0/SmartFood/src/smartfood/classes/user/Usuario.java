@@ -117,7 +117,7 @@ public class Usuario {
         this.activo = activo;
     }
     
-    public boolean pagar(float pago, PagoStrategy strategy) {
+    public boolean pagar(double pago, PagoStrategy strategy) {
         return strategy.pagar(pago);
     }
      

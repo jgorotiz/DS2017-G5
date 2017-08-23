@@ -75,7 +75,7 @@
                <children>
                   <Button alignment="BASELINE_CENTER" cancelButton="true" mnemonicParsing="false" onMouseClicked="#loadAlmuerzoInfo" prefHeight="25.0" prefWidth="140.0" text="Mostrar Información" />
                   <Button alignment="BASELINE_CENTER" cancelButton="true" mnemonicParsing="false" onMouseClicked="#volver" prefHeight="0.0" prefWidth="44.0" text="Atrás" />
-                  <Button fx:id="saveButton" alignment="BASELINE_CENTER" defaultButton="true" mnemonicParsing="false" onMouseClicked="#pagarAlmuerzo" prefHeight="25.0" prefWidth="70.0" text="Reservar" />
+                  <Button fx:id="reservar" alignment="BASELINE_CENTER" defaultButton="true" mnemonicParsing="false" onMouseClicked="#pagarAlmuerzo" prefHeight="25.0" prefWidth="70.0" text="Reservar" />
                </children>
             </HBox>
          </children>

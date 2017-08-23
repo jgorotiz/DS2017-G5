@@ -6,21 +6,26 @@
 package smartfood.controller.client;
 
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import smartfood.classes.alerts.GeneralAlert;
+import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
 import smartfood.classes.constants.Constantes;
 import smartfood.classes.user.Usuario;
 import smartfood.models.Almuerzo;
 import smartfood.models.Bebida;
+import smartfood.models.CarneInteligenteStrategy;
 import smartfood.models.Postre;
+import smartfood.models.TarjetaCreditoStrategy;
 
 /**
  *
@@ -29,6 +34,10 @@ import smartfood.models.Postre;
 public class ReservarAlmuerzoController implements Initializable {
     
     private Usuario usuario;
+    
+    private TarjetaCreditoStrategy tarjeta;
+    
+    private CarneInteligenteStrategy carne;
     
     private Stage appStage;
     
@@ -61,6 +70,9 @@ public class ReservarAlmuerzoController implements Initializable {
     @FXML
     private ComboBox tipoPago;
     
+    @FXML
+    private Button reservar;
+    
     private boolean cargado;
     
     private boolean bebidaAgregada;
@@ -90,7 +102,9 @@ public class ReservarAlmuerzoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.disableExtras();
         this.createPays();
+        this.startPays();
         this.tipoPago.setDisable(Constantes.DESACTIVAR_EXTRA);
+        this.reservar.setDisable(Constantes.DESACTIVAR_EXTRA);
         this.cargado = true;
     }
     
@@ -103,6 +117,7 @@ public class ReservarAlmuerzoController implements Initializable {
         this.tipoAlmuerzo.setText(this.almuerzo.getTipo());
         this.totalReserva.setText(this.formatearDecimal(this.almuerzo.getCosto()));
         this.tipoPago.setDisable(!Constantes.DESACTIVAR_EXTRA);
+        this.reservar.setDisable(!Constantes.DESACTIVAR_EXTRA);
         this.disableExtrasXTipo();
     }
     
@@ -198,10 +213,75 @@ public class ReservarAlmuerzoController implements Initializable {
     }
     
     public void pagarAlmuerzo(MouseEvent event) {
-        System.out.println(this.usuario.getIdUsuario());
+        boolean pagoRealizado;
+        
+        pagoRealizado = this.elegirFormaPago();
+        
+        GeneralAlert g;
+        
+        if (pagoRealizado) {
+            
+            g = new InfoAlert();
+            
+            g.setMensaje("Pago Realizado con Éxito");
+            
+            g.showAlert();
+            
+        }
+        else {
+            
+            
+            
+            g = new WarningAlert();
+            
+            g.setMensaje("Seleccione otra forma de pago");
+            
+            g.showAlert();
+        }
     }
     
     private String formatearDecimal(double decimal) {
         return String.format("%.2f", decimal);
     }
-}
+    
+    private boolean elegirFormaPago() {
+        
+        boolean pagoRealizado;
+        
+        String seleccion;
+        
+        seleccion = (String) this.tipoPago.getSelectionModel().getSelectedItem();
+        
+        double valorPagar;
+        
+        valorPagar = Double.parseDouble(this.totalReserva.getText());
+        
+        if (seleccion.equals("Tarjeta de Crédito")) {
+            pagoRealizado = this.usuario.pagar(valorPagar, this.tarjeta);
+        }
+        else {
+            pagoRealizado = this.usuario.pagar(valorPagar, this.carne);
+        }
+        
+        return pagoRealizado;
+    }
+    
+    private void startPays() {
+        this.createCarne();
+        this.createCreditCard();
+    }
+    
+    private void createCreditCard() {
+        this.tarjeta = new TarjetaCreditoStrategy();
+        this.tarjeta.setSaldo(200);
+        this.tarjeta.setFechaExpiracion(Timestamp.valueOf("2019-07-01 0:0:0.0"));
+        this.tarjeta.setCvv("582");
+        this.tarjeta.setNumeroTarjeta("4582-3881-1991-9181");
+    }
+    
+    private void createCarne() {
+        this.carne = new CarneInteligenteStrategy();
+        this.carne.setSaldo(100);
+        this.carne.setNumeroMatricula("201418697");
+    }
+}  

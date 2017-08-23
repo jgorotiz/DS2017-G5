@@ -11,8 +11,8 @@ package smartfood.models;
  */
 public interface PagoStrategy {
     
-    public abstract boolean pagar(float pago);
+    public abstract boolean pagar(double pago);
     
-    public abstract boolean verificarCredito(float pago);
+    public abstract boolean verificarCredito(double pago);
     
 }
