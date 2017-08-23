@@ -150,7 +150,6 @@ public class ClienteCreatorController implements Initializable {
 
             ListaCategoriaController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -188,8 +187,8 @@ public class ClienteCreatorController implements Initializable {
     
     
     public void reservarAlmuerzo(MouseEvent event) {
-
-        try {
+        
+        try { 
             FXMLLoader loader = new FXMLLoader(ListarAlmuerzosController.
             class.getResource("/smartfood/screen/client/ListarAlmuerzos.fxml"));
 

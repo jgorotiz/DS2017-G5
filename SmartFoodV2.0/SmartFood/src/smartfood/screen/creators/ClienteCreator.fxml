@@ -33,9 +33,9 @@
                      <children>
                         <Button fx:id="boton2" mnemonicParsing="false" onMouseClicked="#buscarPlato" prefHeight="25.0" prefWidth="106.0" text="Buscar Plato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Button fx:id="boton1" mnemonicParsing="false" onMouseClicked="#listarCategorias" text="Listar Categ." GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Button fx:id="boton3" mnemonicParsing="false" onMouseClicked="#cerrarSesion" prefHeight="25.0" prefWidth="104.0" text="Cerrar Sesión" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button fx:id="boton3" mnemonicParsing="false" onMouseClicked="#cerrarSesion" prefHeight="25.0" prefWidth="104.0" text="Cerrar Sesión" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label fx:id="encabezado" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="254.0" text="Cliente" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="boton4" mnemonicParsing="false" onMouseClicked="#reservarAlmuerzo" prefHeight="25.0" prefWidth="141.0" text="Res. Almuerzo" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Button fx:id="boton4" mnemonicParsing="false" onMouseClicked="#reservarAlmuerzo" prefHeight="25.0" prefWidth="141.0" text="Res. Almuerzo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                </children>
