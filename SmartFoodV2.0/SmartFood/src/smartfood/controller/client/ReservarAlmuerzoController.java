@@ -80,6 +80,8 @@ public class ReservarAlmuerzoController implements Initializable {
     private boolean postreAgregado;
     
     private boolean extrasHabilitados;
+    
+    private boolean reservaRealizada;
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
@@ -106,6 +108,7 @@ public class ReservarAlmuerzoController implements Initializable {
         this.tipoPago.setDisable(Constantes.DESACTIVAR_EXTRA);
         this.reservar.setDisable(Constantes.DESACTIVAR_EXTRA);
         this.cargado = true;
+        this.reservaRealizada = false;
     }
     
     private void showAlmuerzoInfo() {
@@ -219,24 +222,35 @@ public class ReservarAlmuerzoController implements Initializable {
         
         GeneralAlert g;
         
-        if (pagoRealizado) {
-            
-            g = new InfoAlert();
-            
-            g.setMensaje("Pago Realizado con Éxito");
-            
-            g.showAlert();
-            
+        if (!this.reservaRealizada) {
+            if (pagoRealizado) {
+
+                this.reservaRealizada = true;
+
+                this.usuario.setReservaRealizada(this.reservaRealizada);
+
+                g = new InfoAlert();
+
+                g.setMensaje("Pago Realizado con Éxito");
+
+                g.showAlert();
+
+            }
+            else {
+
+                g = new WarningAlert();
+
+                g.setMensaje("Seleccione otra forma de pago");
+
+                g.showAlert();
+            }
         }
         else {
-            
-            
-            
-            g = new WarningAlert();
-            
-            g.setMensaje("Seleccione otra forma de pago");
-            
-            g.showAlert();
+                g = new WarningAlert();
+
+                g.setMensaje("Ya se ha reservado un almuerzo");
+
+                g.showAlert();
         }
     }
     
@@ -274,7 +288,7 @@ public class ReservarAlmuerzoController implements Initializable {
     private void createCreditCard() {
         this.tarjeta = new TarjetaCreditoStrategy();
         this.tarjeta.setSaldo(200);
-        this.tarjeta.setFechaExpiracion(Timestamp.valueOf("2019-07-01 0:0:0.0"));
+        this.tarjeta.setFechaExpiracion(Timestamp.valueOf("2017-07-01 0:0:0.0"));
         this.tarjeta.setCvv("582");
         this.tarjeta.setNumeroTarjeta("4582-3881-1991-9181");
     }

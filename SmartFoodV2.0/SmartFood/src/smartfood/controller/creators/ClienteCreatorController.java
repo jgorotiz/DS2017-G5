@@ -188,30 +188,40 @@ public class ClienteCreatorController implements Initializable {
     
     public void reservarAlmuerzo(MouseEvent event) {
         
-        try { 
-            FXMLLoader loader = new FXMLLoader(ListarAlmuerzosController.
-            class.getResource("/smartfood/screen/client/ListarAlmuerzos.fxml"));
+        if (!this.usuario.isReservaRealizada()) {
+            try { 
+                FXMLLoader loader = new FXMLLoader(ListarAlmuerzosController.
+                class.getResource("/smartfood/screen/client/ListarAlmuerzos.fxml"));
 
-            BorderPane page = (BorderPane) loader.load();
-            Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
-            
-            Stage dialogStage = new Stage();
-            
-            dialogStage.setTitle(parent.getTitle());
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-//            dialogStage.getIcons().add(parent.getIcons().get(0));
-            dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-            ListarAlmuerzosController controller = loader.getController();
-            controller.setUsuario(this.usuario);
-            controller.setDialogStage(dialogStage);
-            dialogStage.showAndWait();
+                BorderPane page = (BorderPane) loader.load();
+                Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+                Stage dialogStage = new Stage();
+
+                dialogStage.setTitle(parent.getTitle());
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+    //            dialogStage.getIcons().add(parent.getIcons().get(0));
+                dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+                Scene scene = new Scene(page);
+                dialogStage.setScene(scene);
+                ListarAlmuerzosController controller = loader.getController();
+                controller.setUsuario(this.usuario);
+                controller.setDialogStage(dialogStage);
+                dialogStage.showAndWait();
+
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        
+        else {
+            GeneralAlert g;
+            
+            g = new WarningAlert();
+
+            g.setMensaje("Ya se ha reservado un almuerzo");
+
+            g.showAlert();
+        }
     }
     
     public void cerrarSesion(MouseEvent event) {

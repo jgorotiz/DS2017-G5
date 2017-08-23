@@ -27,6 +27,7 @@ public class Usuario {
     private String rol;
     private Date fechaRegistro;
     private boolean activo;
+    private boolean reservaRealizada;
 
     public Usuario() {
     }
@@ -115,6 +116,14 @@ public class Usuario {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public boolean isReservaRealizada() {
+        return reservaRealizada;
+    }
+
+    public void setReservaRealizada(boolean reservaRealizada) {
+        this.reservaRealizada = reservaRealizada;
     }
     
     public boolean pagar(double pago, PagoStrategy strategy) {
