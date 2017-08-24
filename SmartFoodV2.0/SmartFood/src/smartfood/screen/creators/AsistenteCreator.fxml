@@ -35,7 +35,7 @@
                         <Button fx:id="boton3" mnemonicParsing="false" onMouseClicked="#listarCategorias" text="Listar Categorias" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Button fx:id="boton4" mnemonicParsing="false" onMouseClicked="#cerrarSesion" prefHeight="25.0" prefWidth="104.0" text="Cerrar Sesión" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label fx:id="encabezado" alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="245.0" text="Asistente" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="nombreRestaurante" prefHeight="52.0" prefWidth="245.0" text="Hola Mundo" GridPane.rowIndex="3" />
+                        <Label fx:id="nombreRestaurante" prefHeight="52.0" prefWidth="245.0" GridPane.rowIndex="3" />
                         <Label fx:id="restaurante" prefHeight="52.0" prefWidth="245.0" text="Restaurante" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>

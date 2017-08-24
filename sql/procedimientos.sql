@@ -209,9 +209,10 @@ drop procedure if exists platoXRestaurante;
 delimiter //
 create procedure platoXRestaurante(in idRestaurante int)
 begin
-	select idPlato, nombre, descripcion, img, nombreCategoria, nombreTipo
-    from plato, tipo, categoria
-    where idRestaurante = restaurante and plato.categoria = categoria.idCategoria and plato.tipo = tipo.idTipo;
+	select idPlato, nombre, descripcion, img, nombreCategoria, nombreTipo, nombreServido
+    from plato, tipo, categoria, servido
+    where idRestaurante = restaurante and plato.categoria = categoria.idCategoria and 
+    plato.tipo = tipo.idTipo and plato.servido = servido.idServido;
 end// 
 
 delimiter ;

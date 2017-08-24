@@ -30,6 +30,7 @@ import smartfood.classes.constants.Constantes;
 import smartfood.classes.food.Restaurante;
 import smartfood.classes.user.Usuario;
 import smartfood.classes.validaciones.Validaciones;
+import smartfood.controller.assistant.SeleccionarRestauranteController;
 import smartfood.controller.creators.AsistenteCreatorController;
 import smartfood.controller.creators.ClienteCreatorController;
 import smartfood.controller.info.ListaCategoriaController;
@@ -100,7 +101,8 @@ public class LoginController implements Initializable {
                 int idRes = Restaurante.obtenerIDRes(usuarioSistema.getIdUsuario());
 
                 if (usuarioSistema.getRol().equalsIgnoreCase("asistente")) {
-                    this.cargarAsistente(event, idRes);
+                    this.seleccionarRestaurante(event, usuarioSistema);
+//                    this.cargarAsistente(event, idRes);
                 }
                 else if (usuarioSistema.getRol().equalsIgnoreCase("cliente")) {
                     this.cargarCliente(event, usuarioSistema);
@@ -130,6 +132,39 @@ public class LoginController implements Initializable {
                 Constantes.MAX_LENGHT_USER_PASS);
         Validaciones.addTextLimiter(this.password, 
                 Constantes.MAX_LENGHT_USER_PASS);
+    }
+    
+    private void seleccionarRestaurante(MouseEvent event, Usuario usuario) {
+        try {
+        
+            FXMLLoader loader = new FXMLLoader(SeleccionarRestauranteController.
+            class.getResource("/smartfood/screen/assistant/"
+                    + "SeleccionarRestaurante.fxml"));
+            
+            BorderPane page = (BorderPane) loader.load();
+            Stage parent = (Stage) ((Node)event.getTarget()).getScene().getWindow();
+            
+            Stage dialogStage = new Stage();
+            
+            dialogStage.setTitle(parent.getTitle());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+//            dialogStage.getIcons().add(parent.getIcons().get(0));
+            dialogStage.initOwner(((Node)event.getTarget()).getScene().getWindow());
+            
+            parent.close();
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            SeleccionarRestauranteController controller = loader.getController();
+            controller.setApp(dialogStage);
+            controller.setUsuario(usuario);
+//            controller.setIdRestaurante(idUsuario);
+
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
     
     private void cargarAsistente(MouseEvent event, int idRes) {

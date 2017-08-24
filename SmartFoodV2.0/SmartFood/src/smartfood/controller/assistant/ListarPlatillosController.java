@@ -94,7 +94,6 @@ public class ListarPlatillosController implements Initializable,
         
         this.cargas = 1;
         
-        System.out.println(this.cargas);
     }
     
     public void setIDRestaurante(int idRestaurante) {
@@ -111,7 +110,7 @@ public class ListarPlatillosController implements Initializable,
             cn = new Conexion();
 
             try {
-
+                
                 resultados = Plato.getListadoXRestaurante(cn, this.idRestaurante);
 
                 this.createDishList(resultados);
@@ -121,7 +120,7 @@ public class ListarPlatillosController implements Initializable,
                 this.cargas = 0;
             }
             catch (Exception e) {
-                System.out.println("No carga");
+                System.out.println(e);
             }
             finally {
                 try {

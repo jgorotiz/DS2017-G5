@@ -8,7 +8,6 @@ package smartfood.classes.food;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import smartfood.classes.connection.Conexion;
 
 /**
@@ -28,7 +27,7 @@ public class Restaurante {
     }
 
     public Restaurante() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     public int getIdRestaurante() {
@@ -63,6 +62,8 @@ public class Restaurante {
                     + " restauranteAdministrador(?)}");
             cst.setInt(1, idUsuario);
             cst.execute(); 
+            
+            System.out.println(cst.getResultSet() == null);
             return cst.getResultSet();
 
         } catch (SQLException ex) {

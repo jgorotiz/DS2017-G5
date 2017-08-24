@@ -37,6 +37,7 @@ import smartfood.classes.alerts.ConfirmationAlert;
 import smartfood.classes.alerts.GeneralAlert;
 import smartfood.classes.alerts.InfoAlert;
 import smartfood.classes.alerts.WarningAlert;
+import smartfood.classes.food.Restaurante;
 import smartfood.controller.assistant.AgregarPlatilloController;
 import smartfood.controller.assistant.ListarCategoriasController;
 import smartfood.controller.assistant.ListarPlatillosController;
@@ -49,6 +50,8 @@ import smartfood.controller.info.ListaCategoriaController;
 public class AsistenteCreatorController implements Initializable {
     
     private Stage appStage;
+    
+    private Restaurante res;
     
     private int idRestaurante;
     
@@ -115,7 +118,7 @@ public class AsistenteCreatorController implements Initializable {
         
         this.nombreRestaurante.setFont(new Font("Cambria", 30));
         this.nombreRestaurante.setTextAlignment(TextAlignment.CENTER);
-        this.nombreRestaurante.setTextFill(Color.DARKRED);
+        this.nombreRestaurante.setTextFill(Color.TOMATO);
         
         this.encabezado.setFont(new Font("Cambria", 40));
         this.encabezado.setTextAlignment(TextAlignment.CENTER);
@@ -132,6 +135,14 @@ public class AsistenteCreatorController implements Initializable {
 
     public void setIdRestaurante(int idRestaurante) {
         this.idRestaurante = idRestaurante;
+    }
+    
+    public void setRestaurante(Restaurante res) {
+        this.res = res;
+    }
+    
+    public void setNombreRestaurante(String nombre) {
+        this.nombreRestaurante.setText(nombre);
     }
     
     public void agregarPlato(MouseEvent event) {
@@ -154,7 +165,7 @@ public class AsistenteCreatorController implements Initializable {
 
             AgregarPlatilloController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setIDRestaurante(this.idRestaurante);
+            controller.setIDRestaurante(this.res.getIdRestaurante());
 
             dialogStage.showAndWait();
 
@@ -182,11 +193,8 @@ public class AsistenteCreatorController implements Initializable {
             dialogStage.setScene(scene);
             
             ListarPlatillosController controller = loader.getController();
-//            loade
-            controller.setIDRestaurante(this.idRestaurante);
+            controller.setIDRestaurante(this.res.getIdRestaurante());
             controller.setDialogStage(dialogStage);
-            System.out.println("Este es de asistente creator " + this.idRestaurante);
-            
 
             dialogStage.showAndWait();
 
@@ -214,7 +222,7 @@ public class AsistenteCreatorController implements Initializable {
             dialogStage.setScene(scene);
 
             ListarCategoriasController controller = loader.getController();
-            controller.setIDRestaurante(this.idRestaurante);
+            controller.setIDRestaurante(this.res.getIdRestaurante());
             controller.setDialogStage(dialogStage);
             
 
